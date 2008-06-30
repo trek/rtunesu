@@ -1,26 +1,16 @@
-= rtunesu
-
-* FIX (url)
+= RTunesU
 
 == DESCRIPTION:
-
-FIX (describe your package)
+RTunesU is a ruby library for accessing Apple's iTunes U Webservices to integrate your education institutions iTunes U account into ruby applications
 
 == FEATURES/PROBLEMS:
-
-* FIX (list of features or problems)
+Currently working on getting Apple's ProcessWebServicesDocument action to work properly
 
 == SYNOPSIS:
 
-  FIX (code sample of usage)
-
 == REQUIREMENTS:
 
-* FIX (list of requirements)
-
 == INSTALL:
-
-* FIX (sudo gem install, anything else)
 
 == LICENSE:
 

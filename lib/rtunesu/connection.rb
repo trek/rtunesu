@@ -11,16 +11,14 @@ module RTunesU
     attr_accessor :user, :options, :token
     
     def initialize(options = {})
-      self.user = options[:user]
-      self.options = options
+      self.user, self.options = options[:user], options
     end
-    alias :open :initialize
     
     # create_authorization_token has a single argument (optional). This argument is needed for testing
-    def generate_authorization_token(time = Time.now)
+    def generate_authorization_token
     	# create the token that contains the necessary elements to authorize the user	
     	# using a nested array because the alphabetical order must be maintained
-    	token = [['credentials', self.user.to_credential_string,], ['identity', self.user.to_identity_string], ['time', time.to_i.to_s]]
+    	token = [['credentials', self.user.to_credential_string,], ['identity', self.user.to_identity_string], ['time', Time.now.to_i.to_s]]
     	encoded_parms = token.collect {|pair| pair[1] = CGI.escape(pair[1]); pair.join('=')}.join('&')
 
       digest = Digest::SHA2.new

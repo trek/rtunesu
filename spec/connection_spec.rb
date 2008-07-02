@@ -4,16 +4,19 @@ include RTunesU
 describe Connection do
   describe 'token generation' do
     before do 
+      Time.should_receive(:now).and_return(@current_time)
+      @current_time.should_receive(:to_i).and_return(1214619134)
+      
       user = mock(RTunesU::User, :id => 0,
                                  :username => 'admin',
                                  :name => 'Admin',
                                  :email => 'admin@example.edu',
                                  :credentials => ['Administrator@urn:mace:itunesu.com:sites:example.edu'],
-                                 :credential_string => 'Administrator@urn:mace:itunesu.com:sites:example.edu',
-                                 :to_s => '"Admin" <admin@example.edu> (admin) [0]')
+                                 :to_credential_string => 'Administrator@urn:mace:itunesu.com:sites:example.edu',
+                                 :to_identity_string => '"Admin" <admin@example.edu> (admin) [0]')
                                  
       @connection = Connection.new(:user => user, :shared_secret => 'STRINGOFTHIRTYTWOLETTERSORDIGITS')
-      @connection.generate_authorization_token(Time.at(1214619134))
+      @connection.generate_authorization_token#(Time.at(1214619134))
     end
     
     it 'generates a token' do
@@ -22,9 +25,5 @@ describe Connection do
     
     it 'does not allow illegal characters'
     it 'includes a properly hashed signature'
-  end
-  
-  describe 'requesting upload location' do
-    
   end
 end

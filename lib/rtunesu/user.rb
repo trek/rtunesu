@@ -3,10 +3,7 @@ module RTunesU
     attr_accessor :name, :email, :username, :id, :credentials
     
     def initialize(id, username, name, email)
-      self.id = id
-      self.username = username
-      self.name = name
-      self.email = email
+      self.id, self.username, self.name, self.email = id, username, name, email
     end
     
     def to_identity_string

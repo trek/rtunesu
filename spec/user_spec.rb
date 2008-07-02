@@ -7,10 +7,10 @@ describe User do
     @user.credentials = ["Administrator@urn:mace:itunesu.com:sites:example.edu"]
   end
   
-  it 'should convert to a string' do    
-    @user.to_s.should eql("'Trek' <pietrekg@umich.edu> (pietrekg) [41]")
+  it 'should convert to a properly formatted identity string' do    
+    @user.to_identity_string.should eql('"Trek" <pietrekg@umich.edu> (pietrekg) [41]')
   end
   
-  it 'should be able to create a credential string'
+  it 'should convert to a properly formatted credential string'
   
 end

@@ -3,8 +3,9 @@ include RTunesU
 
 describe Document do
   before do
-    @document = Document::Base.new
+    @document = Document::Base.new(nil)
   end
+  
   it 'includes a base element of ITunesUDocument'
   it 'includes a version number'
 end

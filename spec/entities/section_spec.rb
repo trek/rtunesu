@@ -3,4 +3,5 @@ include RTunesU
 
 describe Section do
   it 'should find itself in iTunes U'
+  it 'is valid'
 end

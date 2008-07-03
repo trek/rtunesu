@@ -58,25 +58,22 @@ module RTunesU
     end
     
     def webservices_url
-      "#{API_URL}/ProcessWebServicesDocument/#{options[:site]}?#{self.generate_authorization_token}"
+      "#{API_URL}/ProcessWebServicesDocument/#{options[:site]}.1278185?#{self.generate_authorization_token}"
     end
     
     def upload_to
-      # upload_location = 'http://localhost:3000/tests/show?' + self.generate_authorization_token
       upload_location = webservices_url
       url = URI.parse(upload_location)
-      File.open('/Users/trek/Desktop/showtree.xml', 'r') do |file|
         http = Net::HTTP.new(url.host, url.port)
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
         http.start {
           request = Net::HTTP::Post.new(url.to_s)
-          request.multipart_params = {:file => file}
+          request.body ="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ITunesUDocument>\n  <Version>1.1.1</Version>\n  <ShowTree>\n    <Handle>1278185</Handle>\n    <KeyGroup>minimal</KeyGroup>\n  </ShowTree>\n</ITunesUDocument>\n"
           response = http.request(request)
           response.value
           puts response.body
         }
-      end
     end
   end
 end

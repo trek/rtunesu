@@ -2,5 +2,6 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 include RTunesU
 
 describe Course do
-  it 'should find itself in iTunes U'
+  it 'can find itself in iTunes U'
+  it 'is valid'
 end

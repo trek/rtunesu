@@ -3,7 +3,7 @@ include RTunesU
 
 describe Document do
   before do
-    @document = Document::Base.new(nil)
+    @document = Document::Base.new(RTunes::Course.new)
   end
   
   it 'includes a base element of ITunesUDocument'

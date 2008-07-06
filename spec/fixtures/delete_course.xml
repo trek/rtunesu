@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ITunesUDocument>
+  <Version>1.1.1</Version>
+  <DeleteCourse>
+    <CourseHandle>coursehandle value</CourseHandle>
+    <CoursePath>coursepath value</CoursePath>
+  </DeleteCourse>
+</ITunesUDocument>

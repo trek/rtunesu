@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ITunesUDocument>
+  <Version>1.1.1</Version>
+  <MergePermission>
+    <ParentHandle>parenthandle value</ParentHandle>
+    <ParentPath>parentpath value</ParentPath>
+    <Permission>
+      <Credential>credential value</Credential>
+      <Access>access value</Access>
+    </Permission>
+  </MergePermission>
+</ITunesUDocument>

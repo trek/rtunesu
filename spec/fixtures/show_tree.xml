@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ITunesUResponse>
+  <Version>1.1.1</Version>
+  <Site>
+    <Name>Cupertino University</Name>
+    <Handle>27361720</Handle>
+    <AllowSubscription>true</AllowSubscription>
+    <AggregateFileSize>2730354089</AggregateFileSize>
+    <ThemeHandle>1133133900</ThemeHandle>
+    <Permission>
+      <Credential>Authenticated@urn:mace:itunesu.com:sites:
+      adc.education.apple.com</Credential>
+      <Access>Download</Access>
+    </Permission>
+    <Permission>
+      <Credential>Administrator@urn:mace:itunesu.com:sites:
+      adc.education.apple.com</Credential>
+      <Access>Edit</Access>
+    </Permission>
+    <Permission>
+      <Credential>All@urn:mace:itunesu.com:sites:
+      adc.education.apple.com</Credential>
+      <Access>No Access</Access>
+    </Permission>
+    <Permission>
+      <Credential>Unauthenticated@urn:mace:itunesu.com:sites:
+      adc.education.apple.com</Credential>
+      <Access>No Access</Access>
+    </Permission>
+    <Permission>
+      <Credential>Role@urn:mace:itunesu.com</Credential>
+      <Access>No Access</Access>
+    </Permission>
+    <Section>
+      <Name>Cupertino University Courses</Name>
+      <Handle>27362003</Handle>
+      <Course>
+        <Name>ENG 350: Love and Despair in Poetry</Name>
+        <Handle>27362036</Handle>
+        <Instructor>Instructor: Jason Edison</Instructor>
+        <Description>Explore the depths of human emotion through 
+        the power of verse.</Description>
+        <Permission>
+          <Credential>Unauthenticated@urn:mace:itunesu.com:sites:
+          adc.education.apple.com</Credential>
+          <Access>No Access</Access>
+        </Permission>
+        <CoverImage>
+          <Handle>1312377200</Handle>
+          <Shared>true</Shared>
+        </CoverImage>
+        <BannerImage>
+          <Handle>28248104</Handle>
+          <Shared>true</Shared>
+        </BannerImage>
+        <ThumbnailImage>
+          <Handle>28248105</Handle>
+          <Shared>true</Shared>
+        </ThumbnailImage>
+        <Group>
+          <Name>Love</Name>
+          <Handle>1250607352</Handle>
+          <Permission>
+            <Credential>Student@urn:mace:itunesu.com:sites:
+            cupertino.edu</Credential>
+            <Access>Download</Access>
+          </Permission>
+          <Track>
+            <Name>Sonnet 55</Name>
+            <Handle>1250054257</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>75000</DurationMilliseconds>
+            <AlbumName>LiteralSystems.com Audio Books</AlbumName>
+            <ArtistName>William Shakespeare</ArtistName>
+            <DownloadURL>https://deimos.apple.com/WebObjects/
+            Core.woa/DownloadTrack/adc.education.apple.com.
+            27362036.01250607352.1250054257</DownloadURL>
+            <File>
+              <Handle>1184601703</Handle>
+              <Shared>true</Shared>
+            </File>
+            <Comment>LiteralSystems.com (c) 2004. 
+            Licensed to the public under 
+            http://creativecommons.org/licenses/by-nd-nc/1.0/</Comment>
+            <CategoryCode>102108</CategoryCode>
+          </Track>
+          <AggregateFileSize>3865860</AggregateFileSize>
+        </Group>
+        <Group>
+          <Name>Despair</Name>
+          <Handle>1137655816</Handle>
+          <GroupType>Feed</GroupType>
+          <ExternalFeed>
+            <URL>http://www.itunesu.edu/feedpath.xml</URL>
+            <OwnerEmail>john.doe@email.com</OwnerEmail>
+            <PollingInterval>Daily</PollingInterval>
+          </ExternalFeed>
+        </Group>
+        <Group>
+          <Name>Drop Box</Name>
+          <Handle>1432712681</Handle>
+        </Group>
+        <Group>
+          <Name>Class Podcast</Name>
+          <Handle>1434954191</Handle>
+        </Group>
+        <AggregateFileSize>29094280</AggregateFileSize>
+        <LinkCollectionSet>
+          <LinkCollection>
+            <Name>Links</Name>
+            <Handle>16409</Handle>
+            <FeedURL>https://deimos.apple.com/WebObjects/Core.woa/LinkFeed/
+            adc.education.apple.com.27362036.016408.016409</FeedURL>
+          </LinkCollection>
+        </LinkCollectionSet>
+      </Course>
+      <Course>
+        <Name>COMM 410: Digital Storytelling</Name>
+        <Handle>27362058</Handle>
+        <Instructor>Marco Torres</Instructor>
+        <Description>Learn the process of storyboarding, 
+        production, and editing to communicate effectively 
+        in various digital mediums.</Description>
+        <CoverImage>
+          <Handle>1312165622</Handle>
+          <Shared>true</Shared>
+        </CoverImage>
+        <BannerImage>
+          <Handle>28970712</Handle>
+          <Shared>true</Shared>
+        </BannerImage>
+        <ThumbnailImage>
+          <Handle>28970713</Handle>
+          <Shared>true</Shared>
+        </ThumbnailImage>
+        <Group>
+          <Name>Video</Name>
+          <Handle>94505460</Handle>
+          <Track>
+            <Name>Air Jesse</Name>
+            <Handle>33064925</Handle>
+            <Kind>feature-movie</Kind>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>200000</DurationMilliseconds>
+            <AlbumName>Digital Storytelling</AlbumName>
+            <ArtistName>SFETT</ArtistName>
+            <DownloadURL>https://deimos.apple.com/WebObjects/
+            Core.woa/DownloadTrack/adc.education.apple.com.
+            27362058.094505460.33064925</DownloadURL>
+            <File>
+              <Handle>33064924</Handle>
+              <Shared>true</Shared>
+            </File>
+            <CategoryCode>101104</CategoryCode>
+          </Track>
+          <AggregateFileSize>61419318</AggregateFileSize>
+        </Group>
+        <AggregateFileSize>61449281</AggregateFileSize>
+      </Course>
+      <AggregateFileSize>2730256155</AggregateFileSize>
+    </Section>
+    <Templates>
+      <Name>Templates</Name>
+      <Handle>1137492150</Handle>
+      <Course>
+        <Name>Standard Course</Name>
+        <Handle>1194148486</Handle>
+        <ShortName>Standard Course</ShortName>
+        <Permission>
+          <Credential>Authenticated@urn:mace:itunesu.com:sites:
+          adc.education.apple.com</Credential>
+          <Access>No Access</Access>
+        </Permission>
+        <CoverImage>
+          <Handle>1194148492</Handle>
+          <Shared>true</Shared>
+        </CoverImage>
+        <BannerImage>
+          <Handle>1194148491</Handle>
+          <Shared>true</Shared>
+        </BannerImage>
+        <ThumbnailImage>
+          <Handle>1194148493</Handle>
+          <Shared>true</Shared>
+        </ThumbnailImage>
+        <Group>
+          <Name>Audio</Name>
+          <Handle>1194148489</Handle>
+        </Group>
+        <Group>
+          <Name>Video</Name>
+          <Handle>1194148490</Handle>
+        </Group>
+        <AggregateFileSize>47369</AggregateFileSize>
+        <LinkCollectionSet>
+          <LinkCollection>
+            <Name>Title</Name>
+            <Handle>17955</Handle>
+            <FeedURL>https://deimos.apple.com/WebObjects/Core.woa/LinkFeed/
+            adc.education.apple.com.1194148486.017954.017955</FeedURL>
+          </LinkCollection>
+        </LinkCollectionSet>
+      </Course>
+      <AggregateFileSize>47369</AggregateFileSize>
+    </Templates>
+    <CoverImage>
+      <Handle>1138049026</Handle>
+      <Shared>true</Shared>
+    </CoverImage>
+    <BannerImage>
+      <Handle>27361941</Handle>
+      <Shared>true</Shared>
+    </BannerImage>
+    <ThumbnailImage>
+      <Handle>1138049027</Handle>
+      <Shared>true</Shared>
+    </ThumbnailImage>
+    <Theme>
+      <Name>iTunes Original</Name>
+      <Handle>1133839107</Handle>
+      <BackgroundColor>b7defc</BackgroundColor>
+      <LineColor>000000</LineColor>
+      <LinkArrowColor>000000</LinkArrowColor>
+      <LinkBackgroundColor>ffffff</LinkBackgroundColor>
+      <LinkBackgroundColorAlpha>50</LinkBackgroundColorAlpha>
+      <LinkBoxColor>3366cc</LinkBoxColor>
+      <LinkTextColor>000000</LinkTextColor>
+      <LinkTitleColor>ffffff</LinkTitleColor>
+      <LoginURL>http://deimos.apple.com/adc</LoginURL>
+      <RegularTextColor>000000</RegularTextColor>
+      <TitleTextColor>000000</TitleTextColor>
+      <TimeFormat>h:mm:ss a</TimeFormat>
+      <DateFormat>E MMM d, yyyy</DateFormat>
+    </Theme>
+    <Theme>
+      <Name>Custom</Name>
+      <Handle>1133297749</Handle>
+      <BackgroundColor>ffffff</BackgroundColor>
+      <LineColor>cccccc</LineColor>
+      <LinkArrowColor>000000</LinkArrowColor>
+      <LinkBackgroundColor>000000</LinkBackgroundColor>
+      <LinkBackgroundColorAlpha>12</LinkBackgroundColorAlpha>
+      <LinkBoxColor>000066</LinkBoxColor>
+      <LinkTextColor>000000</LinkTextColor>
+      <LinkTitleColor>ffffff</LinkTitleColor>
+      <LoginURL>http://deimos.apple.com/adc</LoginURL>
+      <RegularTextColor>333333</RegularTextColor>
+      <TitleTextColor>000000</TitleTextColor>
+      <TimeFormat>h:mm:ss a</TimeFormat>
+      <DateFormat>E MMM d, yyyy</DateFormat>
+    </Theme>
+    <LinkCollectionSet>
+      <LinkCollection>
+        <Name>Links</Name>
+        <Handle>16407</Handle>
+        <FeedURL>https://deimos.apple.com/WebObjects/Core.woa/LinkFeed/adc.education.apple.com.016406.016407</FeedURL>
+      </LinkCollection>
+    </LinkCollectionSet>
+    <LoginURL>http://deimos.apple.com/adc</LoginURL>
+  </Site>
+  <Reference>
+    <Category>
+      <Code>102108</Code>
+      <Name>Fine Arts - Theater</Name>
+    </Category>
+    <Category>
+      <Code>101104</Code>
+      <Name>Engineering - Environmental</Name>
+    </Category>
+  </Reference>
+</ITunesUResponse>

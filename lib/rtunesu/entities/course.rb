@@ -1,8 +1,6 @@
 module RTunesU
   class Course < Entity
-    attr_accessor :name, :handle, :instrcutor, :description
-    def attributes
-      {:name => self.name, :handle => self.handle, :instrcutor => self.instrcutor, :description => self.description}
-    end
+    attributes :handle, :name, :short_name, :identifier, :instructor, :description
+    attr_reader :aggregate_file_size
   end
 end

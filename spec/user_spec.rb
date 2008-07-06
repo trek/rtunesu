@@ -11,6 +11,8 @@ describe User do
     @user.to_identity_string.should eql('"Trek" <pietrekg@umich.edu> (pietrekg) [41]')
   end
   
-  it 'should convert to a properly formatted credential string'
+  it 'should convert to a properly formatted credential string' do
+    @user.to_credential_string.should eql('Administrator@urn:mace:itunesu.com:sites:example.edu')
+  end
   
 end

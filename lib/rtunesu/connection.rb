@@ -14,7 +14,6 @@ module RTunesU
       self.user, self.options = options[:user], options
     end
     
-    # create_authorization_token has a single argument (optional). This argument is needed for testing
     def generate_authorization_token
     	# create the token that contains the necessary elements to authorize the user	
     	# using a nested array because the alphabetical order must be maintained
@@ -30,15 +29,9 @@ module RTunesU
       # add the hashed digital signature to the end of the query parameters
       self.token = encoded_parms += "&signature=#{hmac.hexdigest}"
     end
-    
-    def action(type = 'show_tree')
-      # get an authorization token
-      self.generate_authorization_token
-      case type
-      when 'show_tree'      :  url_string = "#{API_URL}/ShowTree/#{self.options[:site]}?#{self.token}"
-      when 'get_upload_url' :  url_string = "#{API_URL}/GetUploadURL/#{self.options[:site]}?#{self.token}&type=XMLControlFile"
-      end
-      
+        
+    def upload_url_for_location(location)
+      url_string = "#{API_URL}/GetUploadURL/#{self.options[:site]}.#{location.handle}?#{self.token}"
       url = URI.parse(url_string)
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
@@ -49,19 +42,24 @@ module RTunesU
       response.body
     end
     
-    def show_tree
-      self.action('show_tree')
-    end
-    
-    def get_upload_url
-      self.action('get_upload_url')
-    end
-    
     def webservices_url
-      "#{API_URL}/ProcessWebServicesDocument/#{options[:site]}.1278185?#{self.generate_authorization_token}"
+      "#{API_URL}/ProcessWebServicesDocument/#{options[:site]}?#{self.generate_authorization_token}"
     end
     
-    def upload_to
+    def process(xml)
+      url = URI.parse(webservices_url)
+        http = Net::HTTP.new(url.host, url.port)
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        http.start {
+          request = Net::HTTP::Post.new(url.to_s)
+          request.body = xml
+          response = http.request(request)
+          response.body
+        }
+    end
+    
+    def upload_to(upload_to)
       upload_location = webservices_url
       url = URI.parse(upload_location)
         http = Net::HTTP.new(url.host, url.port)
@@ -71,8 +69,7 @@ module RTunesU
           request = Net::HTTP::Post.new(url.to_s)
           request.body ="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ITunesUDocument>\n  <Version>1.1.1</Version>\n  <ShowTree>\n    <Handle>1278185</Handle>\n    <KeyGroup>minimal</KeyGroup>\n  </ShowTree>\n</ITunesUDocument>\n"
           response = http.request(request)
-          response.value
-          puts response.body
+          response.body
         }
     end
   end

@@ -32,7 +32,7 @@ class Net::HTTP::Post
       boundary_marker + case param_value
       when File: file_to_multipart(param_name, param_value)
       when String: text_to_multipart(param_name, param_value)
-      else ""      
+      else ''
       end
     }.join('') + "--#{boundary_token}--\r\n"
   end

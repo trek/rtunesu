@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ITunesUDocument>
+  <Version>1.1.1</Version>
+  <AddGroup>
+    <ParentHandle>parenthandle value</ParentHandle>
+    <ParentPath>parentpath value</ParentPath>
+    <Group>
+      <Name>name value</Name>
+      <Handle>handle value</Handle>
+      <Track>
+        <Name>name value</Name>
+        <Handle>handle value</Handle>
+        <Kind>kind value</Kind>
+        <DiscNumber>discnumber value</DiscNumber>
+        <DurationMilliseconds>durationmilliseconds value
+        </DurationMilliseconds>
+        <AlbumName>albumname value</AlbumName>
+        <ArtistName>artistname value</ArtistName>
+        <DownloadURL>downloadurl value</DownloadURL>
+      </Track>
+      <Permission>
+        <Credential>credential value</Credential>
+        <Access>access value</Access>
+      </Permission>
+    </Group>
+  </AddGroup>
+</ITunesUDocument>

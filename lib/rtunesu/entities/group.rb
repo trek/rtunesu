@@ -1,4 +1,5 @@
 module RTunesU
-  class Group
+  class Group < Entity
+    attributes :handle, :name
   end
 end

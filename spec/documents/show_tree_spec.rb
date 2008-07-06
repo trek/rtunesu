@@ -5,7 +5,7 @@ include Document
 describe Document, "ShowTree" do
   describe 'handle' do
     it 'should exist'
-    it 'should default to the upload location'
+    it 'should default to the source entity handle location'
     it 'can take a specific handle'
   end
   

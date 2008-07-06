@@ -1,4 +1,4 @@
 module RTunesU
-  class Site
+  class Site < Entity
   end
 end

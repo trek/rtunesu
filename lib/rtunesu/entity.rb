@@ -10,10 +10,11 @@ module RTunesU
     def self.find(handle, connection)
       entity = self.new(:handle => handle)
       entity.load_from_xml(connection.process(Document::ShowTree.new(entity).xml))
+      entity
     end
     
     def load_from_xml(xml)
-      self.drill(self.class_name, XmlSimple.xml_in(xml, 'ForceArray' => false))
+      self.drill(self.class_name, XmlSimple.xml_in(xml, 'ForceArray' => false)).each {|k,v| self.send("#{k.gsub(/([a-z\d])([A-Z])/,'\1_\2').downcase}=", v)}
     end
     
     
@@ -36,7 +37,7 @@ module RTunesU
       define_method :attributes do
         h = {}
         attrs.each {|attribute| h[attribute] = self.send(attribute)}
-        @attributes ||= h
+        h
       end
     end
             
@@ -53,7 +54,7 @@ module RTunesU
         self.attributes.each { |name, value| xml_builder.tag!(name.to_s.gsub(/\/(.?)/) { "::#{$1.upcase}" }.gsub(/(?:^|_)(.)/) { $1.upcase }, value) unless value.nil?}
       }
     end
-  
+    
     protected
       # iTunes U always returns an entity nested inside of its hierarchical entities.  For example requesting a Course entity will return an XML document with Course nested inside its Section and Site.
       # Drill takes a hash converted from this XML using load_from_xml and recursively moves inwards until it finds the entity type being searched for

@@ -1,5 +1,5 @@
 module RTunesU
   class Permission < Entity
-    attributes :handle, :credential, :access
+    Attributes = :handle, :credential, :access
   end
 end

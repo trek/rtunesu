@@ -1,5 +1,5 @@
 module RTunesU
   class Section < Entity
-    attributes :handle, :name
+    Attributes = :handle, :name
   end
 end

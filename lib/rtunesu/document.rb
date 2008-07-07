@@ -31,7 +31,7 @@ module RTunesU
       private
         def tag_action(xml_builder)
           xml_builder.tag!("Add#{source.class_name}") {
-            source.to_xml(builder)
+            source.to_xml(xml_builder)
           }
         end
     end
@@ -40,8 +40,9 @@ module RTunesU
       private
         def tag_action(xml_builder)
           xml_builder.tag!("Merge#{source.class_name}") {
-            xml_builder.tag!("#{source.class_name}Handle")
-            xml_builder.tag!("#{source.class_name}Path")
+            xml_builder.tag!("#{source.class_name}Handle", source.handle)
+            source.to_xml(xml_builder)
+            # xml_builder.tag!("#{source.class_name}Path")
           }
       end
     end

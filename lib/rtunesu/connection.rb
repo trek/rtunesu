@@ -5,9 +5,12 @@ require 'hmac-sha2'
 require 'digest'
 require 'net/https'
 require 'uri'
+require 'timeout'
 
 module RTunesU
   class Connection
+    TIMEOUT = 60
+    
     attr_accessor :user, :options, :token
     
     def initialize(options = {})
@@ -46,17 +49,23 @@ module RTunesU
       "#{API_URL}/ProcessWebServicesDocument/#{options[:site]}?#{self.generate_authorization_token}"
     end
     
+    def browse_url
+      "#{BROWSE_URL}/#{options[:site]}?#{self.generate_authorization_token}"
+    end
+    
     def process(xml)
-      url = URI.parse(webservices_url)
-        http = Net::HTTP.new(url.host, url.port)
-        http.use_ssl = true
-        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        http.start {
-          request = Net::HTTP::Post.new(url.to_s)
-          request.body = xml
-          response = http.request(request)
-          response.body
-        }
+      timeout(TIMEOUT) do
+        url = URI.parse(webservices_url)
+          http = Net::HTTP.new(url.host, url.port)
+          http.use_ssl = true
+          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          http.start {
+            request = Net::HTTP::Post.new(url.to_s)
+            request.body = xml
+            response = http.request(request)
+            response.body
+          }
+      end
     end
     
     def upload_to(upload_to)

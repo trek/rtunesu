@@ -1,7 +1,7 @@
 module RTunesU
   class Entity
     NESTING = %w(Site Section Course Group Track)
-    attr_accessor :connection, :attributes, :handle, :saved
+    attr_accessor :connection, :attributes, :handle, :parent, :parent_handle, :saved
     
     def initialize(attrs)
       self.attributes = {}
@@ -49,9 +49,13 @@ module RTunesU
       self.class.to_s.split(':').last
     end
     
+    def parent_handle
+      self.parent ? self.parent.handle : @parent_handle
+    end
+    
     def to_xml(xml_builder = Builder::XmlMarkup.new)
       xml_builder.tag!(self.class_name) {
-        self.class.const_get('Attributes').each {|attribute| xml_builder.tag!(attribute.to_s.gsub(/\/(.?)/) { "::#{$1.upcase}" }.gsub(/(?:^|_)(.)/) { $1.upcase }, self.attributes[attribute.to_s])}
+        self.class.const_get('Attributes').each {|attribute| xml_builder.tag!(attribute.to_s.gsub(/\/(.?)/) { "::#{$1.upcase}" }.gsub(/(?:^|_)(.)/) { $1.upcase }, self.attributes[attribute.to_s]) unless self.attributes[attribute.to_s].nil? || self.attributes[attribute.to_s].empty? }
       }
     end
     
@@ -69,6 +73,10 @@ module RTunesU
     
     def saved?
       !self.handle.nil?
+    end
+    
+    def destroy(connection)
+      connection.process(Document::Delete.new(self).xml)
     end
     
     protected

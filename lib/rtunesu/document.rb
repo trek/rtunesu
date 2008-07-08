@@ -31,6 +31,8 @@ module RTunesU
       private
         def tag_action(xml_builder)
           xml_builder.tag!("Add#{source.class_name}") {
+            xml_builder.tag!(ParentHandle, source.parent_handle)
+            xml_builder.tag!(ParentPath, '')
             source.to_xml(xml_builder)
           }
         end
@@ -42,7 +44,6 @@ module RTunesU
           xml_builder.tag!("Merge#{source.class_name}") {
             xml_builder.tag!("#{source.class_name}Handle", source.handle)
             source.to_xml(xml_builder)
-            # xml_builder.tag!("#{source.class_name}Path")
           }
       end
     end
@@ -51,8 +52,8 @@ module RTunesU
       private
         def tag_action(xml_builder)
           xml_builder.tag!("Delete#{source.class_name}") {
-            xml_builder.tag!("#{source.class_name}Handle")
-            xml_builder.tag!("#{source.class_name}Path")
+            xml_builder.tag!("#{source.class_name}Handle", source.handle)
+            xml_builder.tag!("#{source.class_name}Path", '')
           }
         end
     end

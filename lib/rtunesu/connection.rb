@@ -11,7 +11,7 @@ module RTunesU
   class Connection
     TIMEOUT = 60
     
-    attr_accessor :user, :options, :token
+    attr_accessor :user, :options
     
     def initialize(options = {})
       self.user, self.options = options[:user], options
@@ -30,7 +30,7 @@ module RTunesU
       hmac.update(encoded_parms)
 
       # add the hashed digital signature to the end of the query parameters
-      self.token = encoded_parms += "&signature=#{hmac.hexdigest}"
+      encoded_parms += "&signature=#{hmac.hexdigest}"
     end
         
     def upload_url_for_location(location)

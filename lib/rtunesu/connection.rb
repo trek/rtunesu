@@ -34,7 +34,8 @@ module RTunesU
     end
         
     def upload_url_for_location(location)
-      url_string = "#{API_URL}/GetUploadURL/#{self.options[:site]}.#{location.handle}?#{self.token}"
+      url_string = "#{API_URL}/GetUploadURL/#{self.options[:site]}.#{location.handle}?#{self.generate_authorization_token}"
+      puts url_string
       url = URI.parse(url_string)
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
@@ -68,15 +69,15 @@ module RTunesU
       end
     end
     
-    def upload_to(upload_to)
-      upload_location = webservices_url
+    def upload_file(file, location)
+      upload_location = upload_url_for_location(location)
       url = URI.parse(upload_location)
         http = Net::HTTP.new(url.host, url.port)
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
         http.start {
           request = Net::HTTP::Post.new(url.to_s)
-          request.body ="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ITunesUDocument>\n  <Version>1.1.1</Version>\n  <ShowTree>\n    <Handle>1278185</Handle>\n    <KeyGroup>minimal</KeyGroup>\n  </ShowTree>\n</ITunesUDocument>\n"
+          request.body = file.open
           response = http.request(request)
           response.body
         }

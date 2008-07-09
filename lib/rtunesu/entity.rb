@@ -64,7 +64,8 @@ module RTunesU
     end
     
     def create(connection)
-      return false
+      self.handle = XmlSimple.xml_in(connection.process(Document::Add.new(self).xml), 'ForceArray' => false)['AddedObjectHandle']
+      self
     end
     
     def save(connection)

@@ -31,8 +31,8 @@ module RTunesU
       private
         def tag_action(xml_builder)
           xml_builder.tag!("Add#{source.class_name}") {
-            xml_builder.tag!(ParentHandle, source.parent_handle)
-            xml_builder.tag!(ParentPath, '')
+            xml_builder.tag!('ParentHandle', source.parent_handle)
+            xml_builder.tag!('ParentPath', '')
             source.to_xml(xml_builder)
           }
         end

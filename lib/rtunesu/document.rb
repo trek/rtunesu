@@ -53,7 +53,7 @@ module RTunesU
         def tag_action(xml_builder)
           xml_builder.tag!("Delete#{source.class_name}") {
             xml_builder.tag!("#{source.class_name}Handle", source.handle)
-            xml_builder.tag!("#{source.class_name}Path", '')
+            xml_builder.tag!("#{source.class_name}Path", '') unless source.class_name == 'Track'
           }
         end
     end

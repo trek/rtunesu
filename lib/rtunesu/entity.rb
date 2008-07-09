@@ -61,11 +61,13 @@ module RTunesU
     
     def update(connection)
       connection.process(Document::Merge.new(self).xml)
+      self
     end
     
     def create(connection)
-      self.handle = XmlSimple.xml_in(connection.process(Document::Add.new(self).xml), 'ForceArray' => false)['AddedObjectHandle']
-      self
+      connection.process(Document::Add.new(self).xml)
+      # self.handle = XmlSimple.xml_in(connection.process(Document::Add.new(self).xml), 'ForceArray' => false)['AddedObjectHandle']
+      # self
     end
     
     def save(connection)

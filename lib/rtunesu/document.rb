@@ -1,5 +1,5 @@
 require 'builder'
-require 'xmlsimple'
+require 'xmlsimple' # for testing, just for now
 
 module RTunesU
   module Document
@@ -32,6 +32,7 @@ module RTunesU
         def tag_action(xml_builder)
           xml_builder.tag!("Add#{source.class_name}") {
             xml_builder.tag!('ParentHandle', source.parent_handle)
+            # The existance of ParentPath is required for iTunesU documents, but can be blank
             xml_builder.tag!('ParentPath', '')
             source.to_xml(xml_builder)
           }

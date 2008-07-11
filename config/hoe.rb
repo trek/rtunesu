@@ -9,7 +9,7 @@ HOMEPATH = "http://#{RUBYFORGE_PROJECT}.rubyforge.org"
 DOWNLOAD_PATH = "http://rubyforge.org/projects/#{RUBYFORGE_PROJECT}"
 EXTRA_DEPENDENCIES = [
   ['ruby-hmac', '>= 0.3.1'],
-  ['xml-simple', '>= 1.0'],
+  ['hpricot', '>= 0.6'],
   ['builder', '>= 2.0']
 ]
 

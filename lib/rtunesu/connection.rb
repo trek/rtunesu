@@ -9,7 +9,7 @@ require 'timeout'
 
 module RTunesU
   class Connection
-    TIMEOUT = 60
+    TIMEOUT = 240
     
     attr_accessor :user, :options
     
@@ -52,6 +52,18 @@ module RTunesU
     
     def browse_url
       "#{BROWSE_URL}/#{options[:site]}?#{self.generate_authorization_token}"
+    end
+    
+    def show_tree
+      url = URI.parse("#{SHOW_TREE_URL}/#{options[:site]}?#{self.generate_authorization_token}")
+        http = Net::HTTP.new(url.host, url.port)
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        http.start {
+          request = Net::HTTP::Post.new(url.to_s)
+          response = http.request(request)
+          response.body
+        }
     end
     
     def process(xml)

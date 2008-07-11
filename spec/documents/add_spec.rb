@@ -5,26 +5,25 @@ include Document
 describe Document::Add do
   before do
     course = mock(RTunesU::Course, :handle => 1234567,
-                                   :path  => 'ExampleU/Humanities/HUM211',
-                                   :class_name => 'Course')
-    @document = Document::Delete.new(course)
+                                   :parent_handle => 98765,
+                                   :class_name => 'Course',
+                                   :to_xml => '<Course></Course>')
+    @document = Document::Add.new(course)
   end
   
   it 'can convert itself to a string of xml' do
-    lambda { @document.to_xml }.should_not raise_error
+    lambda { @document.xml }.should_not raise_error
   end
   
   describe 'xml contents' do
     before do
-      course = mock(RTunesU::Course, :handle => 1234567,
-                                     :path  => 'ExampleU/Humanities/HUM211',
-                                     :class_name => 'Course')
-      document = Document::Delete.new(course)
-      @xml = XmlSimple.xml_in(@document.to_xml, 'KeepRoot' => true, 'ForceArray' => false)
+      course = Course.new(:handle => 1234567, :parent_handle =>  98765)
+      @document = Document::Add.new(course)
+      @xml = XmlSimple.xml_in(@document.xml, 'KeepRoot' => true, 'ForceArray' => false)
     end
     
     it 'has a source entity that defines the specific action name' do
-      @xml.should have_key('AddCourse')
+      @xml['ITunesUDocument'].should have_key('AddCourse')
     end
   
     it 'has a parent handle' do
@@ -32,11 +31,11 @@ describe Document::Add do
     end
     
     it 'has a parent path' do
-      @xml['AddCourse'].should have_key('ParentPath')
+      @xml['ITunesUDocument']['AddCourse'].should have_key('ParentPath')
     end
     
     it 'has a child element that represents the source entity' do
-      @xml['AddCourse'].should have_key('Course')
+      @xml['ITunesUDocument']['AddCourse'].should have_key('Course')
     end
   end
 end

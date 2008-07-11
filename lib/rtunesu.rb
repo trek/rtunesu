@@ -21,4 +21,5 @@ module  RTunesU
   API_URL = 'https://deimos.apple.com/WebObjects/Core.woa/API'
   API_VERSION = '1.1.1'
   BROWSE_URL = 'https://deimos.apple.com/WebObjects/Core.woa/Browse'
+  SHOW_TREE_URL = 'https://deimos.apple.com/WebObjects/Core.woa/API/ShowTree'
 end

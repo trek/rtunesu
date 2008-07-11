@@ -49,7 +49,24 @@ describe Entity, 'attribute assignment' do
     @entity.edits['Groups'].size.should be(2)
   end
 end
-
+describe Entity, 'converting to XML' do
+  describe 'with nested elements' do
+    before do
+      @entity = Entity.new(:Name => 'Example')
+      @entity.Groups = [Group.new(:Name => 'example group 1'), Group.new(:Name => 'example group 2', :Description => 'Blah, blah, blah')]
+      @xml = @entity.to_xml
+    end
+    
+    it 'should contain nested XML edits' do
+      (Hpricot.XML(@xml) / 'Entity/Group').size.should be(2)
+    end
+    
+    it 'has nested elements that propely converted their singular attributes' do
+       (Hpricot.XML(@xml) / 'Entity/Group')[0].at('Name').innerHTML.should eql('example group 1')
+    end
+    
+  end
+end
 describe Entity, 'loading from XML' do
   before do
     @source = File.read(File.dirname(__FILE__) + '/fixtures/responses/generic_entity_response.xml')

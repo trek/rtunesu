@@ -1,6 +1,7 @@
 require 'hpricot'
 
 module RTunesU
+  # A Base class reprenseting the various entities seen in iTunes U.  Subclassed into the actual entity classes (Course, Division, Track, etc)
   class Entity
     attr_accessor :connection, :attributes, :handle, :parent, :parent_handle, :saved, :source_xml
     

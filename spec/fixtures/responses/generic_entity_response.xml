@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ITunesUResponse>
+  <Version>1.1.1</Version>
+  <Site>
+    <Name>Example U</Name>
+    <Handle>123</Handle>
+    <Section>
+      <Name>Example Section</Name>
+      <Handle>456</Handle>
+      <AllowSubscription />
+      <Entity>
+        <Name>Example Entity Inside of A Section</Name>
+        <Handle>789</Handle>
+      </Entity>
+    </Section>
+  </Site>
+</ITunesUResponse>

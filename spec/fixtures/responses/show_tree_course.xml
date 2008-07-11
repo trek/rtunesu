@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ITunesUResponse>
+  <Version>1.1.1</Version>
+  <Site>
+    <Name>Michigan</Name>
+    <Handle>720939</Handle>
+    <AllowSubscription>true</AllowSubscription>
+    <AggregateFileSize>458488960313</AggregateFileSize>
+    <ThemeHandle>1145110888</ThemeHandle>
+    <Permission>
+      <Credential>Administrator@urn:mace:umich.edu</Credential>
+      <Access>Edit</Access>
+    </Permission>
+    <Permission>
+      <Credential>Authenticated@urn:mace:itunesu.com:sites:umich.edu</Credential>
+      <Access>Download</Access>
+    </Permission>
+    <Permission>
+      <Credential>Instructor@urn:mace:itunesu.com:sites:umich.edu:${IDENTIFIER}</Credential>
+      <Access>Edit</Access>
+    </Permission>
+    <Permission>
+      <Credential>Learner@urn:mace:itunesu.com:sites:umich.edu:${IDENTIFIER}</Credential>
+      <Access>Download</Access>
+    </Permission>
+    <Permission>
+      <Credential>All@urn:mace:itunesu.com:sites:umich.edu</Credential>
+      <Access>No Access</Access>
+    </Permission>
+    <Permission>
+      <Credential>Unauthenticated@urn:mace:itunesu.com:sites:umich.edu</Credential>
+      <Access>No Access</Access>
+    </Permission>
+    <Section>
+      <Name>Courses</Name>
+      <Handle>1136688961</Handle>
+      <AllowSubscription />
+      <Course>
+        <Name>SI 539 001 W07</Name>
+        <Handle>1257981186</Handle>
+        <Instructor>Trek Glowacki</Instructor>
+        <Description>This course covers the application of database technology to the service of Web sites. Students discuss the underlying technologies of Web site design, implementation, and evaluation. More importantly, students focus on the use of data gathering, storage, retrieval, processing, and formatting, in the context of a Web site. Course covers gathering data from users through online forms and Ruby on Rails programs; effectively storing that data in a database; Web-based administrative interfaces to the database; and the effective formatting and display of the data at the Web site. Web 2.0 technologies such as AJAX and XML are investigated. Practical applications are studied; this is a project-based course.</Description>
+        <Identifier>147127e6-5e93-4a39-0037-0a09ee39edbb</Identifier>
+        <ThemeHandle />
+        <ShortName>SI 539 001 W07</ShortName>
+        <Permission>
+          <Credential>Authenticated@urn:mace:itunesu.com:sites:umich.edu</Credential>
+          <Access>No Access</Access>
+        </Permission>
+        <Group>
+          <Name>Lectures</Name>
+          <Handle>1257981189</Handle>
+          <GroupType>Simple</GroupType>
+          <ShortName />
+          <Permission />
+          <Track>
+            <Name>1. Introduction to The Internet &amp; Web</Name>
+            <Handle>1252253949</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>1517000</DurationMilliseconds>
+            <AlbumName>Design of Complex Websites</AlbumName>
+            <ArtistName>Hans Masing &amp; Trek Glowacki</ArtistName>
+            <GenreName>Michigan</GenreName>
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981189.1252253949</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>2. Introduction to HTML</Name>
+            <Handle>1250146305</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>2544000</DurationMilliseconds>
+            <AlbumName>Design of Complex Websites</AlbumName>
+            <ArtistName>Hans Masing &amp; Trek Glowacki</ArtistName>
+            <GenreName>Michigan</GenreName>
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981189.1250146305</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>3. Introduction to CSS</Name>
+            <Handle>1261097073</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>5075000</DurationMilliseconds>
+            <AlbumName>Design of Complex Websites</AlbumName>
+            <ArtistName>Hans Masing &amp; Trek Glowacki</ArtistName>
+            <GenreName>Michigan</GenreName>
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981189.1261097073</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>4. Introduction to Ruby Programming</Name>
+            <Handle>1252947474</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>3712000</DurationMilliseconds>
+            <AlbumName>Design of Complex Websites</AlbumName>
+            <ArtistName>Hans Masing &amp; Trek Glowacki</ArtistName>
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981189.1252947474</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>5. Data Modelling</Name>
+            <Handle>1278363064</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>4086000</DurationMilliseconds>
+            <AlbumName>Design of Complex Websites</AlbumName>
+            <ArtistName>Hans Masing &amp; Trek Glowacki</ArtistName>
+            <GenreName>Podcast</GenreName>
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981189.1278363064</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>6. Model, View, Controller</Name>
+            <Handle>1278248379</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>1939000</DurationMilliseconds>
+            <AlbumName>Design of Complex Websites</AlbumName>
+            <ArtistName>Hans Masing &amp; Trek Glowacki</ArtistName>
+            <GenreName>Podcast</GenreName>
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981189.1278248379</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>7. CSS Positioning</Name>
+            <Handle>1271009599</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>3213000</DurationMilliseconds>
+            <AlbumName />
+            <ArtistName>Hans Masing &amp; Trek Glowacki</ArtistName>
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981189.1271009599</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>8. Introduction to Ruby on Rails</Name>
+            <Handle>1277937082</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>5105000</DurationMilliseconds>
+            <AlbumName>Design of Complex Websites</AlbumName>
+            <ArtistName>Hans Masing &amp; Trek Glowacki</ArtistName>
+            <GenreName>Podcast</GenreName>
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981189.1277937082</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>9. Design Considerations for Single Object CRUD, Part I</Name>
+            <Handle>1270936904</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>1261000</DurationMilliseconds>
+            <AlbumName>Design of Complex Websites</AlbumName>
+            <ArtistName>Hans Masing &amp; Trek Glowacki</ArtistName>
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981189.1270936904</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>10. Arrays and Hashes</Name>
+            <Handle>1278477754</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>3118000</DurationMilliseconds>
+            <AlbumName>Design of Complex Websites</AlbumName>
+            <ArtistName>Hans Masing &amp; Trek Glowacki</ArtistName>
+            <GenreName>Podcast</GenreName>
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981189.1278477754</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>11. Design Considerations for Single Object CRUD, Part 2</Name>
+            <Handle>1275614437</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>2747000</DurationMilliseconds>
+            <AlbumName>Design of Complex Websites</AlbumName>
+            <ArtistName>Hans Masing &amp; Trek Glowacki</ArtistName>
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981189.1275614437</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>12. Associations and Validations</Name>
+            <Handle>1279100278</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>1987000</DurationMilliseconds>
+            <AlbumName>Design of Complex Websites</AlbumName>
+            <ArtistName>Hans Masing &amp; Trek Glowacki</ArtistName>
+            <GenreName>Podcast</GenreName>
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981189.1279100278</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>13. Design Considerations for 1 to n, n to n, and n to 1 Relationships</Name>
+            <Handle>1278444933</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>1250000</DurationMilliseconds>
+            <AlbumName>Design of Complex Websites</AlbumName>
+            <ArtistName>Hans Masing &amp; Trek Glowacki</ArtistName>
+            <GenreName>Podcast</GenreName>
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981189.1278444933</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>14. Introduction to Ajax</Name>
+            <Handle>1282896185</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>2467000</DurationMilliseconds>
+            <AlbumName />
+            <ArtistName />
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981189.1282896185</DownloadURL>
+            <Comment />
+          </Track>
+          <SharedObjects />
+          <AggregateFileSize>339218260</AggregateFileSize>
+          <AllowSubscription />
+          <ExternalFeed>
+            <PollingInterval>Never</PollingInterval>
+          </ExternalFeed>
+        </Group>
+        <Group>
+          <Name>Recovered Trash</Name>
+          <Handle>1264321177</Handle>
+          <GroupType>Simple</GroupType>
+          <ShortName />
+          <Permission />
+          <Track>
+            <Name>4. Introduction to Ruby Programming</Name>
+            <Handle>1262275992</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>3712000</DurationMilliseconds>
+            <AlbumName />
+            <ArtistName />
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01264321177.1262275992</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>12. Associations and Validations</Name>
+            <Handle>1276207129</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>2081000</DurationMilliseconds>
+            <AlbumName />
+            <ArtistName />
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01264321177.1276207129</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>12. Associations and Validations</Name>
+            <Handle>1277192994</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>1987000</DurationMilliseconds>
+            <AlbumName>Tree Town Toys Promotion - Winter, 2007</AlbumName>
+            <ArtistName>Hans Masing</ArtistName>
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01264321177.1277192994</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>5. Data Modelling W07</Name>
+            <Handle>1270845824</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>4086000</DurationMilliseconds>
+            <AlbumName />
+            <ArtistName />
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01264321177.1270845824</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>6. Model, View, Controller W07</Name>
+            <Handle>1270829484</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>1939000</DurationMilliseconds>
+            <AlbumName />
+            <ArtistName />
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01264321177.1270829484</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>08. Introduction to Ruby on Rails</Name>
+            <Handle>1276630669</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>5105000</DurationMilliseconds>
+            <AlbumName />
+            <ArtistName />
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01264321177.1276630669</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>10. Arrays and Hashes</Name>
+            <Handle>1276139263</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>3118000</DurationMilliseconds>
+            <AlbumName />
+            <ArtistName />
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01264321177.1276139263</DownloadURL>
+            <Comment />
+          </Track>
+          <SharedObjects />
+          <AggregateFileSize>187601820</AggregateFileSize>
+          <AllowSubscription />
+          <ExternalFeed>
+            <PollingInterval>Never</PollingInterval>
+          </ExternalFeed>
+        </Group>
+        <Group>
+          <Name>Screencasts</Name>
+          <Handle>1257981190</Handle>
+          <GroupType>Simple</GroupType>
+          <ShortName />
+          <Permission />
+          <Track>
+            <Name>SI 539 Single Object CRUD, Part I</Name>
+            <Handle>1271084139</Handle>
+            <Kind>feature-movie</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>2232000</DurationMilliseconds>
+            <AlbumName />
+            <ArtistName />
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981190.1271084139</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>SI 539 Single Object CRUD Part 2</Name>
+            <Handle>1276790401</Handle>
+            <Kind>feature-movie</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>366000</DurationMilliseconds>
+            <AlbumName />
+            <ArtistName />
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981190.1276790401</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>SI 539 Single Object CRUD Part 3</Name>
+            <Handle>1276184244</Handle>
+            <Kind>feature-movie</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>1111000</DurationMilliseconds>
+            <AlbumName />
+            <ArtistName />
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981190.1276184244</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>SI 539 Single Object CRUD Part 4</Name>
+            <Handle>1276069551</Handle>
+            <Kind>feature-movie</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>1329000</DurationMilliseconds>
+            <AlbumName />
+            <ArtistName />
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981190.1276069551</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>SI 539 RMHTL Layouts and Partials</Name>
+            <Handle>1282972122</Handle>
+            <Kind>feature-movie</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>551000</DurationMilliseconds>
+            <AlbumName />
+            <ArtistName />
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981190.1282972122</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>SI539 Simple Validations</Name>
+            <Handle>1283443975</Handle>
+            <Kind>feature-movie</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>589000</DurationMilliseconds>
+            <AlbumName />
+            <ArtistName />
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981190.1283443975</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>Using Flash</Name>
+            <Handle>1283005696</Handle>
+            <Kind>feature-movie</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>204000</DurationMilliseconds>
+            <AlbumName />
+            <ArtistName />
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981190.1283005696</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>SI 539 Many to Many Association - Categories</Name>
+            <Handle>1283320257</Handle>
+            <Kind>feature-movie</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>1821000</DurationMilliseconds>
+            <AlbumName>Design of Complex Websites</AlbumName>
+            <ArtistName>Trek Glowacki</ArtistName>
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981190.1283320257</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>SI539 1 to N N to 1 Relationships - Commenting</Name>
+            <Handle>1283432985</Handle>
+            <Kind>feature-movie</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>1991000</DurationMilliseconds>
+            <AlbumName />
+            <ArtistName />
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981190.1283432985</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>SI 539 - Using Fixtures</Name>
+            <Handle>1285281451</Handle>
+            <Kind>feature-movie</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>361000</DurationMilliseconds>
+            <AlbumName>SI 539 Design of Complex Websites</AlbumName>
+            <ArtistName>Trek Glowacki</ArtistName>
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981190.1285281451</DownloadURL>
+            <Comment />
+          </Track>
+          <Track>
+            <Name>SI 539 - User Authentication Plugin</Name>
+            <Handle>1285265084</Handle>
+            <Kind>feature-movie</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>1022000</DurationMilliseconds>
+            <AlbumName>SI 539 Design of Complex Websites</AlbumName>
+            <ArtistName>Trek Glowacki</ArtistName>
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01257981190.1285265084</DownloadURL>
+            <Comment />
+          </Track>
+          <SharedObjects />
+          <AggregateFileSize>735018587</AggregateFileSize>
+          <AllowSubscription />
+          <ExternalFeed>
+            <PollingInterval>Never</PollingInterval>
+          </ExternalFeed>
+        </Group>
+        <Group>
+          <Name>Staging Area</Name>
+          <Handle>1258603164</Handle>
+          <GroupType>Simple</GroupType>
+          <ShortName />
+          <Permission>
+            <Credential>Learner@urn:mace:itunesu.com:sites:umich.edu:${IDENTIFIER}</Credential>
+            <Access>No Access</Access>
+          </Permission>
+          <Track>
+            <Name>another test</Name>
+            <Handle>1596823615</Handle>
+            <Kind>song</Kind>
+            <TrackNumber>0</TrackNumber>
+            <DiscNumber>1</DiscNumber>
+            <DurationMilliseconds>10000000</DurationMilliseconds>
+            <AlbumName />
+            <ArtistName />
+            <GenreName />
+            <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.1257981186.01258603164.1596823615</DownloadURL>
+            <Comment />
+          </Track>
+          <SharedObjects />
+          <AggregateFileSize />
+          <AllowSubscription />
+          <ExternalFeed>
+            <PollingInterval>Never</PollingInterval>
+          </ExternalFeed>
+        </Group>
+        <AggregateFileSize>1261838667</AggregateFileSize>
+        <AllowSubscription />
+      </Course>
+      <Division />
+      <AggregateFileSize>348154282147</AggregateFileSize>
+      <Permission>
+        <Credential>urn:mace:umich.edu:medical:M1:EDIT</Credential>
+        <Access>No Access</Access>
+      </Permission>
+      <Permission>
+        <Credential>urn:mace:umich.edu:medical:M1:BROWSE</Credential>
+        <Access>No Access</Access>
+      </Permission>
+      <Permission>
+        <Credential>urn:mace:umich.edu:dental:EDIT</Credential>
+        <Access>No Access</Access>
+      </Permission>
+      <Permission>
+        <Credential>urn:mace:umich.edu:BROWSE</Credential>
+        <Access>No Access</Access>
+      </Permission>
+      <Permission>
+        <Credential>urn:mace:umich.edu:EDIT</Credential>
+        <Access>No Access</Access>
+      </Permission>
+      <Permission>
+        <Credential>urn:mace:umich.edu:dental:BROWSE</Credential>
+        <Access>No Access</Access>
+      </Permission>
+      <Permission>
+        <Credential>All@urn:mace:itunesu.com:sites:umich.edu</Credential>
+        <Access>No Access</Access>
+      </Permission>
+      <Permission>
+        <Credential>Authenticated@urn:mace:itunesu.com:sites:umich.edu</Credential>
+        <Access>No Access</Access>
+      </Permission>
+    </Section>
+    <TopDownloads>
+      <Name>Top Downloads</Name>
+      <Handle>1311639508</Handle>
+      <FeedURL>https://deimos.apple.com/WebObjects/Core.woa/LinkFeed/umich.edu.01311639508</FeedURL>
+    </TopDownloads>
+    <LinkCollection>
+      <Name>Michigan</Name>
+      <Handle>720939</Handle>
+      <FeedURL>https://deimos.apple.com/WebObjects/Core.woa/LinkFeed/umich.edu</FeedURL>
+    </LinkCollection>
+    <Theme>
+      <Name>Purple On White</Name>
+      <Handle>1133838405</Handle>
+      <BackgroundColor>ffffff</BackgroundColor>
+      <LineColor>cc33cc</LineColor>
+      <LinkArrowColor>000000</LinkArrowColor>
+      <LinkBackgroundColor>000000</LinkBackgroundColor>
+      <LinkBackgroundColorAlpha>15</LinkBackgroundColorAlpha>
+      <LinkBoxColor>990099</LinkBoxColor>
+      <LinkTextColor>000000</LinkTextColor>
+      <LinkTitleColor>ffffff</LinkTitleColor>
+      <LoginURL />
+      <RegularTextColor>000000</RegularTextColor>
+      <TitleTextColor>000000</TitleTextColor>
+      <TimeFormat />
+      <DateFormat />
+    </Theme>
+    <Theme>
+      <Name>The Blues</Name>
+      <Handle>1133838418</Handle>
+      <BackgroundColor>000033</BackgroundColor>
+      <LineColor>707099</LineColor>
+      <LinkArrowColor>ffffff</LinkArrowColor>
+      <LinkBackgroundColor>ffffff</LinkBackgroundColor>
+      <LinkBackgroundColorAlpha>12</LinkBackgroundColorAlpha>
+      <LinkBoxColor>9999ff</LinkBoxColor>
+      <LinkTextColor>ffffff</LinkTextColor>
+      <LinkTitleColor>000033</LinkTitleColor>
+      <LoginURL />
+      <RegularTextColor>ffffff</RegularTextColor>
+      <TitleTextColor>a0a0ff</TitleTextColor>
+      <TimeFormat />
+      <DateFormat />
+    </Theme>
+    <Theme>
+      <Name>iTunes Original</Name>
+      <Handle>1133838431</Handle>
+      <BackgroundColor>b7defc</BackgroundColor>
+      <LineColor>000000</LineColor>
+      <LinkArrowColor>000000</LinkArrowColor>
+      <LinkBackgroundColor>ffffff</LinkBackgroundColor>
+      <LinkBackgroundColorAlpha>50</LinkBackgroundColorAlpha>
+      <LinkBoxColor>3366cc</LinkBoxColor>
+      <LinkTextColor>000000</LinkTextColor>
+      <LinkTitleColor>ffffff</LinkTitleColor>
+      <LoginURL />
+      <RegularTextColor>000000</RegularTextColor>
+      <TitleTextColor>000000</TitleTextColor>
+      <TimeFormat />
+      <DateFormat />
+    </Theme>
+    <Theme>
+      <Name>White On Black</Name>
+      <Handle>1133838444</Handle>
+      <BackgroundColor>000000</BackgroundColor>
+      <LineColor>999999</LineColor>
+      <LinkArrowColor>ffffff</LinkArrowColor>
+      <LinkBackgroundColor>ffffff</LinkBackgroundColor>
+      <LinkBackgroundColorAlpha>25</LinkBackgroundColorAlpha>
+      <LinkBoxColor>ffffff</LinkBoxColor>
+      <LinkTextColor>ffffff</LinkTextColor>
+      <LinkTitleColor>000000</LinkTitleColor>
+      <LoginURL />
+      <RegularTextColor>ffffff</RegularTextColor>
+      <TitleTextColor>999999</TitleTextColor>
+      <TimeFormat />
+      <DateFormat />
+    </Theme>
+    <Theme>
+      <Name>Custom</Name>
+      <Handle>1145110888</Handle>
+      <BackgroundColor>003366</BackgroundColor>
+      <LineColor>000000</LineColor>
+      <LinkArrowColor>ffffff</LinkArrowColor>
+      <LinkBackgroundColor>000000</LinkBackgroundColor>
+      <LinkBackgroundColorAlpha>12</LinkBackgroundColorAlpha>
+      <LinkBoxColor>000033</LinkBoxColor>
+      <LinkTextColor>ffffff</LinkTextColor>
+      <LinkTitleColor>ffcc66</LinkTitleColor>
+      <LoginURL />
+      <RegularTextColor>ffcc66</RegularTextColor>
+      <TitleTextColor>ffcc66</TitleTextColor>
+      <TimeFormat />
+      <DateFormat />
+    </Theme>
+    <LinkCollectionSet>
+      <LinkCollection>
+        <Name>CustomLinkBox</Name>
+        <Handle>16327</Handle>
+        <FeedURL>https://deimos.apple.com/WebObjects/Core.woa/LinkFeed/umich.edu.016326.016327</FeedURL>
+      </LinkCollection>
+    </LinkCollectionSet>
+    <LoginURL>https://weblogin.umich.edu</LoginURL>
+  </Site>
+</ITunesUResponse>

@@ -2,6 +2,12 @@ require 'builder'
 require 'xmlsimple' # for testing, just for now
 
 module RTunesU
+  # Document is a class that generates the neccessary XML to interact with iTunes U.  Documents are generated and sent when calling .save, .create, .update, and .delete on an specific Entity object.  Classes in the Document:: namespace aren't intended for direct use.
+  # For example:
+  # c = Course.find(12345, itunes_connection_object)
+  # c.Name # "Exemple Course"
+  # c.Name = 'Example Course'
+  # c.save # genertes and sends a Document::Merge object with the Course data.
   module Document
     class Base
       INDENT = 2
@@ -26,10 +32,12 @@ module RTunesU
           return
         end 
     end
-        
+      
+    # Creates an XML document that comforms to iTunes U's specification for adding an entity.  This class is used internally by Entity classes when saving.
     class Add < Base
       private
         def tag_action(xml_builder)
+          raise MissingParent if source.parent_handle.nil?
           xml_builder.tag!("Add#{source.class_name}") {
             xml_builder.tag!('ParentHandle', source.parent_handle)
             # The existance of ParentPath is required for iTunesU documents, but can be blank
@@ -38,7 +46,8 @@ module RTunesU
           }
         end
     end
-    
+        
+    # Creates an XML document that comforms to iTunes U's specification for updating an entity.  This class is used internally by Entity classes when saving.
     class Merge < Base
       private
         def tag_action(xml_builder)
@@ -49,6 +58,7 @@ module RTunesU
       end
     end
   
+    # Creates an XML document that comforms to iTunes U's specification for deleting an entity.  This class is used internally by Entity classes when saving.
     class Delete < Base
       private
         def tag_action(xml_builder)

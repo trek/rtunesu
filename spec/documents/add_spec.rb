@@ -19,23 +19,23 @@ describe Document::Add do
     before do
       course = Course.new(:handle => 1234567, :parent_handle =>  98765)
       @document = Document::Add.new(course)
-      @xml = XmlSimple.xml_in(@document.xml, 'KeepRoot' => true, 'ForceArray' => false)
+      @xml = Hpricot.XML(@document.xml)
     end
     
     it 'has a source entity that defines the specific action name' do
-      @xml['ITunesUDocument'].should have_key('AddCourse')
+      @xml.at('AddCourse').should_not be_nil
     end
   
     it 'has a parent handle' do
-      @xml['ITunesUDocument']['AddCourse'].should have_key('ParentHandle')
+      @xml.at('AddCourse/ParentHandle').should_not be_nil
     end
     
     it 'has a parent path' do
-      @xml['ITunesUDocument']['AddCourse'].should have_key('ParentPath')
+      @xml.at('AddCourse/ParentPath').should_not be_nil
     end
     
     it 'has a child element that represents the source entity' do
-      @xml['ITunesUDocument']['AddCourse'].should have_key('Course')
+      @xml.at('AddCourse/Course').should_not be_nil
     end
   end
 end

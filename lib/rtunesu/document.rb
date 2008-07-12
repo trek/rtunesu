@@ -1,5 +1,4 @@
 require 'builder'
-require 'xmlsimple' # for testing, just for now
 
 module RTunesU
   # Document is a class that generates the neccessary XML to interact with iTunes U.  Documents are generated and sent when calling .save, .create, .update, and .delete on an specific Entity object.  Classes in the Document:: namespace aren't intended for direct use.

@@ -1,7 +1,7 @@
 require 'hpricot'
 
 module RTunesU
-  # A Base class reprenseting the various entities seen in iTunes U.  Subclassed into the actual entity classes (Course, Division, Track, etc).  Entity is mostly an OOP interface to the underlying XML data returned from iTunes U.  Most of attributes of an Entity are read by searching the souce XML returned from iTunes U by the Entity class's implemention of method_missing.  
+  # A Base class reprenseting the various entities seen in iTunes U.  Subclassed into the actual entity classes (Course, Division, Track, etc).  Entity is mostly an object oriented interface to the underlying XML data returned from iTunes U.  Most of attributes of an Entity are read by searching the souce XML returned from iTunes U by the Entity class's implemention of method_missing. 
   # Attribute of an Entity are written through method missing as well.  Methods that end in '=' will write data that will be saved to iTunes U.
   # == Reading and Writing Attributes
   # c = Course.find(12345, rtunes_connection_object) # finds the Course in iTunes U and stores its XML data
@@ -126,9 +126,9 @@ module RTunesU
     end
     
     def create(connection)
-      response = XmlSimple.xml_in(connection.process(Document::Add.new(self).xml), 'ForceArray' => false)
-      raise Exception, response['error'] if response.has_key?('error')
-      self.handle = response['AddedObjectHandle']
+      response = Hpricot.XML(connection.process(Document::Add.new(self).xml))
+      raise Exception, response.at('error').innerHTML if response.at('error')
+      self.handle = response.at('AddedObjectHandle').innerHTML
       self
     end
     
@@ -143,7 +143,10 @@ module RTunesU
     
     # Deletes the entity from iTunes U.  This cannot be undone.
     def delete(connection)
-      connection.process(Document::Delete.new(self).xml)
+      response = Hpricot.XML(connection.process(Document::Delete.new(self).xml))
+      raise Exception, response.at('error').innerHTML if response.at('error')
+      self.handle = nil
+      self
     end
   end
   

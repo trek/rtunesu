@@ -4,8 +4,8 @@
 RTunesU is a ruby library for accessing Apple's iTunes U Webservices to integrate your education institutions iTunes U account into ruby applications
 
 == FEATURES/PROBLEMS:
-Currently working on getting Apple's ProcessWebServicesDocument action to work properly
-
+ - TODO: file uploading
+ 
 == SYNOPSIS:
 
 == REQUIREMENTS:
@@ -16,7 +16,7 @@ Currently working on getting Apple's ProcessWebServicesDocument action to work p
 
 (The MIT License)
 
-Copyright (c) 2008 FIXME full name
+Copyright (c) 2008 Trek Glowacki
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

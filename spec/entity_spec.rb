@@ -49,6 +49,7 @@ describe Entity, 'attribute assignment' do
     @entity.edits['Groups'].size.should be(2)
   end
 end
+
 describe Entity, 'converting to XML' do
   describe 'with nested elements' do
     before do
@@ -67,6 +68,7 @@ describe Entity, 'converting to XML' do
     
   end
 end
+
 describe Entity, 'loading from XML' do
   before do
     @source = File.read(File.dirname(__FILE__) + '/fixtures/responses/generic_entity_response.xml')

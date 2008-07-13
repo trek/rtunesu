@@ -4,7 +4,7 @@ include RTunesU
 describe Course do
   before do
     u = RTunesU::User.new(0, 'admin', 'Admin', 'admin@example.com')
-    u.credentials = ['Administrator@urn:mace:umich.edu']
+    u.credentials = ['Administrator@urn:mace:example.edu']
     @connection = RTunesU::Connection.new(:user => u, :site => 'example.edu', :shared_secret => 'STRINGOFTHIRTYTWOLETTERSORDIGITS')
   end
   

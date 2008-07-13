@@ -1,10 +1,10 @@
 require 'rtunesu/version'
 
-AUTHOR = 'Trek Glowacki'  # can also be an array of Authors
+AUTHOR = 'Trek Glowacki'
 EMAIL = "trek.glowacki@gmail.com"
 DESCRIPTION = "description of gem"
-GEM_NAME = 'rtunesu' # what ppl will type to install your gem
-RUBYFORGE_PROJECT = 'rtunesu' # The unix name for your project
+GEM_NAME = 'rtunesu'
+RUBYFORGE_PROJECT = 'rtunesu'
 HOMEPATH = "http://#{RUBYFORGE_PROJECT}.rubyforge.org"
 DOWNLOAD_PATH = "http://rubyforge.org/projects/#{RUBYFORGE_PROJECT}"
 EXTRA_DEPENDENCIES = [

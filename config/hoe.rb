@@ -2,7 +2,7 @@ require 'rtunesu/version'
 
 AUTHOR = 'Trek Glowacki'
 EMAIL = "trek.glowacki@gmail.com"
-DESCRIPTION = "description of gem"
+DESCRIPTION = "A library for using Apple's iTunes U Webservices API"
 GEM_NAME = 'rtunesu'
 RUBYFORGE_PROJECT = 'rtunesu'
 HOMEPATH = "http://#{RUBYFORGE_PROJECT}.rubyforge.org"
@@ -36,7 +36,7 @@ end
 REV = nil
 # UNCOMMENT IF REQUIRED:
 # REV = YAML.load(`svn info`)['Revision']
-VERS = Rtunesu::VERSION::STRING + (REV ? ".#{REV}" : "")
+VERS = RTunesU::VERSION::STRING + (REV ? ".#{REV}" : "")
 RDOC_OPTS = ['--quiet', '--title', 'rtunesu documentation',
     "--opname", "index.html",
     "--line-numbers",
@@ -72,4 +72,4 @@ CHANGES = $hoe.paragraphs_of('History.txt', 0..1).join("\\n\\n")
 PATH    = (RUBYFORGE_PROJECT == GEM_NAME) ? RUBYFORGE_PROJECT : "#{RUBYFORGE_PROJECT}/#{GEM_NAME}"
 $hoe.remote_rdoc_dir = File.join(PATH.gsub(/^#{RUBYFORGE_PROJECT}\/?/,''), 'rdoc')
 $hoe.rsync_args = '-av --delete --ignore-errors'
-$hoe.spec.post_install_message = File.open(File.dirname(__FILE__) + "/../PostInstall.txt").read rescue ""
+# $hoe.spec.post_install_message = File.open(File.dirname(__FILE__) + "/../PostInstall.txt").read rescue ""

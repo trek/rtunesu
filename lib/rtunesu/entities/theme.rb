@@ -1,4 +1,4 @@
 module RTunesU
-  class Theme
+  class Theme < Entity
   end
 end

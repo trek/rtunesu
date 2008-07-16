@@ -15,6 +15,7 @@ require 'rtunesu/entities/permission'
 require 'rtunesu/entities/section'
 require 'rtunesu/entities/site'
 require 'rtunesu/entities/track'
+require 'rtunesu/entities/theme'
 
 module  RTunesU
   API_URL = 'https://deimos.apple.com/WebObjects/Core.woa/API'

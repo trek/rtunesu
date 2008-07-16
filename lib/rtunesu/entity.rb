@@ -134,7 +134,7 @@ module RTunesU
     end
     
     def saved?
-      self.handle : true ? false
+      self.handle ? true : false
     end
     
     # Deletes the entity from iTunes U.  This cannot be undone.

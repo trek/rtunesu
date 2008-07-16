@@ -31,10 +31,6 @@ module RTunesU
   # #   ... some other XML data ...
   # # </Course>
   # # this XML may raise errors in iTunes U because it doesn't match valid iTunes U documents
-  
-  
-  
-  
   class Entity
     attr_accessor :connection, :attributes, :handle, :parent, :parent_handle, :saved, :source_xml
     

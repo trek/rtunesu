@@ -51,17 +51,16 @@ module RTunesU
     end
         
     def upload_url_for_location(location)
-      "http://localhost:3000/tests/show"
-      # url_string = "#{API_URL}/GetUploadURL/#{self.options[:site]}.#{location.handle}?#{self.generate_authorization_token}"
-      # puts url_string
-      # url = URI.parse(url_string)
-      # http = Net::HTTP.new(url.host, url.port)
-      # http.use_ssl = true
-      # http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      # response = http.start {|http| 
-      #   http.request(Net::HTTP::Get.new(url.path + '?' + url.query))
-      # }
-      # response.body
+      url_string = "#{API_URL}/GetUploadURL/#{self.options[:site]}.#{location.handle}?#{self.generate_authorization_token}"
+      puts url_string
+      url = URI.parse(url_string)
+      http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      response = http.start {|http| 
+        http.request(Net::HTTP::Get.new(url.path + '?' + url.query))
+      }
+      response.body
     end
     
     # The URL that receives all iTunes U webservices requests.  This is different for each institution and inclues your site name provided by Apple.
@@ -103,20 +102,10 @@ module RTunesU
     end
     
     # Uploads a file from the local system to iTunes U.
-    def upload_file(file_location, location)
-      upload_location = upload_url_for_location(location)
-      puts upload_location
-      url = URI.parse(upload_location)
-        http = Net::HTTP.new(url.host, url.port)
-        # http.use_ssl = true
-        # http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        http.start {
-          request = Net::HTTP::Post.new(url.to_s)
-          request.multipart_params = {:file => File.open(file_location)}
-          puts request.body
-          response = http.request(request)
-          response.body
-        }
+    def upload_file(file, itunes_location)
+      IO::popen('-') do |c|
+        exec "curl -q -F 'file=@#{file.path}' '#{upload_url_for_location(itunes_location)}'"
+      end
     end
   end
 end

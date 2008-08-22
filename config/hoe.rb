@@ -10,7 +10,8 @@ DOWNLOAD_PATH = "http://rubyforge.org/projects/#{RUBYFORGE_PROJECT}"
 EXTRA_DEPENDENCIES = [
   ['ruby-hmac', '>= 0.3.1'],
   ['hpricot', '>= 0.6'],
-  ['builder', '>= 2.0']
+  ['builder', '>= 2.0'],
+  ['multipart-post', '>= 0.1']
 ]
 
 @config_file = "~/.rubyforge/user-config.yml"

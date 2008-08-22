@@ -4,6 +4,7 @@ require 'hmac'
 require 'hmac-sha2'
 require 'digest'
 require 'net/https'
+require 'net/http/post/multipart'
 require 'uri'
 require 'timeout'
 
@@ -51,7 +52,7 @@ module RTunesU
     end
         
     def upload_url_for_location(location)
-      url_string = "#{API_URL}/GetUploadURL/#{self.options[:site]}.#{location.handle}?#{self.generate_authorization_token}"
+      url_string = "#{API_URL}/GetUploadURL/#{self.options[:site]}.#{location.Handle}?#{self.generate_authorization_token}"
       puts url_string
       url = URI.parse(url_string)
       http = Net::HTTP.new(url.host, url.port)
@@ -102,10 +103,16 @@ module RTunesU
     end
     
     # Uploads a file from the local system to iTunes U.
-    def upload_file(file, itunes_location)
-      IO::popen('-') do |c|
-        exec "curl -q -F 'file=@#{file.path}' '#{upload_url_for_location(itunes_location)}'"
+    def upload_file(file_path, itunes_location)
+      url = URI.parse(self.upload_url_for_location(itunes_location))
+      req = Net::HTTP::Post::Multipart.new(url.path, {"file" => UploadIO.new(file_path, "image/jpeg")})
+      res = Net::HTTP.start(url.host, url.port) do |http|
+        http.request(req)
       end
+          
+      # IO::popen('-') do |c|
+      #   exec "curl -q -F 'file=@#{file.path}' '#{upload_url_for_location(itunes_location)}'"
+      # end
     end
   end
 end

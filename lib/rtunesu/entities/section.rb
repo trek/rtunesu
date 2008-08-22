@@ -4,7 +4,7 @@ module RTunesU
   # Handle
   # Name
   # AllowSubscription
-  # AggregateFileSize (read only)
+  # AggregateFileSize
   # 
   # == Nested Entities
   # Permission

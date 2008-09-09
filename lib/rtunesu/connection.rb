@@ -104,15 +104,15 @@ module RTunesU
     
     # Uploads a file from the local system to iTunes U.
     def upload_file(file_path, itunes_location)
-      url = URI.parse(self.upload_url_for_location(itunes_location))
-      req = Net::HTTP::Post::Multipart.new(url.path, {"file" => UploadIO.new(file_path, "image/jpeg")})
-      res = Net::HTTP.start(url.host, url.port) do |http|
-        http.request(req)
-      end
-          
-      # IO::popen('-') do |c|
-      #   exec "curl -q -F 'file=@#{file.path}' '#{upload_url_for_location(itunes_location)}'"
+      # url = URI.parse(self.upload_url_for_location(itunes_location))
+      # req = Net::HTTP::Post::Multipart.new(url.path, {"file" => UploadIO.new(file_path, "image/jpeg")})
+      # res = Net::HTTP.start(url.host, url.port) do |http|
+      #   http.request(req)
       # end
+          
+      IO::popen('-') do |c|
+        exec "curl -q -F 'file=@#{file.path}' '#{upload_url_for_location(itunes_location)}'"
+      end
     end
   end
 end

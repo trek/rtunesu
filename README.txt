@@ -7,10 +7,15 @@ RTunesU is a ruby library for accessing Apple's iTunes U Webservices to integrat
  - TODO: file uploading
  
 == SYNOPSIS:
+see the wiki for more information on using RTunesU: 
+http://github.com/trek/rtunesu/wikis
 
 == REQUIREMENTS:
+RTunesU depends on the ruby-hmac, hpricot, and builder libraries. These should all install automatically as dependencies when installing RTunesU
 
 == INSTALL:
+RTunesU install via rubygems. wit
+   gem instal rtunesu
 
 == LICENSE:
 

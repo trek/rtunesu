@@ -15,8 +15,8 @@ lib/rtunesu/entities/group.rb
 lib/rtunesu/entities/permission.rb
 lib/rtunesu/entities/section.rb
 lib/rtunesu/entities/site.rb
-lib/rtunesu/entities/track.rb
 lib/rtunesu/entities/theme.rb
+lib/rtunesu/entities/track.rb
 lib/rtunesu/entity.rb
 lib/rtunesu/user.rb
 lib/rtunesu/version.rb

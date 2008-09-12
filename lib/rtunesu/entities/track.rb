@@ -19,5 +19,15 @@ module RTunesU
       entity.source_xml = Course.find(course_handle, connection).source_xml.at("Handle[text()=#{entity.handle}]..")
       entity
     end
+    
+    # Duration in millseconds is the one attribute in plural form that is not a collection 
+    def DurationMilliseconds
+      self.value_from_edits_or_store('DurationMilliseconds')
+    end
+    
+    # Duration in millseconds is the one attribute in plural form that is not a collection 
+    def DurationMilliseconds=(duration)
+      self.edits['DurationMilliseconds'] = duration
+    end
   end
 end

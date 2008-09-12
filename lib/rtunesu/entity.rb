@@ -39,7 +39,7 @@ module RTunesU
       self.attributes = {}
       attrs.each {|attribute, value| self.send("#{attribute}=", value)}
     end
-    
+        
     # Finds a specific entity in iTunes U. To find an entity you will need to know both its type (Course, Group, etc) and handle.  Handles uniquely identify entities in iTunes U and the entity type is used to search the returned XML for the specific entity you are looking for.  For example,
     # Course.find(123456, rtunes_connection_object)
     def self.find(handle, connection)
@@ -71,7 +71,8 @@ module RTunesU
     end
     
     def method_missing(method_name, args = nil)
-      # introspect the kind of method call (read one attribute, read an array of related items, write one attribute, write an array of related items)
+      # introspect the kind of method call (read one attribute, 
+      # read an array of related items, write one attribute, write an array of related items)
       case method_name.to_s.match(/(s)*(=)*$/).captures
        when [nil, "="] : self.edits[method_name.to_s[0..-2]] = args
        when ["s", "="] : self.edits[method_name.to_s[0..-2]] = args
@@ -101,7 +102,7 @@ module RTunesU
     # course.class #=> 'RTunesU::Course'
     # course.class_name #=> 'Course'
     def class_name
-      self.class.to_s.split(':').last
+      self.class.to_s.split('::').last
     end
     
     # Returns the handle of the entitiy's parent.  This can either be set directly as a string or interger or will access the parent entity.  Sometimes you know the parent_handle without the parent object (for example, stored locally from an earlier request). This allows you to add a new Entity to iTunes U without first firing a reques for a prent entity (For example, if your institution places all inside the same Section, you want to add a new Section to your Site, or a new Group to a course tied to your institution's LMS).
@@ -116,11 +117,13 @@ module RTunesU
       }
     end
     
+    # called when .save is called on an object that is already stored in iTunes U
     def update(connection)
       connection.process(Document::Merge.new(self).xml)
       self
     end
     
+    # called when .save is called on an object that has no Handle (i.e. does not already exist in iTunes U)
     def create(connection)
       response = Hpricot.XML(connection.process(Document::Add.new(self).xml))
       raise Exception, response.at('error').innerHTML if response.at('error')

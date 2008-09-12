@@ -1,4 +1,5 @@
 module RTunesU
+  # A visual theme for iTunesU pages. Color values are in 6 digit hex (e.g. #ffffff)
   # == Attributes
   # Name
   # Handle

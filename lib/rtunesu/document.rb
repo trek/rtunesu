@@ -6,12 +6,15 @@ module RTunesU
   # c = Course.find(12345, itunes_connection_object)
   # c.Name # "Exemple Course"
   # c.Name = 'Example Course'
-  # c.save # genertes and sends a Document::Merge object with the Course data.
+  # c.save(itunes_connection_object) # genertes and sends a Document::Merge object with the Course data.
   module Document
     class Base
       INDENT = 2
       attr_accessor :builder, :source, :options, :xml
       
+      # Creates a new XML document using Builder.  Includes the required XML entities of 
+      # ITunesUDocument and Version, then calls tag_action to add in specific XML entities for
+      # the type of document being built. tag_action is defined in each sublcass of Document.
       def initialize(source, options = {})
         self.source, self.options = source, options
         builder = Builder::XmlMarkup.new(:indent => INDENT)

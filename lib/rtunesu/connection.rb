@@ -114,5 +114,43 @@ module RTunesU
         exec "curl -q -F 'file=@#{file.path}' '#{upload_url_for_location(itunes_location)}'"
       end
     end
+    
+    # Retrieves and parses iTunesU usage logs.
+    # Options: 
+    # * +:from+:: Specifies the date to retrieve logs from. Defaults to +Date.today+
+    # * +:to+:: (optional) Specifies the ending date of a date range: (:from)..(:to).
+    # * +:parse+:: Controls whether logs are parsed or returned raw.
+    #
+    # Example:
+    #   connection.get_logs  # Retrieves and parses logs from today
+    #   connection.get_logs :from => Date.today-1  # Retrieves and parses logs from yesterday
+    #   connection.get_logs :parse => false        # Retrieves raw logs
+    #   connection.get_logs :from => "2004-05-13", :to => "2004-06-12"
+    def get_logs(opt={})
+      opt[:from] ||= Date.today
+      #opt[:to] ||= Date.today - 1
+      opt[:parse] = opt[:parse].nil? ? true : opt[:parse]
+      
+      raise ":from date must preceed :to date." if opt[:to] && opt[:to] < opt[:from]
+      
+      uri_str = "#{API_URL}/GetDailyReportLogs/#{options[:site]}?#{self.generate_authorization_token}"
+      uri_str << "&StartDate=#{opt[:from]}"
+      uri_str << "&EndDate=#{opt[:to]}" if opt[:to]
+      url = URI.parse uri_str
+      
+      http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      resp = http.start {
+        request = Net::HTTP::Get.new(url.to_s)
+        response = http.request(request)
+        response.body
+      }
+      if resp =~ /No.*?log data found/
+        return opt[:parse] ? [] : resp
+      end
+      
+      return opt[:parse] ? Log.parse(resp) : resp
+    end
   end
 end

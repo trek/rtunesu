@@ -4,7 +4,7 @@ require 'hmac'
 require 'hmac-sha2'
 require 'digest'
 require 'net/https'
-require 'net/http/post/multipart'
+#require 'net/http/post/multipart'
 require 'uri'
 require 'timeout'
 

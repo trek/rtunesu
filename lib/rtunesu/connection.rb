@@ -131,7 +131,7 @@ module RTunesU
       #opt[:to] ||= Date.today - 1
       opt[:parse] = opt[:parse].nil? ? true : opt[:parse]
       
-      raise ":from date must preceed :to date." if opt[:to] && opt[:to] < opt[:from]
+      #raise ":from date must preceed :to date." if opt[:to] && opt[:to] < opt[:from]
       
       uri_str = "#{API_URL}/GetDailyReportLogs/#{options[:site]}?#{self.generate_authorization_token}"
       uri_str << "&StartDate=#{opt[:from]}"

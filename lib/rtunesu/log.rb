@@ -52,13 +52,16 @@ module RTunesU
     end
     
     def validate(log_entry)
-      if log_entry[:address].nil? or log_entry[:address].split(".").size != 4
-        return false
-      elsif log_entry[:agent].nil? or log_entry[:agent].split("/").size != 3
-        return false
-      elsif log_entry[:user].nil? or log_entry[:user].split("@").size != 2
-        return false
-      end
+      # if log_entry[:address].nil? or log_entry[:address].split(".").size != 4
+      #   puts log_entry[:address].inspect
+      #   return false
+      # elsif log_entry[:agent].nil? or log_entry[:agent].split("/").size != 3
+      #   puts log_entry[:agent].inspect
+      #   return false
+      # elsif log_entry[:user].nil? or log_entry[:user].split("@").size != 2
+      #   puts log_entry[:user].inspect
+      #   return false
+      # end
       
       return true
     end

@@ -14,6 +14,5 @@ module RTunesU
   # Group
 
   class Course < Entity
-     
   end
 end

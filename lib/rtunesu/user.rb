@@ -1,5 +1,7 @@
 module RTunesU
-  # Represents a User for iTunes U authentication.  Requests to iTunes U require User information in a specific format. This class exists to access data in that specific format.  Best combined with a User object from your own authentication or LMS system.
+  # Represents a User for iTunes U authentication.  Requests to iTunes U require User 
+  # information in a specific format. This class exists to access data in that specific format.
+  # Best combined with a User object from your own authentication or LMS system.
   # Webservices requests to iTunes U require your institutions administrator credentials
   # === User
   # u = RTunesU::User.new('191912121', 'jsmith', 'John Smith', 'jsmith@exmaple.edu')

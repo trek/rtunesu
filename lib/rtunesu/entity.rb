@@ -1,6 +1,5 @@
-require 'hpricot'
-
 module RTunesU
+  # http://deimos.apple.com/rsrc/xsd/iTunesURequest-1.1.3.xsd
   # A Base class reprenseting the various entities seen in iTunes U.  Subclassed into the actual entity 
   # classes (Course, Division, Track, etc).  Entity is mostly an object oriented interface to the 
   # underlying XML data returned from iTunes U.  Most of attributes of an Entity are read by searching 
@@ -42,7 +41,72 @@ module RTunesU
   # # </Course>
   # # this XML may raise errors in iTunes U because it doesn't match valid iTunes U documents
   class Entity
-    attr_accessor :connection, :attributes, :handle, :parent, :parent_handle, :saved, :source_xml
+    attr_accessor :connection, :attributes, :parent, :parent_handle, :saved, :source_xml
+    attr_reader :handle
+    
+    def self.base_connection
+      @base_connection
+    end
+    
+    def self.set_base_connection(connection)
+      @base_connection = connection
+    end
+    
+    def self.validates!(name, values)
+      return
+    end
+    
+    def self.composed_of(*names)
+      options = names.last.is_a?(Hash) ? names.pop : {}
+      names.each do |name|
+        storage_name = options[:as] || name.to_s.camelize
+        
+        define_method(name) do
+          value_from_edits_or_store(storage_name)
+        end
+        
+        unless options[:readonly]
+          define_method(:"#{name}=") do |arg|
+            edits[storage_name] = arg
+          end
+        end
+      end
+    end
+    
+    def self.has_a(*names)
+      options = names.last.is_a?(Hash) ? names.pop : {}
+      names.each do |name|
+        define_method(name) do
+          entity_name = options[:as] || name.to_s.camelize
+          instance_variable_get("@#{name}") || instance_variable_set("@#{name}", RTunesU::HasAEntityCollectionProxy.new(self.source_xml./(entity_name), self, entity_name))
+          # self.source_xml / name.to_s.camelize
+          # entity_from_edit_or_store(options[:as] || name)
+        end
+        
+        unless options[:readonly]
+          define_method(:"#{name}=") do |arg|
+            edits[options[:as] || name.to_s.camelize] = arg
+          end
+        end
+      end
+    end
+    
+    def self.has_n(*names)
+      options = names.last.is_a?(Hash) ? names.pop : {}
+      names.each do |name|
+        define_method(name) do
+          entity_name = options[:as] || name.to_s.chop.camelize
+          instance_variable_get("@#{name}") || instance_variable_set("@#{name}", RTunesU::HasNEntityCollectionProxy.new(self.source_xml./(entity_name), self, entity_name))
+          # entities_from_edits_or_store(options[:as] || name.to_s.camelize)
+        end
+        
+        unless options[:readonly]
+          define_method(:"#{name}=") do |arg|
+            edits[options[:as] || name.to.camelize] = arg
+          end
+        end
+      end
+    end
     
     # Creates a new Entity object with attributes based on the hash argument  Some of these attributes 
     # are assgined to instance variables of the obect (if there is an attr_accessor for it), the rest 
@@ -51,25 +115,45 @@ module RTunesU
       self.attributes = {}
       attrs.each {|attribute, value| self.send("#{attribute}=", value)}
     end
-        
+       
+    def handle
+      return @handle if @handle
+      if (handle_elem = self.source_xml % 'Handle')
+        @handle = handle_elem.innerHTML
+      else
+        @handle = nil
+      end
+    end
+    
     # Finds a specific entity in iTunes U. To find an entity you will need to know both its type 
     # (Course, Group, etc) and handle.  Handles uniquely identify entities in iTunes U and the entity 
     # type is used to search the returned XML for the specific entity you are looking for.  For example,
     # Course.find(123456, rtunes_connection_object)
-    def self.find(handle, connection)
-      entity = self.new(:handle => handle)
+    def self.find(handle, connection = nil)
+      connection = connection || self.base_connection
+      
+      entity = self.new
+      entity.instance_variable_set('@handle', handle)
       entity.load_from_xml(connection.process(Document::ShowTree.new(entity).xml))
       entity
     end
-        
-    def load_from_xml(xml)
-      self.source_xml = Hpricot.XML(xml).at("//ITunesUResponse//#{self.class_name}//Handle[text()=#{self.handle}]..")
-      raise EntityNotFound if self.source_xml.nil?
+    
+    def load_from_xml(xml_or_entity)
+      if xml_or_entity.kind_of?(RTunesU::Entity)
+        return xml_or_entity
+      else
+        self.source_xml = Hpricot.XML(xml_or_entity).at("//ITunesUResponse//#{self.class_name}//Handle[text()=#{self.handle}]..")
+        raise EntityNotFound if self.source_xml.nil?
+      end
     end
     
     # Edits stores the changes made to an entity
     def edits
       @edits ||= {}
+    end
+    
+    def edited?
+      self.edits.any?
     end
     
     # Clear the edits and restores the loaded object to its original form
@@ -84,32 +168,25 @@ module RTunesU
       nil
     end
     
-    def method_missing(method_name, args = nil)
-      # introspect the kind of method call (read one attribute, 
-      # read an array of related items, write one attribute, write an array of related items)
-      case method_name.to_s.match(/(s)*(=)*$/).captures
-       when [nil, "="] : self.edits[method_name.to_s[0..-2]] = args
-       when ["s", "="] : self.edits[method_name.to_s[0..-2]] = args
-       when [nil, nil] : value_from_edits_or_store(method_name.to_s)
-       when ["s", nil] : value_from_edits_or_store(method_name.to_s, true)
-      end
+    def entity_from_edit_or_store(name)
+      self.edits[name] || (self.source_xml / name.to_s.camelize).collect {|el| Object.module_eval(el.name.camelize).new(:source_xml => el)}.first
     rescue NoMethodError
-      raise NoMethodError, "undefined method '#{method_name}' for #{self.class}"
+      nil
     end
     
-    def value_from_edits_or_store(name, multi = false)
-      if multi
-        begin
-          self.edits[name] || (self.source_xml / name.to_s.chop).collect {|el| Object.module_eval(el.name).new(:source_xml => el)}
-        rescue NoMethodError
-          self.edits[name] = []
-        end
-      else
-        self.edits[name] ||  (self.source_xml % name).innerHTML
-      end
+    def entities_from_edits_or_store(name)
+      self.edits[name] || (self.source_xml / name.to_s.chop).collect {|el| Object.module_eval(el.name).new(:source_xml => el)}
+    rescue NoMethodError
+      self.edits[name] = []
     end
-
-            
+    
+    def value_from_edits_or_store(name)
+      self.edits[name] ||  (self.source_xml % name).innerHTML
+    rescue NoMethodError
+      nil
+    end
+    
+    
     # Returns the name of the object's class ignoring namespacing. 
     # === Use:
     # course = RTunesU::Course.new
@@ -131,8 +208,9 @@ module RTunesU
     
     def to_xml(xml_builder = Builder::XmlMarkup.new)
       xml_builder.tag!(self.class_name) {
-        self.edits.each {|attribute,edit| edit.is_a?(Array) ? edit.each {|item| item.to_xml(xml_builder)} : xml_builder.tag!(attribute, edit) }
-        # self.edits.each {|attribute| xml_builder.tag!(attribute.to_s.gsub(/\/(.?)/) { "::#{$1.upcase}" }.gsub(/(?:^|_)(.)/) { $1.upcase }, self.attributes[attribute.to_s]) unless self.attributes[attribute.to_s].nil? || self.attributes[attribute.to_s].empty? }
+        self.edits.each do |attribute,edit|
+          edit.is_a?(SubentityAssociationProxy) ? edit.to_xml(xml_builder) : xml_builder.tag!(attribute, edit)
+        end
       }
     end
     
@@ -146,7 +224,7 @@ module RTunesU
     def create(connection)
       response = Hpricot.XML(connection.process(Document::Add.new(self).xml))
       raise Exception, response.at('error').innerHTML if response.at('error')
-      self.handle = response.at('AddedObjectHandle').innerHTML
+      @handle = response.at('AddedObjectHandle').innerHTML
       self
     end
     
@@ -168,6 +246,9 @@ module RTunesU
       self.handle = nil
       self
     end
+  end
+  
+  class ConnectionRequire < Exception
   end
   
   class EntityNotFound < Exception

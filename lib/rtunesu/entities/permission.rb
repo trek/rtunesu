@@ -6,5 +6,6 @@ module RTunesU
   # 
   # == Nested Entities
   class Permission < Entity
+    composed_of :credential, :access
   end
 end

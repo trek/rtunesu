@@ -9,7 +9,9 @@ require 'uri'
 require 'timeout'
 
 module RTunesU
-  # Connection is a class for opening and using a connection to the iTunes U Webservices system.  To open a connection to iTunes U, you first need to create a RTunesU::User object using the administrator data you received from Apple when they created your iTunes U site.
+  # Connection is a class for opening and using a connection to the iTunes U Webservices system.  
+  # To open a connection to iTunes U, you first need to create a RTunesU::User object using the 
+  # administrator data you received from Apple when they created your iTunes U site.
   # === Creating a Connection
   # include RTunesU
   # # create a new admin user from our Institution's login information
@@ -36,10 +38,10 @@ module RTunesU
     
     # iTunes U requires all request to include an authorization token that includes a User's credentials, indetifiying information, and the time of the request.  This data is hashed against your institution's shared secret (provider by Apple with your iTunes U account information). Because tokens are valid only for 90 seconds they are generated for each request attempt.
     def generate_authorization_token
-    	# create the token that contains the necessary elements to authorize the user	
-    	# using a nested array because the alphabetical order must be maintained
-    	token = [['credentials', self.user.to_credential_string,], ['identity', self.user.to_identity_string], ['time', Time.now.to_i.to_s]]
-    	encoded_parms = token.collect {|pair| pair[1] = CGI.escape(pair[1]); pair.join('=')}.join('&')
+      # create the token that contains the necessary elements to authorize the user	
+      # using a nested array because the alphabetical order must be maintained
+      token = [['credentials', self.user.to_credential_string,], ['identity', self.user.to_identity_string], ['time', Time.now.to_i.to_s]]
+      encoded_parms = token.collect {|pair| pair[1] = CGI.escape(pair[1]); pair.join('=')}.join('&')
 
       digest = Digest::SHA2.new
       digest.update(encoded_parms)

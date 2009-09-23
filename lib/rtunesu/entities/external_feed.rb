@@ -5,7 +5,8 @@ module RTunesU
     validates!  :polling_interval, [:never, :daily]
     validates!  :security_type,  [:none, 'Basic Authentication']
     
-    # As an entirely nested entity ExternalFeed instances don't have a parent handle
+    # As an entirely nested entity ExternalFeed instances don't have a parent handle. However, something 'truthy' needs
+    # to be presnet for proper XML document genration.
     def parent_handle # :nodoc:
       ""
     end

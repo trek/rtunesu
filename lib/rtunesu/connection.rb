@@ -57,7 +57,10 @@ module RTunesU
       self.user, self.options = options[:user], options
     end
     
-    # iTunes U requires all request to include an authorization token that includes a User's credentials, indetifiying information, and the time of the request.  This data is hashed against your institution's shared secret (provider by Apple with your iTunes U account information). Because tokens are valid only for 90 seconds they are generated for each request attempt.
+    # iTunes U requires all request to include an authorization token that includes a User's credentials, indetifiying information, 
+    # and the time of the request.  This data is hashed against your institution's shared secret (provided by Apple 
+    # with your iTunes U account information). Because tokens are valid only for 90 seconds they are generated for each 
+    # request attempt.
     def generate_authorization_token
       # create the token that contains the necessary elements to authorize the user	
       # using a nested array because the alphabetical order must be maintained
@@ -87,12 +90,13 @@ module RTunesU
       response.body
     end
     
-    # The URL that receives all iTunes U webservices requests.  This is different for each institution and inclues your site name provided by Apple.
+    # The URL that receives all iTunes U webservices requests.
+    # This is different for each institution and inclues your site name provided by Apple.
     def webservices_url
       "#{API_URL}/ProcessWebServicesDocument/#{options[:site]}?#{self.generate_authorization_token}"
     end
     
-    # 
+    # The URL users should be redirected to access the iTunes U site.
     def browse_url
       "#{BROWSE_URL}/#{options[:site]}?#{self.generate_authorization_token}"
     end
@@ -109,7 +113,8 @@ module RTunesU
         }
     end
     
-    #  Sends a string of XML data to iTunes U's webservices url for processing.  Returns the iTunes U response XML. Used by Entity objects to send generated XML to iTunes U. 
+    # Sends a string of XML data to iTunes U's webservices url for processing.  Returns the iTunes U response XML. 
+    # Used by Entity objects to send generated XML to iTunes U. 
     def process(xml)
       timeout(TIMEOUT) do
         url = URI.parse(webservices_url)

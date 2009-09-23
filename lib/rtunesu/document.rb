@@ -1,15 +1,15 @@
 require 'builder'
 
 module RTunesU
-  # Document is a class that generates the neccessary XML to interact with iTunes U.  
-  # Documents are generated and sent when calling .save, .create, .update, and .delete on an 
-  # specific Entity object.  Classes in the Document:: namespace aren't intended for direct use.
+  # Document is a class for generating the neccessary XML to interact with iTunes U.
+  # Documents are generated and sent when calling .save, .create, .update, and .delete on
+  # specific Entity instances.  Classes in the Document:: namespace aren't intended for direct use.
   # For example:
   # c = Course.find(12345, itunes_connection_object)
   # c.Name # "Exemple Course"
   # c.Name = 'Example Course'
   # c.save(itunes_connection_object) # genertes and sends a Document::Merge object with the Course data.
-  module Document
+  module Document # :nodoc:
     class Base
       INDENT = 2
       attr_accessor :builder, :source, :options, :xml
@@ -32,7 +32,7 @@ module RTunesU
       # like to take (AddFoo, MergeFoo, DeleteFoo) to the Source class.
       # For example, if the source Entity is of the type Track and you are creating a 
       # Document::Add the ITunesUDocument element will have a child element of <AddTrack>...</AddTrack>
-      # tag_action is called from inside Document::Base.new and is based the initializer's builder 
+      # tag_action is called from inside Document::Base.new and is based the initializer's builder
       # object so that proper nesting is maintained.
       private
         def tag_action(xml_builder)
@@ -40,7 +40,7 @@ module RTunesU
         end 
     end
       
-    # Creates an XML document that comforms to iTunes U's specification for adding an entity.  
+    # Creates an XML document that comforms to iTunes U's specification for adding an entity. 
     # This class is used internally by Entity classes when saving.
     class Add < Base
       private
@@ -55,7 +55,7 @@ module RTunesU
         end
     end
         
-    # Creates an XML document that comforms to iTunes U's specification for updating an entity.  
+    # Creates an XML document that comforms to iTunes U's specification for updating an entity.
     # This class is used internally by Entity classes when saving.
     class Merge < Base
       private
@@ -79,10 +79,10 @@ module RTunesU
         end
     end
     
-    # Shows the hierarchy tree for a portion of your iTunes U site.  If the source object has no handle, 
+    # Shows the hierarchy tree for a portion of your iTunes U site.  If the source object has no handle,
     # the tree for your entire site is shown.
     # ShowTree.new can take an option options hash. The possible values for this hash are
-    # :key_group.  They iTunes U 'KeyGroup' that defines the amount of data returned from the ShowTree action. 
+    # :key_group.  They iTunes U 'KeyGroup' that defines the amount of data returned from the ShowTree action.
     # Possible values are 'minimal','most','maximal'.  
     class ShowTree < Base
       private

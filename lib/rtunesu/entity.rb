@@ -3,49 +3,36 @@ module RTunesU
   # A Base class reprenseting the various entities seen in iTunes U.  Subclassed into the actual entity 
   # classes (Course, Division, Track, etc).  Entity is mostly an object oriented interface to the 
   # underlying XML data returned from iTunes U.  Most of attributes of an Entity are read by searching 
-  # the souce XML returned from iTunes U by the Entity class's implemention of method_missing. 
-  # Attribute of an Entity are written through method missing as well. 
-  #  Methods that end in '=' will write data that will be saved to iTunes U.
+  # the souce XML returned from iTunes U.
   # == Reading and Writing Attributes
   # c = Course.find(12345, rtunes_connection_object) # finds the Course in iTunes U and stores its XML data
-  # c.Handle # finds the <Handle> element in the XML data and returns its value (in this case 12345)
-  # c.Name   # finds the <Name> element in the XML data and returns its value (e.g. 'My Example Course')
-  # c.Name = 'Podcasting: a Revolution' # writes a hash of unsaved data that will be sent to iTunes U.
+  # c.handle # finds the <Handle> element in the XML data and returns its value (in this case 12345)
+  # c.name   # finds the <Name> element in the XML data and returns its value (e.g. 'My Example Course')
+  # c.name = 'Podcasting: a Revolution' # writes a hash of unsaved data that will be sent to iTunes U.
   #
   # == Accessing related entities 
   # Related Entity objects are accessed with the pluralized form of their class name.  
-  # To access a Course's related Group entities, you would use c.Groups. This will return an array of 
+  # To access a Course's related Group entities, you would use c.groups. This will return an array of 
   # Group objects (or an empty Array object if there are no associated Groups)
   # You can set the array of associated entities by using the '=' form of the accessor and add anothe 
   # element to the end of an array of related entities with '<<'
   # Examples:
   # c = Course.find(12345, rtunes_connection_object) # finds the Course in iTunes U and stores its XML data
-  # c.Groups # returns an array of Group entities or an empty array of there are no Group entities
-  # c.Groups = [Group.new(:Name => 'Lectures')] # assigns the Groups related entity array to an existing 
+  # c.groups # returns an array of Group entities or an empty array of there are no Group entities
+  # c.groups = [Group.new(:name => 'Lectures')] # assigns the Groups related entity array to an existing 
   # array (overwriting any local data about Groups)
-  # c.Groups << Group.new(:Name => 'Videos') # Adds the new Group object to the end of hte Groups array
-  # c.Groups.collect {|g| g.Name} # ['Lectures', 'Videos']
-  #
-  # == Notes on arbitrary XML
-  # Because Entity is, at heart, an object oriented wrapper for iTunes U XML data it is
-  # possible to add arbitrary (and possibly meaningless or invalidating) data that will be sent to iTunes U.  
-  # You should have a solid understanding of how Entites relate in iTunes U to avoind sending bad data.
-  # Examples:
-  # c = Course.find(12345, rtunes_connection_object)
-  # c.Junk = 'some junk xml' 
-  # c.save
-  # # c.save will generate XML that inclucdes 
-  # # <Course>
-  # #   <Junk>some junk xml</Junk>
-  # #   ... some other XML data ...
-  # # </Course>
-  # # this XML may raise errors in iTunes U because it doesn't match valid iTunes U documents
+  # c.groups << Group.new(:name => 'Videos') # Adds the new Group object to the end of hte Groups array
+  # c.groups.collect {|g| g.name} # ['Lectures', 'Videos']
   class Entity
     attr_accessor :connection, :attributes, :parent, :parent_handle, :saved, :source_xml
     attr_reader :handle
     
-    def self.base_connection
+    def self.get_base_connection # :nodoc:
       @base_connection
+    end
+    
+    def self.base_connection 
+      Entity.get_base_connection
     end
     
     def self.set_base_connection(connection)
@@ -79,8 +66,6 @@ module RTunesU
         define_method(name) do
           entity_name = options[:as] || name.to_s.camelize
           instance_variable_get("@#{name}") || instance_variable_set("@#{name}", RTunesU::HasAEntityCollectionProxy.new(self.source_xml./(entity_name), self, entity_name))
-          # self.source_xml / name.to_s.camelize
-          # entity_from_edit_or_store(options[:as] || name)
         end
         
         unless options[:readonly]
@@ -97,7 +82,6 @@ module RTunesU
         define_method(name) do
           entity_name = options[:as] || name.to_s.chop.camelize
           instance_variable_get("@#{name}") || instance_variable_set("@#{name}", RTunesU::HasNEntityCollectionProxy.new(self.source_xml./(entity_name), self, entity_name))
-          # entities_from_edits_or_store(options[:as] || name.to_s.camelize)
         end
         
         unless options[:readonly]
@@ -215,13 +199,17 @@ module RTunesU
     end
     
     # called when .save is called on an object that is already stored in iTunes U
-    def update(connection)
+    def update(connection = nil)
+      connection = connection || self.base_connection
+      
       connection.process(Document::Merge.new(self).xml)
       self
     end
     
     # called when .save is called on an object that has no Handle (i.e. does not already exist in iTunes U)
-    def create(connection)
+    def create(connection = nil)
+      connection = connection || self.base_connection
+      
       response = Hpricot.XML(connection.process(Document::Add.new(self).xml))
       raise Exception, response.at('error').innerHTML if response.at('error')
       @handle = response.at('AddedObjectHandle').innerHTML
@@ -231,7 +219,9 @@ module RTunesU
     # Saves the entity to iTunes U.  Save takes single argument (an iTunes U connection object).  
     # If the entity is unsaved this will create the entity and populate its handle attribte.  
     # If the entity has already been saved it will send the updated data (if any) to iTunes U.
-    def save(connection)
+    def save(connection = nil)
+      connection = connection || self.base_connection
+      
       saved? ? update(connection) : create(connection)
     end
     
@@ -240,7 +230,9 @@ module RTunesU
     end
     
     # Deletes the entity from iTunes U.  This cannot be undone.
-    def delete(connection)
+    def delete(connection = nil)
+      connection = connection || self.base_connection
+      
       response = Hpricot.XML(connection.process(Document::Delete.new(self).xml))
       raise Exception, response.at('error').innerHTML if response.at('error')
       self.handle = nil

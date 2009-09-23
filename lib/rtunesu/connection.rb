@@ -22,11 +22,32 @@ module RTunesU
   # connection = Connection.new(:user => user, :site => 'example.edu', :shared_secret => 'STRINGOFTHIRTYLETTERSORNUMBERS')
   # 
   # === Using a Connection
-  # A Connection object is needed for operations that communicate with Apple's iTunes U Webservices.  For example, calls to .save, .create, .update, and .delete on Entity objects take a Connection object as their only argument.
-  # To communicate with the iTunes U Service, a Connection object will generate proper authentication data, hash your request, and (if neccessary) send XML data to iTunes U.
+  # A Connection object is needed for operations that communicate with Apple's iTunes U Webservices.
+  # Connection objects can be used two ways:
+  # First, you can set a base connection object for all entities with
+  # Entity.set_base_connection(connection_object)
+  # This Connection and its associated user will be used for all iTunes U interaction.  This is useful if
+  # you are generally using RTunesU as a utility libray for a learning managemnet system.
+  # This methodology will allow you to use methods that communicate with iTunes U without having to 
+  # specify a connection object for each request. e.g.:
+  #   Course.find(11234567)
+  #   group.save
+  #   division.delete
+  # 
+  # Secondly, you supply a new connection objec to be used instead of the class connection object. This is useful for
+  # generating login urls for users, or allowing iTunes U's included permissions system to limit what a specfic user can do
+  # Pass this custom connection object as the only arguemnt to method calls that interact with iTunes U and it will
+  # be used instead of the classes base connection object.
+  # For example, calls to .save, .create, .update, and .delete on Entity objects take a Connection object as 
+  # their only argument.
+  # 
+  #   Course.find(11234567, custom_connection_object_with_limited_permissions)
+  #   group.save(custom_connection_object_with_limited_permissions)
+  #   division.delete(custom_connection_object_with_limited_permissions)
+  # 
+  # To communicate with the iTunes U Service, a Connection object will generate proper authentication data, 
+  # hash your request, and (if neccessary) send XML data to iTunes U.
   # For more inforamtion about this processs see: http://deimos.apple.com/rsrc/doc/iTunesUAdministratorsGuide/IntegratingAuthenticationandAuthorizationServices/chapter_3_section_3.html
-  # === Scaling tips
-  # Because the you will likely only need a single unchanging Connection object for your application you may wish to initialize a single Connection object for the admin credentials at application start time and assign it to a constant. This is especially beneficial for long running applications like web applications.
   class Connection
     TIMEOUT = 240
     

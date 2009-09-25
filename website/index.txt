@@ -1,7 +1,0 @@
-h1. rtunesu
-h2. Code
-RTunesU is hosted on github: "http://github.com/trek/rtunesu/tree/master":http://github.com/trek/rtunesu/tree/master
-
-h2. Installing
-RTunesU can be installed via rubygems with
-gem install rtunesu

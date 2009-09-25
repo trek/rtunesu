@@ -2,8 +2,8 @@ module RTunesU
   # http://deimos.apple.com/rsrc/xsd/iTunesURequest-1.1.3.xsd
   # A Base class reprenseting the various entities seen in iTunes U.  Subclassed into the actual entity 
   # classes (Course, Division, Track, etc).  Entity is mostly an object oriented interface to the 
-  # underlying XML data returned from iTunes U.  Most of attributes of an Entity are read by searching 
-  # the souce XML returned from iTunes U.
+  # underlying XML data returned from iTunes U.  Most attributes of an Entity are read by searching
+  # the souce XML returned from iTunes U
   # == Reading and Writing Attributes
   # c = Course.find(12345, rtunes_connection_object) # finds the Course in iTunes U and stores its XML data
   # c.handle # finds the <Handle> element in the XML data and returns its value (in this case 12345)
@@ -152,17 +152,17 @@ module RTunesU
       nil
     end
     
-    def entity_from_edit_or_store(name)
-      self.edits[name] || (self.source_xml / name.to_s.camelize).collect {|el| Object.module_eval(el.name.camelize).new(:source_xml => el)}.first
-    rescue NoMethodError
-      nil
-    end
+    # def entity_from_edit_or_store(name)
+    #   self.edits[name] || (self.source_xml / name.to_s.camelize).collect {|el| Object.module_eval(el.name.camelize).new(:source_xml => el)}.first
+    # rescue NoMethodError
+    #   nil
+    # end
     
-    def entities_from_edits_or_store(name)
-      self.edits[name] || (self.source_xml / name.to_s.chop).collect {|el| Object.module_eval(el.name).new(:source_xml => el)}
-    rescue NoMethodError
-      self.edits[name] = []
-    end
+    # def entities_from_edits_or_store(name)
+    #   self.edits[name] || (self.source_xml / name.to_s.chop).collect {|el| Object.module_eval(el.name).new(:source_xml => el)}
+    # rescue NoMethodError
+    #   self.edits[name] = []
+    # end
     
     def value_from_edits_or_store(name)
       self.edits[name] ||  (self.source_xml % name).innerHTML
@@ -183,13 +183,15 @@ module RTunesU
     # Returns the handle of the entitiy's parent.  This can either be set directly as a string or interger or 
     # will access the parent entity.  Sometimes you know the parent_handle without the parent object 
     # (for example, stored locally from an earlier request). This allows you to add a new Entity to iTunes U 
-    # without first firing a reques for a prent entity (For example, if your institution places all inside the 
+    # without first firing a request for a parent entity (For example, if your institution places all courses inside the 
     # same Section, you want to add a new Section to your Site, or a new Group to a course tied to your 
     # institution's LMS).
     def parent_handle
       self.parent ? self.parent.handle : @parent_handle
     end
     
+    # Converts the entities changed attributes and subentities to XML.  Called by Document when building
+    # documents to transfer to iTunes U.
     def to_xml(xml_builder = Builder::XmlMarkup.new)
       xml_builder.tag!(self.class_name) {
         self.edits.each do |attribute,edit|
@@ -225,6 +227,7 @@ module RTunesU
       saved? ? update(connection) : create(connection)
     end
     
+    # Has the entity be previously saved in iTunes U
     def saved?
       self.handle ? true : false
     end

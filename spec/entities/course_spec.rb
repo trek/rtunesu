@@ -22,8 +22,8 @@ describe Course do
     end
         
     it 'should access its attributes from the returned xml' do
-      @course.Name.should eql('SI 539 001 W07')
-      @course.Handle.should eql('1257981186')
+      @course.name.should eql('SI 539 001 W07')
+      @course.handle.should eql('1257981186')
     end
     
     it 'should find its parent element' do
@@ -31,17 +31,17 @@ describe Course do
     end
     
     it 'should be able to find its groups (tabs)' do
-      @course.Groups.should    be_an_instance_of(Array)
-      @course.Groups[0].should be_an_instance_of(RTunesU::Group)
+      @course.groups.should    be_an_instance_of(Array)
+      @course.groups[0].should be_an_instance_of(RTunesU::Group)
     end
     
     it 'should be able to access it groups attributes' do
-      @course.Groups[0].Handle.should eql('1257981189')
+      @course.groups[0].handle.should eql('1257981189')
     end
     
     it 'should be able to access it groups tracks' do
-      @course.Groups[0].Tracks.should be_an_instance_of(Array)
-      @course.Groups[0].Tracks[0].should be_an_instance_of(RTunesU::Track)
+      @course.groups[0].tracks.should be_an_instance_of(Array)
+      @course.groups[0].tracks[0].should be_an_instance_of(RTunesU::Track)
     end
   end
 end

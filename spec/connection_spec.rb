@@ -22,13 +22,8 @@ describe Connection do
       @connection = Connection.new(:user => user, :site => 'example.edu', :shared_secret => 'STRINGOFTHIRTYTWOLETTERSORDIGITS')
     end
     
-    it 'access a web services url for the institution' do
+    it 'generates a web services url for the institution' do
       @connection.webservices_url.should eql('https://deimos.apple.com/WebObjects/Core.woa/API/ProcessWebServicesDocument/example.edu?credentials=Administrator%40urn%3Amace%3Aitunesu.com%3Asites%3Aexample.edu&identity=%22Admin%22+%3Cadmin%40example.edu%3E+%28admin%29+%5B0%5D&time=1214619134&signature=121a6cf76c9c5ecda41450d87e3394b9d02c570a5f76b2bd16287f860f068302')
     end
-    
-    it 'can generate a url for uploading files'
-    it 'opens an HTTPS connection to iTunes U'
-    it 'send XML data'
-    it 'generates a url user access to a location through iTunes U'
   end
 end

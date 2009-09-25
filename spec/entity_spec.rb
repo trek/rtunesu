@@ -26,26 +26,26 @@ describe Entity, 'attribute assignment' do
   end
   
   it 'assigns singular attributes to the edits hash as a string' do
-    @entity.Name = 'Eng211'
+    @entity.name = 'Eng211'
     @entity.edits['Name'].should eql('Eng211')
-    @entity.Name.should eql('Eng211')
+    @entity.name.should eql('Eng211')
   end
   
   it 'returns a default empty array for plural attributes' do
-    @entity.Groups.should eql([])
+    @entity.groups.should eql([])
     @entity.edits['Groups'].should eql([])
   end
   
   it 'assigns plural attribute to the edits hash an array' do
-    @entity.Groups = [Group.new(:name => 'does not matter')]
-    @entity.Groups.size.should be(1)
+    @entity.groups = [Group.new(:name => 'does not matter')]
+    @entity.groups.size.should be(1)
     @entity.edits['Groups'].size.should be(1)
   end
   
   it 'adds plural attributes with <<' do 
-    @entity.Groups = [Group.new(:name => 'does not matter')]
-    @entity.Groups.size.should be(1)
-    @entity.Groups << Group.new(:name => 'another group')
+    @entity.groups = [Group.new(:name => 'does not matter')]
+    @entity.groups.size.should be(1)
+    @entity.groups << Group.new(:name => 'another group')
     @entity.edits['Groups'].size.should be(2)
   end
 end
@@ -54,7 +54,7 @@ describe Entity, 'converting to XML' do
   describe 'with nested elements' do
     before do
       @entity = Entity.new(:Name => 'Example')
-      @entity.Groups = [Group.new(:Name => 'example group 1'), Group.new(:Name => 'example group 2', :Description => 'Blah, blah, blah')]
+      @entity.groups = [Group.new(:name => 'example group 1'), Group.new(:name => 'example group 2', :description => 'Blah, blah, blah')]
       @xml = @entity.to_xml
     end
     
@@ -77,18 +77,18 @@ describe Entity, 'loading from XML' do
   
   it 'access attributes from XML source or from the edits hash' do
     @entity.load_from_xml(@source)
-    @entity.Name.should eql('Example Entity Inside of A Section')
-    @entity.Name = 'new test name'
-    @entity.Name.should eql('new test name')
+    @entity.name.should eql('Example Entity Inside of A Section')
+    @entity.name = 'new test name'
+    @entity.name.should eql('new test name')
   end
   
   it 'can reset its edits' do
     @entity.load_from_xml(@source)
-    @entity.Name.should eql('Example Entity Inside of A Section')
-    @entity.Name = 'new test name'
-    @entity.Name.should eql('new test name')
+    @entity.name.should eql('Example Entity Inside of A Section')
+    @entity.name = 'new test name'
+    @entity.name.should eql('new test name')
     @entity.reload
-    @entity.Name.should eql('Example Entity Inside of A Section')
+    @entity.name.should eql('Example Entity Inside of A Section')
   end
   
   it 'should find its appropriate node in the XML based on node name and <Handle> element' do

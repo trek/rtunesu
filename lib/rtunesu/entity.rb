@@ -180,6 +180,10 @@ module RTunesU
       self.class.to_s.split('::').last
     end
     
+    def base_connection
+      self.class.base_connection
+    end
+    
     # Returns the handle of the entitiy's parent.  This can either be set directly as a string or interger or 
     # will access the parent entity.  Sometimes you know the parent_handle without the parent object 
     # (for example, stored locally from an earlier request). This allows you to add a new Entity to iTunes U 
@@ -243,7 +247,7 @@ module RTunesU
     end
   end
   
-  class ConnectionRequire < Exception
+  class ConnectionRequired < Exception
   end
   
   class EntityNotFound < Exception

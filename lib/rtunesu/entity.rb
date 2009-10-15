@@ -98,6 +98,7 @@ module RTunesU
     def initialize(attrs = {})
       self.attributes = {}
       attrs.each {|attribute, value| self.send("#{attribute}=", value)}
+      self.source_xml = Hpricot.XML('')
     end
        
     def handle
@@ -151,18 +152,6 @@ module RTunesU
     rescue
       nil
     end
-    
-    # def entity_from_edit_or_store(name)
-    #   self.edits[name] || (self.source_xml / name.to_s.camelize).collect {|el| Object.module_eval(el.name.camelize).new(:source_xml => el)}.first
-    # rescue NoMethodError
-    #   nil
-    # end
-    
-    # def entities_from_edits_or_store(name)
-    #   self.edits[name] || (self.source_xml / name.to_s.chop).collect {|el| Object.module_eval(el.name).new(:source_xml => el)}
-    # rescue NoMethodError
-    #   self.edits[name] = []
-    # end
     
     def value_from_edits_or_store(name)
       self.edits[name] ||  (self.source_xml % name).innerHTML
@@ -247,12 +236,12 @@ module RTunesU
     end
   end
   
-  class ConnectionRequired < Exception
+  class ConnectionRequired < StandardError
   end
   
-  class EntityNotFound < Exception
+  class EntityNotFound < StandardError
   end
   
-  class MissingParent < Exception
+  class MissingParent < StandardError
   end
 end

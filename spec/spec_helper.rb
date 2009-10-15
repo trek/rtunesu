@@ -8,3 +8,7 @@ end
 
 $:.unshift(File.dirname(__FILE__) + '/../lib')
 require 'rtunesu'
+
+def xml(name)
+  File.read(File.join(File.dirname(__FILE__), 'fixtures', name))
+end

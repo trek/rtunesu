@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ITunesUDocument>
+  <Version>1.1.1</Version>
+  <AddCourse>
+    <ParentHandle>123456789</ParentHandle>
+    <ParentPath></ParentPath>
+    <TemplateHandle>987654321</TemplateHandle>
+    <Course>
+      <Name>Introduction to the Humanities</Name>
+      <ShortName>HUM 211</ShortName>
+      <Identifier>identifier value</Identifier>
+      <Instructor>Dr. Jesse Sielaff</Instructor>
+      <Description>Lorem ipsum dolor sit amet</Description>
+      <AllowSubscription>true</AllowSubscription>
+    </Course>
+  </AddCourse>
+</ITunesUDocument>

@@ -231,7 +231,7 @@ module RTunesU
       
       response = Hpricot.XML(connection.process(Document::Delete.new(self).xml))
       raise Exception, response.at('error').innerHTML if response.at('error')
-      self.handle = nil
+      @handle = nil
       self
     end
   end

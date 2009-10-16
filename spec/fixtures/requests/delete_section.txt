@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ITunesUDocument>
+  <Version>1.1.3</Version>
+  <DeleteSection>
+    <SectionHandle>2628458907</SectionHandle>
+    <SectionPath></SectionPath>
+  </DeleteSection>
+</ITunesUDocument>

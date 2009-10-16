@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ITunesUResponse>
+  <Version>1.1.3</Version>
+  <error>Could not find a ParentHandle with handle 2 referenced by the node at root--&gt;ITunesUDocument--&gt;AddCourse</error>
+</ITunesUResponse>

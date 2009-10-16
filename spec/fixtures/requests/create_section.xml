@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ITunesUDocument>
+  <Version>1.1.3</Version>
+  <AddSection>
+    <ParentHandle>720939</ParentHandle>
+    <ParentPath></ParentPath>
+    <Section>
+      <Name>example section</Name>
+    </Section>
+  </AddSection>
+</ITunesUDocument>

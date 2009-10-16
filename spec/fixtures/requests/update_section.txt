@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ITunesUDocument>
+  <Version>1.1.3</Version>
+  <MergeSection>
+    <SectionHandle>2628458907</SectionHandle>
+    <Section>
+      <Name>Example Section</Name>
+    </Section>
+  </MergeSection>
+</ITunesUDocument>

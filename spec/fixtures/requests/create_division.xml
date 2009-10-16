@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ITunesUDocument>
+  <Version>1.1.3</Version>
+  <AddDivision>
+    <ParentHandle>720939</ParentHandle>
+    <ParentPath></ParentPath>
+    <Division>
+      <Name>Example Division</Name>
+    </Division>
+  </AddDivision>
+</ITunesUDocument>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ITunesUResponse>
+  <Version>1.1.3</Version>
+  <Site>
+    <Name>Michigan</Name>
+    <Handle>720939</Handle>
+    <AllowSubscription>true</AllowSubscription>
+    <AggregateFileSize>663514495789</AggregateFileSize>
+    <ThemeHandle>1133838431</ThemeHandle>
+    <Permission>
+      <Credential>Administrator@urn:mace:umich.edu</Credential>
+      <Access>Edit</Access>
+    </Permission>
+    <Permission>
+      <Credential>Authenticated@urn:mace:itunesu.com:sites:umich.edu</Credential>
+      <Access>Download</Access>
+    </Permission>
+    <Permission>
+      <Credential>Instructor@urn:mace:itunesu.com:sites:umich.edu:${IDENTIFIER}</Credential>
+      <Access>Edit</Access>
+    </Permission>
+    <Permission>
+      <Credential>Learner@urn:mace:itunesu.com:sites:umich.edu:${IDENTIFIER}</Credential>
+      <Access>Download</Access>
+    </Permission>
+    <Permission>
+      <Credential>All@urn:mace:itunesu.com:sites:umich.edu</Credential>
+      <Access>No Access</Access>
+    </Permission>
+    <Permission>
+      <Credential>Unauthenticated@urn:mace:itunesu.com:sites:umich.edu</Credential>
+      <Access>No Access</Access>
+    </Permission>
+    <Section>
+      <Name>NewSection</Name>
+      <Handle>2514369219</Handle>
+      <AllowSubscription />
+      <Course>
+        <Name>Test Course X</Name>
+        <Handle>2514401752</Handle>
+        <Instructor />
+        <Description />
+        <Identifier />
+        <ThemeHandle />
+        <ShortName>Test Course A</ShortName>
+        <Group>
+          <Name>Tab 1</Name>
+          <Handle>2516552131</Handle>
+          <GroupType>Simple</GroupType>
+          <ShortName />
+          <Permission />
+          <Explicit />
+          <Track />
+          <SharedObjects />
+          <AggregateFileSize />
+          <AllowSubscription />
+          <ExternalFeed>
+            <PollingInterval>Daily</PollingInterval>
+          </ExternalFeed>
+        </Group>
+        <Group>
+          <Name>Tab A</Name>
+          <Handle>2514370423</Handle>
+          <GroupType>Simple</GroupType>
+          <ShortName />
+          <Permission />
+          <Explicit />
+          <Track />
+          <SharedObjects />
+          <AggregateFileSize />
+          <AllowSubscription />
+          <ExternalFeed>
+            <PollingInterval>Never</PollingInterval>
+          </ExternalFeed>
+        </Group>
+        <AggregateFileSize />
+        <AllowSubscription />
+      </Course>
+      <Division />
+      <AggregateFileSize />
+      <Permission />
+    </Section>
+    <TopDownloads>
+      <Name>Top Downloads</Name>
+      <Handle>1651872206</Handle>
+      <FeedURL>https://deimos.apple.com/WebObjects/Core.woa/LinkFeed/umich.edu.01651872206</FeedURL>
+    </TopDownloads>
+    <Theme>
+      <Name>Purple On White</Name>
+      <Handle>1133838405</Handle>
+      <BackgroundColor>ffffff</BackgroundColor>
+      <BoxBackgroundColor>000000</BoxBackgroundColor>
+      <BoxBackgroundAlphaPercent>15</BoxBackgroundAlphaPercent>
+      <SectionHeadingBackgroundColor>990099</SectionHeadingBackgroundColor>
+      <LinkTextColor>000000</LinkTextColor>
+      <SectionHeadingTextColor>ffffff</SectionHeadingTextColor>
+      <RegularTextColor>000000</RegularTextColor>
+    </Theme>
+    <Theme>
+      <Name>The Blues</Name>
+      <Handle>1133838418</Handle>
+      <BackgroundColor>000033</BackgroundColor>
+      <BoxBackgroundColor>ffffff</BoxBackgroundColor>
+      <BoxBackgroundAlphaPercent>12</BoxBackgroundAlphaPercent>
+      <SectionHeadingBackgroundColor>9999ff</SectionHeadingBackgroundColor>
+      <LinkTextColor>ffffff</LinkTextColor>
+      <SectionHeadingTextColor>000033</SectionHeadingTextColor>
+      <RegularTextColor>ffffff</RegularTextColor>
+    </Theme>
+    <Theme>
+      <Name>iTunes Original</Name>
+      <Handle>1133838431</Handle>
+      <BackgroundColor>b7defc</BackgroundColor>
+      <BoxBackgroundColor>ffffff</BoxBackgroundColor>
+      <BoxBackgroundAlphaPercent>50</BoxBackgroundAlphaPercent>
+      <SectionHeadingBackgroundColor>3366cc</SectionHeadingBackgroundColor>
+      <LinkTextColor>000000</LinkTextColor>
+      <SectionHeadingTextColor>ffffff</SectionHeadingTextColor>
+      <RegularTextColor>000000</RegularTextColor>
+    </Theme>
+    <Theme>
+      <Name>White On Black</Name>
+      <Handle>1133838444</Handle>
+      <BackgroundColor>000000</BackgroundColor>
+      <BoxBackgroundColor>ffffff</BoxBackgroundColor>
+      <BoxBackgroundAlphaPercent>25</BoxBackgroundAlphaPercent>
+      <SectionHeadingBackgroundColor>ffffff</SectionHeadingBackgroundColor>
+      <LinkTextColor>ffffff</LinkTextColor>
+      <SectionHeadingTextColor>000000</SectionHeadingTextColor>
+      <RegularTextColor>ffffff</RegularTextColor>
+    </Theme>
+    <Theme>
+      <Name>Custom</Name>
+      <Handle>1145110888</Handle>
+      <BackgroundColor>003366</BackgroundColor>
+      <BoxBackgroundColor>000000</BoxBackgroundColor>
+      <BoxBackgroundAlphaPercent>12</BoxBackgroundAlphaPercent>
+      <SectionHeadingBackgroundColor>000033</SectionHeadingBackgroundColor>
+      <LinkTextColor>ffffff</LinkTextColor>
+      <SectionHeadingTextColor>ffcc66</SectionHeadingTextColor>
+      <RegularTextColor>ffcc66</RegularTextColor>
+    </Theme>
+    <LinkCollectionSet>
+      <LinkCollection>
+        <Name>CustomLinkBox</Name>
+        <Handle>16327</Handle>
+        <FeedURL>https://deimos.apple.com/WebObjects/Core.woa/LinkFeed/umich.edu.016326.016327</FeedURL>
+      </LinkCollection>
+    </LinkCollectionSet>
+    <LoginURL>https://weblogin.umich.edu</LoginURL>
+  </Site>
+</ITunesUResponse>

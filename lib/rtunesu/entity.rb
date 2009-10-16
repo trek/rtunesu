@@ -216,7 +216,6 @@ module RTunesU
     # If the entity has already been saved it will send the updated data (if any) to iTunes U.
     def save(connection = nil)
       connection = connection || self.base_connection
-      
       saved? ? update(connection) : create(connection)
     end
     

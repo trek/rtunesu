@@ -119,17 +119,15 @@ module RTunesU
       
       entity = self.new
       entity.instance_variable_set('@handle', handle)
-      entity.load_from_xml(connection.process(Document::ShowTree.new(entity).xml))
+      entity.load_from_xml(connection.upload_file(RTunesU::SHOW_TREE_FILE, handle))
       entity
+      
+    rescue URI::InvalidURIError
+      raise EntityNotFound, "Could not find #{entity.class_name} with handle of #{handle}."
     end
     
     def load_from_xml(xml_or_entity)
-      if xml_or_entity.kind_of?(RTunesU::Entity)
-        return xml_or_entity
-      else
-        self.source_xml = Hpricot.XML(xml_or_entity).at("//ITunesUResponse//#{self.class_name}//Handle[text()=#{self.handle}]..")
-        raise EntityNotFound if self.source_xml.nil?
-      end
+      self.source_xml = Hpricot.XML(xml_or_entity).at("//ITunesUResponse//#{self.class_name}//Handle[text()=#{self.handle}]..")
     end
     
     # Edits stores the changes made to an entity

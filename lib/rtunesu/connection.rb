@@ -4,7 +4,7 @@ require 'hmac'
 require 'hmac-sha2'
 require 'digest'
 require 'net/https'
-#require 'net/http/post/multipart'
+require 'mime/types'
 require 'uri'
 require 'timeout'
 
@@ -57,6 +57,36 @@ module RTunesU
       self.user, self.options = options[:user], options
     end
     
+    def http_multipart_data(params)
+      crlf = "\r\n"
+      body    = ""
+      headers = {}
+      
+      boundary = "x" + Time.now.to_i.to_s(16)
+      
+      headers["Content-Type"] = "multipart/form-data; boundary=#{boundary}"
+      headers["User-Agent"] = "RTunesU/#{RTunesU::VERSION::STRING}"
+      params.each do |key,value|
+        esc_key = key.to_s
+        body << "--#{boundary}#{crlf}"
+        
+        if value.respond_to?(:read)
+          mime_type = MIME::Types.type_for(value.path)[0] || MIME::Types["application/octet-stream"][0]
+          body << "Content-Disposition: form-data; name=\"#{esc_key}\"; filename=\"#{File.basename(value.path)}\"#{crlf}"
+          body << "Content-Type: #{mime_type.simplified}#{crlf*2}"
+          body << value.read
+          value.rewind
+        else
+          body << "Content-Disposition: form-data; name=\"#{esc_key}\"#{crlf*2}#{value}"
+        end
+      end
+      
+      body << "#{crlf}--#{boundary}--#{crlf*2}"
+      headers["Content-Length"] = body.size.to_s
+      
+      return [ body, headers ]
+    end
+    
     # iTunes U requires all request to include an authorization token that includes a User's credentials, indetifiying information, 
     # and the time of the request.  This data is hashed against your institution's shared secret (provided by Apple 
     # with your iTunes U account information). Because tokens are valid only for 90 seconds they are generated for each 
@@ -78,7 +108,7 @@ module RTunesU
     end
         
     def upload_url_for_location(location)
-      url_string = "#{API_URL}/GetUploadURL/#{self.options[:site]}.#{location.Handle}?#{self.generate_authorization_token}"
+      url_string = "#{API_URL}/GetUploadURL/#{self.options[:site]}.#{location}?#{self.generate_authorization_token}&type=XMLControlFile"
       puts url_string
       url = URI.parse(url_string)
       http = Net::HTTP.new(url.host, url.port)
@@ -101,7 +131,7 @@ module RTunesU
       "#{BROWSE_URL}/#{options[:site]}?#{self.generate_authorization_token}"
     end
     
-    def show_tree
+    def show_tree(handle = nil, xml = nil)
       url = URI.parse("#{SHOW_TREE_URL}/#{options[:site]}?#{self.generate_authorization_token}")
         http = Net::HTTP.new(url.host, url.port)
         http.use_ssl = true
@@ -115,9 +145,9 @@ module RTunesU
     
     # Sends a string of XML data to iTunes U's webservices url for processing.  Returns the iTunes U response XML. 
     # Used by Entity objects to send generated XML to iTunes U. 
-    def process(xml)
+    def process(xml, options = {})
       timeout(TIMEOUT) do
-        url = URI.parse(webservices_url)
+        url = URI.parse(upload_url || webservices_url)
           http = Net::HTTP.new(url.host, url.port)
           http.use_ssl = true
           http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -130,17 +160,21 @@ module RTunesU
       end
     end
     
-    # Uploads a file from the local system to iTunes U.
-    def upload_file(file_path, itunes_location)
-      # url = URI.parse(self.upload_url_for_location(itunes_location))
-      # req = Net::HTTP::Post::Multipart.new(url.path, {"file" => UploadIO.new(file_path, "image/jpeg")})
-      # res = Net::HTTP.start(url.host, url.port) do |http|
-      #   http.request(req)
-      # end
-          
-      IO::popen('-') do |c|
-        exec "curl -q -F 'file=@#{file.path}' '#{upload_url_for_location(itunes_location)}'"
-      end
+    def upload_file(file, handle)
+      upload_url = upload_url_for_location(handle)
+      
+      url = URI.parse(upload_url)
+      http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      http.start {
+        request = Net::HTTP::Post.new(url.path)
+        body, headers = http_multipart_data({:file => file})
+        request.body = body
+        request.initialize_http_header(headers)
+        response = http.request(request)
+        response.body
+      }
     end
     
     # Retrieves and parses iTunesU usage logs.

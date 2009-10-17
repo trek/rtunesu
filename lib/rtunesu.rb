@@ -1,7 +1,6 @@
 $:.unshift(File.dirname(__FILE__)) unless
 $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
-require 'multipart'
 require 'hpricot'
 require 'activesupport'
 
@@ -27,4 +26,7 @@ module  RTunesU
   API_VERSION = '1.1.3'.freeze
   BROWSE_URL = 'https://deimos.apple.com/WebObjects/Core.woa/Browse'.freeze
   SHOW_TREE_URL = 'https://deimos.apple.com/WebObjects/Core.woa/API/ShowTree'.freeze
+  
+  SHOW_TREE_FILE = File.new(File.join(File.dirname(__FILE__), 'show_tree.xml'))
+
 end

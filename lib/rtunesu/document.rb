@@ -87,6 +87,7 @@ module RTunesU
     class ShowTree < Base
       private
         def tag_action(xml_builder)
+          puts "DEPRECATED"
           xml_builder.tag!('ShowTree') {
             xml_builder.tag!('Handle', self.source.handle) if self.source.handle
             xml_builder.tag!('KeyGroup', options[:key_group] || 'most')

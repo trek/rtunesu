@@ -47,9 +47,7 @@ module RTunesU
   # To communicate with the iTunes U Service, a Connection object will generate proper authentication data, 
   # hash your request, and (if neccessary) send XML data to iTunes U.
   # For more inforamtion about this processs see: http://deimos.apple.com/rsrc/doc/iTunesUAdministratorsGuide/IntegratingAuthenticationandAuthorizationServices/chapter_3_section_3.html
-  class Connection
-    TIMEOUT = 240
-    
+  class Connection    
     attr_accessor :user, :options
     
     def initialize(options = {})
@@ -110,7 +108,6 @@ module RTunesU
     # Sends a request to iTunes U for a valid upload location for a file.
     def upload_url_for_location(location) #:nodoc:
       url_string = "#{API_URL}/GetUploadURL/#{self.options[:site]}.#{location}?#{self.generate_authorization_token}&type=XMLControlFile"
-      puts url_string
       url = URI.parse(url_string)
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true

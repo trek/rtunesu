@@ -122,7 +122,7 @@ module RTunesU
     # type is used to search the returned XML for the specific entity you are looking for.  For example,
     # Course.find(123456, rtunes_connection_object)
     def self.find(handle, connection = nil)
-      connection = connection || self.base_connection
+      connection ||= self.base_connection
       
       entity = self.new
       entity.instance_variable_set('@handle', handle)
@@ -200,7 +200,7 @@ module RTunesU
     
     # called when .save is called on an object that is already stored in iTunes U
     def update(connection = nil)
-      connection = connection || self.base_connection
+      connection ||= self.base_connection
       
       connection.process(Document::Merge.new(self).xml)
       self
@@ -208,7 +208,7 @@ module RTunesU
     
     # called when .save is called on an object that has no Handle (i.e. does not already exist in iTunes U)
     def create(connection = nil)
-      connection = connection || self.base_connection
+      connection ||= self.base_connection
       
       response = Hpricot.XML(connection.process(Document::Add.new(self).xml))
       raise Exception, response.at('error').innerHTML if response.at('error')
@@ -220,7 +220,7 @@ module RTunesU
     # If the entity is unsaved this will create the entity and populate its handle attribte.  
     # If the entity has already been saved it will send the updated data (if any) to iTunes U.
     def save(connection = nil)
-      connection = connection || self.base_connection
+      connection ||= self.base_connection
       saved? ? update(connection) : create(connection)
     end
     
@@ -231,7 +231,7 @@ module RTunesU
     
     # Deletes the entity from iTunes U.  This cannot be undone.
     def delete(connection = nil)
-      connection = connection || self.base_connection
+      connection ||= self.base_connection
       
       response = Hpricot.XML(connection.process(Document::Delete.new(self).xml))
       raise Exception, response.at('error').innerHTML if response.at('error')

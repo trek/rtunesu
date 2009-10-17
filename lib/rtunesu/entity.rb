@@ -24,8 +24,13 @@ module RTunesU
   # c.groups << Group.new(:name => 'Videos') # Adds the new Group object to the end of hte Groups array
   # c.groups.collect {|g| g.name} # ['Lectures', 'Videos']
   class Entity
-    attr_accessor :connection, :attributes, :parent, :parent_handle, :saved, :source_xml
+    
+    attr_accessor :connection, :parent, :parent_handle, :saved, :source_xml
     attr_reader :handle
+    
+    def self.attributes
+      @attributes ||= Set.new
+    end
     
     def self.get_base_connection # :nodoc:
       @base_connection
@@ -45,6 +50,7 @@ module RTunesU
     
     def self.composed_of(*names)
       options = names.last.is_a?(Hash) ? names.pop : {}
+      self.attributes.merge(names)
       names.each do |name|
         storage_name = options[:as] || name.to_s.camelize
         
@@ -62,6 +68,7 @@ module RTunesU
     
     def self.has_a(*names)
       options = names.last.is_a?(Hash) ? names.pop : {}
+      self.attributes.merge(names)
       names.each do |name|
         define_method(name) do
           entity_name = options[:as] || name.to_s.camelize
@@ -78,6 +85,7 @@ module RTunesU
     
     def self.has_n(*names)
       options = names.last.is_a?(Hash) ? names.pop : {}
+      self.attributes.merge(names)
       names.each do |name|
         define_method(name) do
           entity_name = options[:as] || name.to_s.chop.camelize
@@ -96,7 +104,6 @@ module RTunesU
     # are assgined to instance variables of the obect (if there is an attr_accessor for it), the rest 
     # will be written to a hash of edits that will be saved to iTunes U using method_missing
     def initialize(attrs = {})
-      self.attributes = {}
       attrs.each {|attribute, value| self.send("#{attribute}=", value)}
       self.source_xml = Hpricot.XML('')
     end
@@ -230,6 +237,14 @@ module RTunesU
       raise Exception, response.at('error').innerHTML if response.at('error')
       @handle = nil
       self
+    end
+    
+    def inspect
+      inspected = "#<#{self.class.to_s} handle:#{@handle.inspect} "
+      self.class.attributes.each do |attribute|
+        inspected << "#{attribute}:#{self.send(attribute).inspect} "
+      end
+      inspected   << '>'
     end
   end
   

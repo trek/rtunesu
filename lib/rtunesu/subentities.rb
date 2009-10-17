@@ -1,5 +1,6 @@
 module RTunesU
   class SubentityAssociationProxy
+    delegate :inspect, :to => :target
     def initialize(source_xml, owner, name)
       @source_xml = source_xml
       @owner = owner
@@ -7,6 +8,7 @@ module RTunesU
       @edits = []
       self.from_xml(name)
     end
+    
   end
   
   class HasAEntityCollectionProxy < SubentityAssociationProxy

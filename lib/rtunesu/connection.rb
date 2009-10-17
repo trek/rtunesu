@@ -6,7 +6,6 @@ require 'digest'
 require 'net/https'
 require 'mime/types'
 require 'uri'
-require 'timeout'
 
 module RTunesU
   # Connection is a class for opening and using a connection to the iTunes U Webservices system.  
@@ -57,7 +56,8 @@ module RTunesU
       self.user, self.options = options[:user], options
     end
     
-    def http_multipart_data(params)
+    # Generates HTTP mulitpart/form-data specific strings for uploading files to iTunes U.
+    def http_multipart_data(params) #:nodoc:
       crlf = "\r\n"
       body    = ""
       headers = {}
@@ -106,8 +106,9 @@ module RTunesU
       # add the hashed digital signature to the end of the query parameters
       encoded_parms += "&signature=#{hmac.hexdigest}"
     end
-        
-    def upload_url_for_location(location)
+    
+    # Sends a request to iTunes U for a valid upload location for a file.
+    def upload_url_for_location(location) #:nodoc:
       url_string = "#{API_URL}/GetUploadURL/#{self.options[:site]}.#{location}?#{self.generate_authorization_token}&type=XMLControlFile"
       puts url_string
       url = URI.parse(url_string)
@@ -146,18 +147,16 @@ module RTunesU
     # Sends a string of XML data to iTunes U's webservices url for processing.  Returns the iTunes U response XML. 
     # Used by Entity objects to send generated XML to iTunes U. 
     def process(xml, options = {})
-      timeout(TIMEOUT) do
-        url = URI.parse(upload_url || webservices_url)
-          http = Net::HTTP.new(url.host, url.port)
-          http.use_ssl = true
-          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-          http.start {
-            request = Net::HTTP::Post.new(url.to_s)
-            request.body = xml
-            response = http.request(request)
-            response.body
-          }
-      end
+      url = URI.parse(upload_url || webservices_url)
+        http = Net::HTTP.new(url.host, url.port)
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        http.start {
+          request = Net::HTTP::Post.new(url.to_s)
+          request.body = xml
+          response = http.request(request)
+          response.body
+        }
     end
     
     def upload_file(file, handle)

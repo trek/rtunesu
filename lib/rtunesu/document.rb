@@ -78,21 +78,5 @@ module RTunesU
           }
         end
     end
-    
-    # Shows the hierarchy tree for a portion of your iTunes U site.  If the source object has no handle,
-    # the tree for your entire site is shown.
-    # ShowTree.new can take an option options hash. The possible values for this hash are
-    # :key_group.  They iTunes U 'KeyGroup' that defines the amount of data returned from the ShowTree action.
-    # Possible values are 'minimal','most','maximal'.  
-    class ShowTree < Base
-      private
-        def tag_action(xml_builder)
-          puts "DEPRECATED"
-          xml_builder.tag!('ShowTree') {
-            xml_builder.tag!('Handle', self.source.handle) if self.source.handle
-            xml_builder.tag!('KeyGroup', options[:key_group] || 'most')
-          }
-        end
-    end
   end
 end

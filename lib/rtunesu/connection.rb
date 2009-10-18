@@ -54,7 +54,7 @@ module RTunesU
       self.user, self.options = options[:user], options
     end
     
-    # Generates HTTP mulitpart/form-data specific strings for uploading files to iTunes U.
+    # Generates HTTP mulitpart/form-data body and headers.
     def http_multipart_data(params) #:nodoc:
       crlf = "\r\n"
       body    = ""
@@ -131,29 +131,29 @@ module RTunesU
     
     def show_tree(handle = nil, xml = nil)
       url = URI.parse("#{SHOW_TREE_URL}/#{options[:site]}?#{self.generate_authorization_token}")
-        http = Net::HTTP.new(url.host, url.port)
-        http.use_ssl = true
-        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        http.start {
-          request = Net::HTTP::Post.new(url.to_s)
-          response = http.request(request)
-          response.body
-        }
+      http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      http.start {
+        request = Net::HTTP::Post.new(url.to_s)
+        response = http.request(request)
+        response.body
+      }
     end
     
     # Sends a string of XML data to iTunes U's webservices url for processing.  Returns the iTunes U response XML. 
     # Used by Entity objects to send generated XML to iTunes U. 
     def process(xml, options = {})
       url = URI.parse(upload_url || webservices_url)
-        http = Net::HTTP.new(url.host, url.port)
-        http.use_ssl = true
-        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        http.start {
-          request = Net::HTTP::Post.new(url.to_s)
-          request.body = xml
-          response = http.request(request)
-          response.body
-        }
+      http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      http.start {
+        request = Net::HTTP::Post.new(url.to_s)
+        request.body = xml
+        response = http.request(request)
+        response.body
+      }
     end
     
     def upload_file(file, handle)

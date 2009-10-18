@@ -8,6 +8,7 @@ require 'mime/types'
 require 'uri'
 
 module RTunesU
+  class LocationNotFound < StandardError; end
   # Connection is a class for opening and using a connection to the iTunes U Webservices system.  
   # To open a connection to iTunes U, you first need to create a RTunesU::User object using the 
   # administrator data you received from Apple when they created your iTunes U site.
@@ -115,6 +116,7 @@ module RTunesU
       response = http.start {|http| 
         http.request(Net::HTTP::Get.new(url.path + '?' + url.query))
       }
+      raise LocationNotFound if response.kind_of?(Net::HTTPNotFound)
       response.body
     end
     

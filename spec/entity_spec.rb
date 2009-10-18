@@ -1,108 +1,67 @@
 require File.dirname(__FILE__) + '/spec_helper.rb'
 include RTunesU
 
-# describe Entity do
-#   it 'finds itself in iTunes U'
-#   it 'rasies an error if it cannot be found in iTunes U'
-#   
-#   it "saves to iTunes U"
-#   it "appepts to saves if valid"
-#   it "it won't attempt to save (and rasies an error) if it's missing require attributes"
-#   
-#   it "creates if it didn't previously exist"
-#   it "updates if it previously existed"
-#   
-#   it "rasies an error if saving failed"
-#   
-#   it "deletes"
-#   it "raises an error if delting failed"
-#   
-#   it "converts to an xml string"
-#   it "creats from a ITunesU Response"
-# end
-describe Entity, 'attribute assignment' do
-  before do
-    @entity = Entity.new
+shared_examples_for "an Entity" do
+  it "should initialize with optional starting attributes" do
+    @entity = @klass.new(@attributes)
+    @attributes.each do |attr,value|
+      @entity.send(attr).should == value
+    end
   end
   
-  it 'assigns singular attributes to the edits hash as a string' do
-    @entity.name = 'Eng211'
-    @entity.edits['Name'].should eql('Eng211')
-    @entity.name.should eql('Eng211')
-  end
-  
-  it 'returns a default empty array for plural attributes' do
-    @entity.groups.should eql([])
-    @entity.edits['Groups'].should eql([])
-  end
-  
-  it 'assigns plural attribute to the edits hash an array' do
-    @entity.groups = [Group.new(:name => 'does not matter')]
-    @entity.groups.size.should be(1)
-    @entity.edits['Groups'].size.should be(1)
-  end
-  
-  it 'adds plural attributes with <<' do 
-    @entity.groups = [Group.new(:name => 'does not matter')]
-    @entity.groups.size.should be(1)
-    @entity.groups << Group.new(:name => 'another group')
-    @entity.edits['Groups'].size.should be(2)
-  end
-end
-
-describe Entity, 'converting to XML' do
-  describe 'with nested elements' do
-    before do
-      @entity = Entity.new(:Name => 'Example')
-      @entity.groups = [Group.new(:name => 'example group 1'), Group.new(:name => 'example group 2', :description => 'Blah, blah, blah')]
-      @xml = @entity.to_xml
+  describe "accessing handle" do
+    describe "when handle instance variable is set" do
+      it "should return the handle" do
+        @entity.instance_variable_set("@handle", "1")
+        @entity.handle.should == "1"
+      end
     end
     
-    it 'should contain nested XML edits' do
-      (Hpricot.XML(@xml) / 'Entity/Group').size.should be(2)
+    describe "when handle instance variable is not set" do
+      it "should access the handle from source xml if availabe" do
+        @entity.source_xml = Hpricot.XML(<<-XML
+          <#{@klass.name.demodulize}>
+            <Handle>1</Handle>
+          </#{@klass.name.demodulize}>
+        XML
+        )
+        @entity.handle.should == "1"
+      end
+      
+      it "should retrun nil if source xml doesn't contain handle" do
+        @entity.handle.should be_nil
+      end
+    end
+  end
+  
+  describe "finding" do
+    before(:each) do
+      mock_connect!
     end
     
-    it 'has nested elements that propely converted their singular attributes' do
-       (Hpricot.XML(@xml) / 'Entity/Group')[0].at('Name').innerHTML.should eql('example group 1')
+    after(:each) do
+      FakeWeb.clean_registry
     end
     
-  end
-end
-
-describe Entity, 'loading from XML' do
-  before do
-    @source = File.read(File.dirname(__FILE__) + '/fixtures/responses/generic_entity_response.xml')
-    @entity = Entity.new(:handle => 789)
-  end
-  
-  it 'access attributes from XML source or from the edits hash' do
-    @entity.load_from_xml(@source)
-    @entity.name.should eql('Example Entity Inside of A Section')
-    @entity.name = 'new test name'
-    @entity.name.should eql('new test name')
-  end
-  
-  it 'can reset its edits' do
-    @entity.load_from_xml(@source)
-    @entity.name.should eql('Example Entity Inside of A Section')
-    @entity.name = 'new test name'
-    @entity.name.should eql('new test name')
-    @entity.reload
-    @entity.name.should eql('Example Entity Inside of A Section')
-  end
-  
-  it 'should find its appropriate node in the XML based on node name and <Handle> element' do
-    @entity.load_from_xml(@source)
-    @entity.source_xml.name.should eql('Entity')
-  end
+    describe "with existing handle" do
+      it "should load external data into object" do
+        FakeWeb.register_uri(:get,
+                             "https://deimos.apple.com/WebObjects/Core.woa/API/GetUploadURL/example.edu.1?credentials=Administrator%40urn%3Amace%3Aitunesu.com%3Asites%3Aexample.edu&identity=%22Admin%22+%3Cadmin%40example.edu%3E+%28admin%29+%5B0%5D&time=1214619134&signature=121a6cf76c9c5ecda41450d87e3394b9d02c570a5f76b2bd16287f860f068302&type=XMLControlFile",
+                             :body => mock_upload_url_for_handle(1))
+        FakeWeb.register_uri(:post, mock_upload_url_for_handle(1), :body => response_for(@klass, 'show', true))
+        @course = @klass.find(1)
+      end
+    end
     
-  it 'should raise an EntityNotFound error if the specific entity cannot be found' do
-    @entity.handle = 1
-    lambda { @entity.load_from_xml(@source) }.should raise_error(EntityNotFound)
-  end
-  
-  it 'should still be able to access its parent XML node' do
-    @entity.load_from_xml(@source)
-    @entity.source_xml.parent.name.should eql('Section')
+    describe "with non-existant handle" do
+      it "should raise EntityNotFound" do
+        FakeWeb.register_uri(:get,
+                             "https://deimos.apple.com/WebObjects/Core.woa/API/GetUploadURL/example.edu.1?credentials=Administrator%40urn%3Amace%3Aitunesu.com%3Asites%3Aexample.edu&identity=%22Admin%22+%3Cadmin%40example.edu%3E+%28admin%29+%5B0%5D&time=1214619134&signature=121a6cf76c9c5ecda41450d87e3394b9d02c570a5f76b2bd16287f860f068302&type=XMLControlFile",
+                             :body => response_for(@klass, 'show', false),
+                             :status => [404, "Not Found"]
+                             )
+        lambda { @course = @klass.find(1) }.should raise_error(EntityNotFound)
+      end
+    end
   end
 end

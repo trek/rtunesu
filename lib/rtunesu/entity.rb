@@ -109,11 +109,15 @@ module RTunesU
     end
        
     def handle
-      return @handle if @handle
+      @handle ||= handle_from_source
+    end
+    
+    def handle_from_source
+      return nil unless self.source_xml
       if (handle_elem = self.source_xml % 'Handle')
-        @handle = handle_elem.innerHTML
+        handle_elem.innerHTML
       else
-        @handle = nil
+        nil
       end
     end
     
@@ -129,7 +133,7 @@ module RTunesU
       entity.load_from_xml(connection.upload_file(RTunesU::SHOW_TREE_FILE, handle))
       entity
       
-    rescue URI::InvalidURIError
+    rescue LocationNotFound
       raise EntityNotFound, "Could not find #{entity.class_name} with handle of #{handle}."
     end
     

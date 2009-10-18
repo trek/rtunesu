@@ -1,8 +1,18 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
+require File.dirname(__FILE__) + '/../entity_spec.rb'
+
 include RTunesU
 
 describe Section do
-  it 'should find itself in iTunes U'
-  it 'is valid'
-  it 'converts itself to an xml document'
+  before(:each) do
+    @klass = Section
+    @entity = Section.new
+    @section = @entity
+    @attributes = {:name => 'Sample Course'}
+  end
+  
+  it_should_behave_like "an Entity"
+  
+  it_should_be_composed_of :name
+  it_should_have_many :courses
 end

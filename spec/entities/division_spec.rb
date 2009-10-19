@@ -10,8 +10,9 @@ describe Division do
     @attributes = {:name => 'Sample Division'}
   end
   
-  it_should_behave_like "an Entity"
-  
+  it_should_behave_like "an Entity with attribute assignment"
+  it_should_behave_like "a findable Entity"
+    
   it_should_be_composed_of :name, :short_name, :identifier, :allow_subscription, :theme_handle, :description
   it_should_be_composed_of_readonly :aggregate_file_size
   it_should_have_many :permissions, :sections

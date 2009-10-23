@@ -12,4 +12,5 @@ describe Track do
   end
   
   it_should_behave_like "an Entity with attribute assignment"
+  it_should_behave_like "a creatable Entity"
 end

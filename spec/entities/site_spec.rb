@@ -13,4 +13,5 @@ describe Site do
   
   it_should_behave_like "an Entity with attribute assignment"
   it_should_behave_like "a findable Entity"
+  
 end

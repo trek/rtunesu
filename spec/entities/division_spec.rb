@@ -12,6 +12,7 @@ describe Division do
   
   it_should_behave_like "an Entity with attribute assignment"
   it_should_behave_like "a findable Entity"
+  it_should_behave_like "a creatable Entity"
     
   it_should_be_composed_of :name, :short_name, :identifier, :allow_subscription, :theme_handle, :description
   it_should_be_composed_of_readonly :aggregate_file_size

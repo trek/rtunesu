@@ -12,6 +12,8 @@ describe Group do
   
   it_should_behave_like "an Entity with attribute assignment"
   it_should_behave_like "a findable Entity"
+  it_should_behave_like "a creatable Entity"
+  
     
   it_should_be_composed_of :name, :group_type, :short_name, :allow_subscription, :explicit
   it_should_be_composed_of_readonly :aggregate_file_size

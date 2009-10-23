@@ -1,10 +1,5 @@
-begin
-  require 'spec'
-rescue LoadError
-  require 'rubygems'
-  gem 'rspec'
-  require 'spec'
-end
+require 'rubygems'
+require 'spec'
 
 require 'fakeweb'
 FakeWeb.allow_net_connect = false

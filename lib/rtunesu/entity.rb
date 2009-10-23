@@ -14,7 +14,7 @@ module RTunesU
   # Related Entity objects are accessed with the pluralized form of their class name.  
   # To access a Course's related Group entities, you would use c.groups. This will return an array of 
   # Group objects (or an empty Array object if there are no associated Groups)
-  # You can set the array of associated entities by using the '=' form of the accessor and add anothe 
+  # You can set the array of associated entities by using the '=' form of the accessor and add another 
   # element to the end of an array of related entities with '<<'
   # Examples:
   # c = Course.find(12345, rtunes_connection_object) # finds the Course in iTunes U and stores its XML data
@@ -207,6 +207,7 @@ module RTunesU
       connection ||= self.base_connection
       
       connection.process(Document::Merge.new(self).xml)
+      edits.clear
       self
     end
     
@@ -215,8 +216,9 @@ module RTunesU
       connection ||= self.base_connection
       
       response = Hpricot.XML(connection.process(Document::Add.new(self).xml))
-      raise Exception, response.at('error').innerHTML if response.at('error')
+      raise CannotSave, response.at('error').innerHTML if response.at('error')
       @handle = response.at('AddedObjectHandle').innerHTML
+      edits.clear
       self
     end
     
@@ -250,6 +252,9 @@ module RTunesU
       end
       inspected   << '>'
     end
+  end
+  
+  class CannotSave < StandardError
   end
   
   class ConnectionRequired < StandardError

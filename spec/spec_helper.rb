@@ -23,6 +23,10 @@ def it_should_be_composed_of(*elems)
       @entity.should respond_to(attr)
       @entity.should respond_to("#{attr}=")
     end
+    
+    it "should access #{attr.to_s} from XML" do
+      
+    end
   end
 end
 

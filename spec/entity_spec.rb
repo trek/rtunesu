@@ -16,7 +16,7 @@ shared_examples_for "a findable Entity" do
                              "https://deimos.apple.com/WebObjects/Core.woa/API/GetUploadURL/example.edu.1?credentials=Administrator%40urn%3Amace%3Aitunesu.com%3Asites%3Aexample.edu&identity=%22Admin%22+%3Cadmin%40example.edu%3E+%28admin%29+%5B0%5D&time=1214619134&signature=121a6cf76c9c5ecda41450d87e3394b9d02c570a5f76b2bd16287f860f068302&type=XMLControlFile",
                              :body => mock_upload_url_for_handle(1))
         FakeWeb.register_uri(:post, mock_upload_url_for_handle(1), :body => response_for(@klass, 'show', true))
-        @course = @klass.find(1)
+        @entity = @klass.find(1)
       end
     end
     
@@ -27,8 +27,92 @@ shared_examples_for "a findable Entity" do
                              :body => response_for(@klass, 'show', false),
                              :status => [404, "Not Found"]
                              )
-        lambda { @course = @klass.find(1) }.should raise_error(EntityNotFound)
+        lambda { @entity = @klass.find(1) }.should raise_error(EntityNotFound)
       end
+    end
+  end
+  
+  describe "creating" do
+    before(:each) do
+      mock_connect!
+      @entity = @klass.new(@attributes)
+      @entity.parent_handle = '1'
+      @entity.handle.should == nil
+    end
+    
+    after(:each) do
+      FakeWeb.clean_registry
+    end
+    
+    it "should not have a handle until saved" do
+      @entity.handle.should == nil
+    end
+    
+    it "should obtain a handle from iTunes U when saved" do
+      FakeWeb.register_uri(:post,
+                            "https://deimos.apple.com/WebObjects/Core.woa/API/ProcessWebServicesDocument/example.edu?credentials=Administrator%40urn%3Amace%3Aitunesu.com%3Asites%3Aexample.edu&identity=%22Admin%22+%3Cadmin%40example.edu%3E+%28admin%29+%5B0%5D&time=1214619134&signature=121a6cf76c9c5ecda41450d87e3394b9d02c570a5f76b2bd16287f860f068302",
+                            :body => response_for(@klass, 'create', true)
+                          )
+      @entity.save
+      @entity.handle.should_not == nil
+    end
+    
+    it "should raise InvalidRecord if it cannot be saved" do
+      FakeWeb.register_uri(:post,
+                            "https://deimos.apple.com/WebObjects/Core.woa/API/ProcessWebServicesDocument/example.edu?credentials=Administrator%40urn%3Amace%3Aitunesu.com%3Asites%3Aexample.edu&identity=%22Admin%22+%3Cadmin%40example.edu%3E+%28admin%29+%5B0%5D&time=1214619134&signature=121a6cf76c9c5ecda41450d87e3394b9d02c570a5f76b2bd16287f860f068302",
+                            :body => response_for(@klass, 'create', false)
+                          )
+      lambda { @entity.save }.should raise_error(CannotSave)
+    end
+    
+    it "should clear its edits" do
+      FakeWeb.register_uri(:post,
+                            "https://deimos.apple.com/WebObjects/Core.woa/API/ProcessWebServicesDocument/example.edu?credentials=Administrator%40urn%3Amace%3Aitunesu.com%3Asites%3Aexample.edu&identity=%22Admin%22+%3Cadmin%40example.edu%3E+%28admin%29+%5B0%5D&time=1214619134&signature=121a6cf76c9c5ecda41450d87e3394b9d02c570a5f76b2bd16287f860f068302",
+                            :body => response_for(@klass, 'create', true)
+                          )
+      @entity.name = 'some name'
+      @entity.edits.should_not be_empty
+      @entity.save
+      @entity.edits.should be_empty
+    end
+  end
+  
+  describe "updating" do
+    before(:each) do
+      mock_connect!
+      @entity = @klass.new(@attributes)
+      @entity.instance_variable_set("@handle", '1')
+      @entity.parent_handle = '1'
+    end
+    
+    it "should clear its edits" do
+      FakeWeb.register_uri(:post,
+                            "https://deimos.apple.com/WebObjects/Core.woa/API/ProcessWebServicesDocument/example.edu?credentials=Administrator%40urn%3Amace%3Aitunesu.com%3Asites%3Aexample.edu&identity=%22Admin%22+%3Cadmin%40example.edu%3E+%28admin%29+%5B0%5D&time=1214619134&signature=121a6cf76c9c5ecda41450d87e3394b9d02c570a5f76b2bd16287f860f068302",
+                            :body => response_for(@klass, 'update', true)
+                          )
+      @entity.name = 'some name'
+      @entity.edits.should_not be_empty
+      @entity.save
+      @entity.edits.should be_empty
+    end
+    
+  end
+  
+  describe "deleting" do
+    before(:each) do
+      mock_connect!
+      @entity = @klass.new(@attributes)
+      @entity.instance_variable_set("@handle", '1')
+      @entity.parent_handle = '1'
+    end
+    
+    it "should no longer have a handle" do
+      FakeWeb.register_uri(:post,
+                            "https://deimos.apple.com/WebObjects/Core.woa/API/ProcessWebServicesDocument/example.edu?credentials=Administrator%40urn%3Amace%3Aitunesu.com%3Asites%3Aexample.edu&identity=%22Admin%22+%3Cadmin%40example.edu%3E+%28admin%29+%5B0%5D&time=1214619134&signature=121a6cf76c9c5ecda41450d87e3394b9d02c570a5f76b2bd16287f860f068302",
+                            :body => response_for(@klass, 'delete', true)
+                          )
+      @entity.delete
+      @entity.handle.should == nil
     end
   end
 end

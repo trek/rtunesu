@@ -146,7 +146,7 @@ module RTunesU
     # Sends a string of XML data to iTunes U's webservices url for processing.  Returns the iTunes U response XML. 
     # Used by Entity objects to send generated XML to iTunes U. 
     def process(xml, options = {})
-      url = URI.parse(upload_url || webservices_url)
+      url = URI.parse(webservices_url)
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE

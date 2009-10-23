@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ITunesUResponse>
+  <Version>1.1.3</Version>
+  <Site>
+    <Name>Michigan</Name>
+    <Handle>720939</Handle>
+    <AllowSubscription>true</AllowSubscription>
+    <AggregateFileSize>663514495789</AggregateFileSize>
+    <ThemeHandle>1133838431</ThemeHandle>
+    <Permission>
+      <Credential>Administrator@urn:mace:umich.edu</Credential>
+      <Access>Edit</Access>
+    </Permission>
+    <Permission>
+      <Credential>Authenticated@urn:mace:itunesu.com:sites:umich.edu</Credential>
+      <Access>Download</Access>
+    </Permission>
+    <Permission>
+      <Credential>Instructor@urn:mace:itunesu.com:sites:umich.edu:${IDENTIFIER}</Credential>
+      <Access>Edit</Access>
+    </Permission>
+    <Permission>
+      <Credential>Learner@urn:mace:itunesu.com:sites:umich.edu:${IDENTIFIER}</Credential>
+      <Access>Download</Access>
+    </Permission>
+    <Permission>
+      <Credential>All@urn:mace:itunesu.com:sites:umich.edu</Credential>
+      <Access>No Access</Access>
+    </Permission>
+    <Permission>
+      <Credential>Unauthenticated@urn:mace:itunesu.com:sites:umich.edu</Credential>
+      <Access>No Access</Access>
+    </Permission>
+    <Section>
+      <Name>Schools and Colleges</Name>
+      <Handle>57704550</Handle>
+      <AllowSubscription />
+      <Course />
+      <Division>
+        <Name>Dental School</Name>
+        <Handle>1278041</Handle>
+        <LinkedFolderHandle />
+        <AggregateFileSize>245835901864</AggregateFileSize>
+        <Identifier />
+        <Permission>
+          <Credential>urn:mace:umich.edu:medical:M1:BROWSE</Credential>
+          <Access>No Access</Access>
+        </Permission>
+        <Permission>
+          <Credential>urn:mace:umich.edu:medical:M1:EDIT</Credential>
+          <Access>No Access</Access>
+        </Permission>
+        <Permission>
+          <Credential>urn:mace:umich.edu:BROWSE</Credential>
+          <Access>No Access</Access>
+        </Permission>
+        <Permission>
+          <Credential>urn:mace:umich.edu:EDIT</Credential>
+          <Access>No Access</Access>
+        </Permission>
+        <Permission>
+          <Credential>urn:mace:umich.edu:dental:EDIT</Credential>
+          <Access>Edit</Access>
+        </Permission>
+        <Permission>
+          <Credential>Authenticated@urn:mace:itunesu.com:sites:umich.edu</Credential>
+          <Access>No Access</Access>
+        </Permission>
+        <Permission>
+          <Credential>urn:mace:umich.edu:dental:BROWSE</Credential>
+          <Access>Download</Access>
+        </Permission>
+        <ShortName />
+        <Section>
+          <Name>Dental Students</Name>
+          <Handle>95257757</Handle>
+          <AllowSubscription />
+          <Course />
+          <Division>
+            <Name>Class of 2013</Name>
+            <Handle>1278043</Handle>
+            <LinkedFolderHandle />
+            <AggregateFileSize>16048271713</AggregateFileSize>
+            <Identifier />
+            <ShortName />
+            <Section>
+              <Name>2009 Fall (D1 2013)</Name>
+              <Handle>2394389826</Handle>
+              <AllowSubscription />
+              <Course>
+                <Name>507 Basic Biomaterials</Name>
+                <Handle>2394598528</Handle>
+                <Instructor />
+                <Description />
+                <Identifier />
+                <ThemeHandle />
+                <ShortName>507</ShortName>
+                <Permission>
+                  <Credential>Authenticated@urn:mace:itunesu.com:sites:umich.edu</Credential>
+                  <Access>No Access</Access>
+                </Permission>
+                <Group>
+                  <Name>Audio</Name>
+                  <Handle>2394598530</Handle>
+                  <GroupType>Simple</GroupType>
+                  <ShortName />
+                  <Permission />
+                  <Explicit />
+                  <Track>
+                    <Name>Dr. Ma - makeup lecture</Name>
+                    <Handle>2449134252</Handle>
+                    <Kind>song</Kind>
+                    <TrackNumber>0</TrackNumber>
+                    <DiscNumber>1</DiscNumber>
+                    <DurationMilliseconds>3775000</DurationMilliseconds>
+                    <AlbumName>507 Basic Biomaterials</AlbumName>
+                    <ArtistName />
+                    <GenreName />
+                    <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.2394598528.02394598530.2449134252</DownloadURL>
+                    <Comment>Dr. Ma, 09.08.09, 9-10am</Comment>
+                    <Explicit />
+                  </Track>
+                  <Track>
+                    <Name>adhesion</Name>
+                    <Handle>2505813829</Handle>
+                    <Kind>song</Kind>
+                    <TrackNumber>0</TrackNumber>
+                    <DiscNumber>1</DiscNumber>
+                    <DurationMilliseconds>3277000</DurationMilliseconds>
+                    <AlbumName />
+                    <ArtistName />
+                    <GenreName />
+                    <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.2394598528.02394598530.2505813829</DownloadURL>
+                    <Comment>Ma, 09/21/09, 1-2pm</Comment>
+                    <Explicit />
+                  </Track>
+                  <Track>
+                    <Name>Dr. Ma's Research</Name>
+                    <Handle>2529422309</Handle>
+                    <Kind>song</Kind>
+                    <TrackNumber>0</TrackNumber>
+                    <DiscNumber>1</DiscNumber>
+                    <DurationMilliseconds>3246000</DurationMilliseconds>
+                    <AlbumName />
+                    <ArtistName />
+                    <GenreName />
+                    <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.2394598528.02394598530.2529422309</DownloadURL>
+                    <Comment>09.28.09, 1-2pm</Comment>
+                    <Explicit />
+                  </Track>
+                  <Track>
+                    <Name>Color</Name>
+                    <Handle>2556217805</Handle>
+                    <Kind>song</Kind>
+                    <TrackNumber>0</TrackNumber>
+                    <DiscNumber>1</DiscNumber>
+                    <DurationMilliseconds>3078000</DurationMilliseconds>
+                    <AlbumName />
+                    <ArtistName />
+                    <GenreName />
+                    <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.2394598528.02394598530.2556217805</DownloadURL>
+                    <Comment>Dr. Ma, 09.30.09, 1-2pm</Comment>
+                    <Explicit />
+                  </Track>
+                  <Track>
+                    <Name>crystal</Name>
+                    <Handle>2584337812</Handle>
+                    <Kind>song</Kind>
+                    <TrackNumber>0</TrackNumber>
+                    <DiscNumber>1</DiscNumber>
+                    <DurationMilliseconds>2726000</DurationMilliseconds>
+                    <AlbumName />
+                    <ArtistName />
+                    <GenreName />
+                    <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.2394598528.02394598530.2584337812</DownloadURL>
+                    <Comment>ma, 09.07.09, 1-2pm</Comment>
+                    <Explicit />
+                  </Track>
+                  <Track>
+                    <Name>Polymers - last lecture</Name>
+                    <Handle>2597659497</Handle>
+                    <Kind>song</Kind>
+                    <TrackNumber>0</TrackNumber>
+                    <DiscNumber>1</DiscNumber>
+                    <DurationMilliseconds>3138000</DurationMilliseconds>
+                    <AlbumName />
+                    <ArtistName />
+                    <GenreName />
+                    <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.2394598528.02394598530.2597659497</DownloadURL>
+                    <Comment>Ma, 10.12.09, 1-2pm</Comment>
+                    <Explicit />
+                  </Track>
+                  <SharedObjects />
+                  <AggregateFileSize>257171378</AggregateFileSize>
+                  <AllowSubscription />
+                  <ExternalFeed>
+                    <PollingInterval>Never</PollingInterval>
+                  </ExternalFeed>
+                </Group>
+                <Group>
+                  <Name>Video</Name>
+                  <Handle>2394598531</Handle>
+                  <GroupType>Simple</GroupType>
+                  <ShortName />
+                  <Permission />
+                  <Explicit />
+                  <Track>
+                    <Name>Dr. Ma - makeup lecture</Name>
+                    <Handle>2448922001</Handle>
+                    <Kind>feature-movie</Kind>
+                    <TrackNumber>0</TrackNumber>
+                    <DiscNumber>1</DiscNumber>
+                    <DurationMilliseconds>3775000</DurationMilliseconds>
+                    <AlbumName />
+                    <ArtistName />
+                    <GenreName />
+                    <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.2394598528.02394598531.2448922001</DownloadURL>
+                    <Comment>Dr. Ma, 09.08.09, 9-10am</Comment>
+                    <Explicit />
+                  </Track>
+                  <Track>
+                    <Name>adhesion</Name>
+                    <Handle>2506026367</Handle>
+                    <Kind>feature-movie</Kind>
+                    <TrackNumber>0</TrackNumber>
+                    <DiscNumber>1</DiscNumber>
+                    <DurationMilliseconds>3277000</DurationMilliseconds>
+                    <AlbumName />
+                    <ArtistName />
+                    <GenreName />
+                    <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.2394598528.02394598531.2506026367</DownloadURL>
+                    <Comment>Ma, 09/21/09, 1-2pm</Comment>
+                    <Explicit />
+                  </Track>
+                  <Track>
+                    <Name>Dr. Ma's Research</Name>
+                    <Handle>2526015081</Handle>
+                    <Kind>feature-movie</Kind>
+                    <TrackNumber>0</TrackNumber>
+                    <DiscNumber>1</DiscNumber>
+                    <DurationMilliseconds>3246000</DurationMilliseconds>
+                    <AlbumName />
+                    <ArtistName />
+                    <GenreName />
+                    <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.2394598528.02394598531.2526015081</DownloadURL>
+                    <Comment>09.28.09, 1-2pm</Comment>
+                    <Explicit />
+                  </Track>
+                  <Track>
+                    <Name>Color</Name>
+                    <Handle>2532031070</Handle>
+                    <Kind>feature-movie</Kind>
+                    <TrackNumber>0</TrackNumber>
+                    <DiscNumber>1</DiscNumber>
+                    <DurationMilliseconds>3078000</DurationMilliseconds>
+                    <AlbumName />
+                    <ArtistName />
+                    <GenreName />
+                    <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.2394598528.02394598531.2532031070</DownloadURL>
+                    <Comment>Dr. Ma, 09.30.09, 1-2pm</Comment>
+                    <Explicit />
+                  </Track>
+                  <Track>
+                    <Name>crystal</Name>
+                    <Handle>2584779453</Handle>
+                    <Kind>feature-movie</Kind>
+                    <TrackNumber>0</TrackNumber>
+                    <DiscNumber>1</DiscNumber>
+                    <DurationMilliseconds>2726000</DurationMilliseconds>
+                    <AlbumName />
+                    <ArtistName />
+                    <GenreName />
+                    <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.2394598528.02394598531.2584779453</DownloadURL>
+                    <Comment>ma, 09.07.09, 1-2pm</Comment>
+                    <Explicit />
+                  </Track>
+                  <Track>
+                    <Name>Polymers - last lecture</Name>
+                    <Handle>2597168369</Handle>
+                    <Kind>feature-movie</Kind>
+                    <TrackNumber>0</TrackNumber>
+                    <DiscNumber>1</DiscNumber>
+                    <DurationMilliseconds>3146000</DurationMilliseconds>
+                    <AlbumName />
+                    <ArtistName />
+                    <GenreName />
+                    <DownloadURL>https://deimos.apple.com/WebObjects/Core.woa/DownloadTrack/umich.edu.2394598528.02394598531.2597168369</DownloadURL>
+                    <Comment>Ma, 10.12.09, 1-2pm</Comment>
+                    <Explicit />
+                  </Track>
+                  <SharedObjects />
+                  <AggregateFileSize>1013196653</AggregateFileSize>
+                  <AllowSubscription />
+                  <ExternalFeed>
+                    <PollingInterval>Never</PollingInterval>
+                  </ExternalFeed>
+                </Group>
+                <AggregateFileSize>1270392919</AggregateFileSize>
+                <AllowSubscription />
+              </Course>
+              <Division />
+              <AggregateFileSize>16048205125</AggregateFileSize>
+              <Permission />
+            </Section>
+            <ThemeHandle />
+            <Description />
+          </Division>
+          <AggregateFileSize>236525232182</AggregateFileSize>
+          <Permission />
+        </Section>
+        <ThemeHandle />
+        <Description />
+      </Division>
+      <AggregateFileSize>245836169217</AggregateFileSize>
+      <Permission>
+        <Credential>All@urn:mace:itunesu.com:sites:umich.edu</Credential>
+        <Access>No Access</Access>
+      </Permission>
+      <Permission>
+        <Credential>Authenticated@urn:mace:itunesu.com:sites:umich.edu</Credential>
+        <Access>No Access</Access>
+      </Permission>
+    </Section>
+    <TopDownloads>
+      <Name>Top Downloads</Name>
+      <Handle>1651872206</Handle>
+      <FeedURL>https://deimos.apple.com/WebObjects/Core.woa/LinkFeed/umich.edu.01651872206</FeedURL>
+    </TopDownloads>
+    <Theme>
+      <Name>Purple On White</Name>
+      <Handle>1133838405</Handle>
+      <BackgroundColor>ffffff</BackgroundColor>
+      <BoxBackgroundColor>000000</BoxBackgroundColor>
+      <BoxBackgroundAlphaPercent>15</BoxBackgroundAlphaPercent>
+      <SectionHeadingBackgroundColor>990099</SectionHeadingBackgroundColor>
+      <LinkTextColor>000000</LinkTextColor>
+      <SectionHeadingTextColor>ffffff</SectionHeadingTextColor>
+      <RegularTextColor>000000</RegularTextColor>
+    </Theme>
+    <Theme>
+      <Name>The Blues</Name>
+      <Handle>1133838418</Handle>
+      <BackgroundColor>000033</BackgroundColor>
+      <BoxBackgroundColor>ffffff</BoxBackgroundColor>
+      <BoxBackgroundAlphaPercent>12</BoxBackgroundAlphaPercent>
+      <SectionHeadingBackgroundColor>9999ff</SectionHeadingBackgroundColor>
+      <LinkTextColor>ffffff</LinkTextColor>
+      <SectionHeadingTextColor>000033</SectionHeadingTextColor>
+      <RegularTextColor>ffffff</RegularTextColor>
+    </Theme>
+    <Theme>
+      <Name>iTunes Original</Name>
+      <Handle>1133838431</Handle>
+      <BackgroundColor>b7defc</BackgroundColor>
+      <BoxBackgroundColor>ffffff</BoxBackgroundColor>
+      <BoxBackgroundAlphaPercent>50</BoxBackgroundAlphaPercent>
+      <SectionHeadingBackgroundColor>3366cc</SectionHeadingBackgroundColor>
+      <LinkTextColor>000000</LinkTextColor>
+      <SectionHeadingTextColor>ffffff</SectionHeadingTextColor>
+      <RegularTextColor>000000</RegularTextColor>
+    </Theme>
+    <Theme>
+      <Name>White On Black</Name>
+      <Handle>1133838444</Handle>
+      <BackgroundColor>000000</BackgroundColor>
+      <BoxBackgroundColor>ffffff</BoxBackgroundColor>
+      <BoxBackgroundAlphaPercent>25</BoxBackgroundAlphaPercent>
+      <SectionHeadingBackgroundColor>ffffff</SectionHeadingBackgroundColor>
+      <LinkTextColor>ffffff</LinkTextColor>
+      <SectionHeadingTextColor>000000</SectionHeadingTextColor>
+      <RegularTextColor>ffffff</RegularTextColor>
+    </Theme>
+    <Theme>
+      <Name>Custom</Name>
+      <Handle>1145110888</Handle>
+      <BackgroundColor>003366</BackgroundColor>
+      <BoxBackgroundColor>000000</BoxBackgroundColor>
+      <BoxBackgroundAlphaPercent>12</BoxBackgroundAlphaPercent>
+      <SectionHeadingBackgroundColor>000033</SectionHeadingBackgroundColor>
+      <LinkTextColor>ffffff</LinkTextColor>
+      <SectionHeadingTextColor>ffcc66</SectionHeadingTextColor>
+      <RegularTextColor>ffcc66</RegularTextColor>
+    </Theme>
+    <LinkCollectionSet>
+      <LinkCollection>
+        <Name>CustomLinkBox</Name>
+        <Handle>16327</Handle>
+        <FeedURL>https://deimos.apple.com/WebObjects/Core.woa/LinkFeed/umich.edu.016326.016327</FeedURL>
+      </LinkCollection>
+    </LinkCollectionSet>
+    <LoginURL>https://weblogin.umich.edu</LoginURL>
+  </Site>
+</ITunesUResponse>

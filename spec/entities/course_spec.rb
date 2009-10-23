@@ -1,47 +1,20 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
+require File.dirname(__FILE__) + '/../entity_spec.rb'
+require File.dirname(__FILE__) + '/../document_spec.rb'
+
 include RTunesU
 
-describe Course do
-  before do
-    u = RTunesU::User.new(0, 'admin', 'Admin', 'admin@example.com')
-    u.credentials = ['Administrator@urn:mace:example.edu']
-    @connection = RTunesU::Connection.new(:user => u, :site => 'example.edu', :shared_secret => 'STRINGOFTHIRTYTWOLETTERSORDIGITS')
+describe Course do  
+  before(:each) do
+    @klass = Course
+    @entity = Course.new
+    @course = @entity
+    @attributes = {:name => 'Sample Course'}
   end
   
-  describe 'finding' do
-    it 'can find itself in iTunesU' do
-      @connection.should_receive(:process).and_return(File.open(File.dirname(__FILE__) + '/../fixtures/responses/show_tree_course.xml'))
-      @course = Course.find(1257981186, @connection)
-    end
-  end
+  it_should_behave_like "an Entity"
   
-  describe ' after successful finding' do
-    before(:all) do
-      @connection.should_receive(:process).and_return(File.open(File.dirname(__FILE__) + '/../fixtures/responses/show_tree_course.xml'))
-      @course = Course.find(1257981186, @connection)
-    end
-        
-    it 'should access its attributes from the returned xml' do
-      @course.name.should eql('SI 539 001 W07')
-      @course.handle.should eql('1257981186')
-    end
-    
-    it 'should find its parent element' do
-      @course.parent.should be_an_instance_of(RTunesU::Section)
-    end
-    
-    it 'should be able to find its groups (tabs)' do
-      @course.groups.should    be_an_instance_of(Array)
-      @course.groups[0].should be_an_instance_of(RTunesU::Group)
-    end
-    
-    it 'should be able to access it groups attributes' do
-      @course.groups[0].handle.should eql('1257981189')
-    end
-    
-    it 'should be able to access it groups tracks' do
-      @course.groups[0].tracks.should be_an_instance_of(Array)
-      @course.groups[0].tracks[0].should be_an_instance_of(RTunesU::Track)
-    end
-  end
+  it_should_be_composed_of :name, :instructor, :description, :identifier, :theme_handle, :short_name, :allow_subscription
+  it_should_be_composed_of_readonly :aggregate_file_size
+  it_should_have_many :permissions, :groups
 end

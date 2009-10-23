@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ITunesUResponse>
   <Version>1.1.3</Version>
-  <AddedObjectHandle>123456789</AddedObjectHandle>
+  <error>The item with the specified handle (720939) is not eligible to contain a section.</error>
 </ITunesUResponse>

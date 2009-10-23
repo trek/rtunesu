@@ -14,7 +14,7 @@ module RTunesU
   # Related Entity objects are accessed with the pluralized form of their class name.  
   # To access a Course's related Group entities, you would use c.groups. This will return an array of 
   # Group objects (or an empty Array object if there are no associated Groups)
-  # You can set the array of associated entities by using the '=' form of the accessor and add anothe 
+  # You can set the array of associated entities by using the '=' form of the accessor and add another 
   # element to the end of an array of related entities with '<<'
   # Examples:
   # c = Course.find(12345, rtunes_connection_object) # finds the Course in iTunes U and stores its XML data
@@ -109,11 +109,15 @@ module RTunesU
     end
        
     def handle
-      return @handle if @handle
+      @handle ||= handle_from_source
+    end
+    
+    def handle_from_source
+      return nil unless self.source_xml
       if (handle_elem = self.source_xml % 'Handle')
-        @handle = handle_elem.innerHTML
+        handle_elem.innerHTML
       else
-        @handle = nil
+        nil
       end
     end
     
@@ -129,7 +133,7 @@ module RTunesU
       entity.load_from_xml(connection.upload_file(RTunesU::SHOW_TREE_FILE, handle))
       entity
       
-    rescue URI::InvalidURIError
+    rescue LocationNotFound
       raise EntityNotFound, "Could not find #{entity.class_name} with handle of #{handle}."
     end
     
@@ -203,6 +207,7 @@ module RTunesU
       connection ||= self.base_connection
       
       connection.process(Document::Merge.new(self).xml)
+      edits.clear
       self
     end
     
@@ -211,8 +216,9 @@ module RTunesU
       connection ||= self.base_connection
       
       response = Hpricot.XML(connection.process(Document::Add.new(self).xml))
-      raise Exception, response.at('error').innerHTML if response.at('error')
+      raise CannotSave, response.at('error').innerHTML if response.at('error')
       @handle = response.at('AddedObjectHandle').innerHTML
+      edits.clear
       self
     end
     
@@ -246,6 +252,9 @@ module RTunesU
       end
       inspected   << '>'
     end
+  end
+  
+  class CannotSave < StandardError
   end
   
   class ConnectionRequired < StandardError

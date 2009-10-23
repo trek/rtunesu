@@ -9,7 +9,8 @@ module RTunesU
     def self.find(handle, course_handle, connection = nil)
       connection ||= self.base_connection
       
-      entity = self.new(:handle => handle)
+      entity = self.new
+      entity.instance_variable_set('@handle', handle)
       entity.source_xml = Course.find(course_handle, connection).source_xml.at("Handle[text()=#{entity.handle}]..")
       entity
     end

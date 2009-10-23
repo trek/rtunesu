@@ -3,6 +3,7 @@ module RTunesU
   # It is different than a Section which is expressed in iTunes a a seperate area on a single page.
   class Division < Entity
     composed_of :name, :short_name, :identifier, :allow_subscription, :theme_handle, :description
+    composed_of :aggregate_file_size, :readonly => true
     has_n :permissions, :sections
   end
 end

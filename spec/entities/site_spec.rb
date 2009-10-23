@@ -15,4 +15,7 @@ describe Site do
   it_should_behave_like "an updateable Entity"
   it_should_behave_like "an Entity with attribute assignment"
   
+  it "should not allow deletion" do
+    lambda {@site.delete}.should raise_error
+  end
 end

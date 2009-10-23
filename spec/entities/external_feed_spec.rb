@@ -13,4 +13,9 @@ describe ExternalFeed do
   
   it_should_behave_like "an Entity with attribute assignment"
   it_should_be_composed_of :polling_interval, :owner_email, :security_type, :signature_type, :basic_auth_username, :basic_auth_password
+  
+  it "have a blank parent handle for polymorphism" do
+    @external_feed.parent_handle.should_not be_nil
+    @external_feed.parent_handle.should be_empty
+  end
 end

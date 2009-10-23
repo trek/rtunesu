@@ -15,4 +15,23 @@ describe Section do
     
   it_should_be_composed_of :name
   it_should_have_many :courses
+  
+  describe "converted to XML" do
+    before(:each) do
+      @document = Hpricot.XML(@section.to_xml)
+    end
+    it "should have SectionPath element" do
+      @document.at('SectionPath').should_not == nil
+    end
+    
+    it "should have MergeByHandle element" do
+      @document.at('MergeByHandle').should_not == nil
+      @document.at('MergeByHandle').innerHTML.should == "false"
+    end
+       
+    it "should have Destructive element" do
+      @document.at('Destructive').should_not == nil
+      @document.at('Destructive').innerHTML.should == "false"
+    end
+  end
 end

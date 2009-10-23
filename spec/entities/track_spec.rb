@@ -11,6 +11,9 @@ describe Track do
     @attributes = {:name => 'Sample Lecture'}
   end
   
+  # it_should_behave_like "a creatable Entity"
+  # it_should_behave_like "an updateable Entity"
+  # it_should_behave_like "a deleteable Entity"
   it_should_behave_like "an Entity with attribute assignment"
-  it_should_behave_like "a creatable Entity"
+  
 end

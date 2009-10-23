@@ -11,7 +11,8 @@ describe Site do
     @attributes = {:name => 'Example University'}
   end
   
-  it_should_behave_like "an Entity with attribute assignment"
   it_should_behave_like "a findable Entity"
+  it_should_behave_like "an updateable Entity"
+  it_should_behave_like "an Entity with attribute assignment"
   
 end

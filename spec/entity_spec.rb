@@ -1,5 +1,50 @@
 require File.dirname(__FILE__) + '/spec_helper.rb'
 include RTunesU
+shared_examples_for "an updateable Entity" do
+  describe "updating" do
+    before(:each) do
+      mock_connect!
+      @entity = @klass.new(@attributes)
+      @entity.instance_variable_set("@handle", '1')
+      @entity.parent_handle = '1'
+    end
+    
+    it "should clear its edits" do
+      FakeWeb.register_uri(:post,
+                            "https://deimos.apple.com/WebObjects/Core.woa/API/ProcessWebServicesDocument/example.edu?credentials=Administrator%40urn%3Amace%3Aitunesu.com%3Asites%3Aexample.edu&identity=%22Admin%22+%3Cadmin%40example.edu%3E+%28admin%29+%5B0%5D&time=1214619134&signature=121a6cf76c9c5ecda41450d87e3394b9d02c570a5f76b2bd16287f860f068302",
+                            :body => response_for(@klass, 'update', true)
+                          )
+      @entity.name = 'some name'
+      @entity.edits.should_not be_empty
+      @entity.save
+      @entity.edits.should be_empty
+    end
+    
+  end
+  
+  
+end
+
+shared_examples_for "a deleteable Entity" do
+  describe "deleting" do
+    before(:each) do
+      mock_connect!
+      @entity = @klass.new(@attributes)
+      @entity.instance_variable_set("@handle", '1')
+      @entity.parent_handle = '1'
+    end
+    
+    it "should no longer have a handle" do
+      FakeWeb.register_uri(:post,
+                            "https://deimos.apple.com/WebObjects/Core.woa/API/ProcessWebServicesDocument/example.edu?credentials=Administrator%40urn%3Amace%3Aitunesu.com%3Asites%3Aexample.edu&identity=%22Admin%22+%3Cadmin%40example.edu%3E+%28admin%29+%5B0%5D&time=1214619134&signature=121a6cf76c9c5ecda41450d87e3394b9d02c570a5f76b2bd16287f860f068302",
+                            :body => response_for(@klass, 'delete', true)
+                          )
+      @entity.delete
+      @entity.handle.should == nil
+    end
+  end
+end
+
 shared_examples_for "a findable Entity" do
   describe "finding" do
     before(:each) do
@@ -29,45 +74,6 @@ shared_examples_for "a findable Entity" do
                              )
         lambda { @entity = @klass.find(1) }.should raise_error(EntityNotFound)
       end
-    end
-  end
-  
-  describe "updating" do
-    before(:each) do
-      mock_connect!
-      @entity = @klass.new(@attributes)
-      @entity.instance_variable_set("@handle", '1')
-      @entity.parent_handle = '1'
-    end
-    
-    it "should clear its edits" do
-      FakeWeb.register_uri(:post,
-                            "https://deimos.apple.com/WebObjects/Core.woa/API/ProcessWebServicesDocument/example.edu?credentials=Administrator%40urn%3Amace%3Aitunesu.com%3Asites%3Aexample.edu&identity=%22Admin%22+%3Cadmin%40example.edu%3E+%28admin%29+%5B0%5D&time=1214619134&signature=121a6cf76c9c5ecda41450d87e3394b9d02c570a5f76b2bd16287f860f068302",
-                            :body => response_for(@klass, 'update', true)
-                          )
-      @entity.name = 'some name'
-      @entity.edits.should_not be_empty
-      @entity.save
-      @entity.edits.should be_empty
-    end
-    
-  end
-  
-  describe "deleting" do
-    before(:each) do
-      mock_connect!
-      @entity = @klass.new(@attributes)
-      @entity.instance_variable_set("@handle", '1')
-      @entity.parent_handle = '1'
-    end
-    
-    it "should no longer have a handle" do
-      FakeWeb.register_uri(:post,
-                            "https://deimos.apple.com/WebObjects/Core.woa/API/ProcessWebServicesDocument/example.edu?credentials=Administrator%40urn%3Amace%3Aitunesu.com%3Asites%3Aexample.edu&identity=%22Admin%22+%3Cadmin%40example.edu%3E+%28admin%29+%5B0%5D&time=1214619134&signature=121a6cf76c9c5ecda41450d87e3394b9d02c570a5f76b2bd16287f860f068302",
-                            :body => response_for(@klass, 'delete', true)
-                          )
-      @entity.delete
-      @entity.handle.should == nil
     end
   end
 end
@@ -117,9 +123,8 @@ shared_examples_for "a creatable Entity" do
       @entity.edits.should be_empty
     end
   end
-  
-  
 end
+
 shared_examples_for "an Entity with attribute assignment" do
   it "should initialize with optional starting attributes" do
     @entity = @klass.new(@attributes)
@@ -152,4 +157,13 @@ shared_examples_for "an Entity with attribute assignment" do
       end
     end
   end
+end
+
+
+shared_examples_for "an Entity" do
+  it_should_behave_like "a creatable Entity"
+  it_should_behave_like "a findable Entity"
+  it_should_behave_like "an updateable Entity"
+  it_should_behave_like "a deleteable Entity"
+  it_should_behave_like "an Entity with attribute assignment"
 end

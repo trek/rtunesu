@@ -10,6 +10,7 @@ Jeweler::Tasks.new do |gemspec|
   gemspec.authors = ['Trek Glowacki']
   gemspec.add_dependency('hpricot', '>= 0.6.164')
   gemspec.add_dependency('builder', '>= 2.0')
+  gemspec.add_dependency('ruby-hmac', '>= 0.3.1')
 end
 Jeweler::GemcutterTasks.new
 

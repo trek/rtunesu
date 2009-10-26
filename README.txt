@@ -3,7 +3,7 @@
 == DESCRIPTION:
 RTunesU is a ruby library for accessing Apple's iTunes U Webservices to integrate your education institutions iTunes U account into ruby applications. iTunes U's Webservices interface is fairly primitive by today's standards for XML based APIs.  Some known flaws of iTunes U
  * No arbitrary search
- * Queries for missing objects return an XML document representing the entire institution instead of returning an error (rdar://7253913)
+ * Queries for missing objects may return an XML document representing the entire institution instead of returning an error (rdar://7253913)
  * No ability to directly find Tracks (rdar://7254419)
  * Does not follow REST principles
  * Does not use HTTP status codes meaningfully

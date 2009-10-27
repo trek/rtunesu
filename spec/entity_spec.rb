@@ -139,6 +139,11 @@ shared_examples_for "an Entity with attribute assignment" do
         @entity.instance_variable_set("@handle", "1")
         @entity.handle.should == "1"
       end
+      
+      it "should use id as alias for handle" do
+        @entity.instance_variable_set("@handle", "1")
+        @entity.handle.should == @entity.id
+      end
     end
     
     describe "when handle instance variable is not set" do

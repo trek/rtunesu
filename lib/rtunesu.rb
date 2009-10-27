@@ -19,7 +19,7 @@ require 'rtunesu/entities/site'
 require 'rtunesu/entities/track'
 require 'rtunesu/entities/theme'
 require 'rtunesu/log'
-require 'rtunesu/subentities'
+require 'rtunesu/associations'
 
 module  RTunesU
   API_URL = 'https://deimos.apple.com/WebObjects/Core.woa/API'.freeze

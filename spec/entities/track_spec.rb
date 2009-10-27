@@ -11,6 +11,9 @@ describe Track do
     @attributes = {:name => 'Sample Lecture'}
   end
   
+  it_should_be_composed_of :name, :kind, :disc_number, :album_name, :arist_name, :category_code, :explicit
+  it_should_be_composed_of_readonly :duration_in_milliseconds, :download_url
+  
   # it_should_behave_like "a creatable Entity"
   # it_should_behave_like "an updateable Entity"
   # it_should_behave_like "a deleteable Entity"
@@ -29,9 +32,12 @@ describe Track do
       FakeWeb.clean_registry
     end
     
-    it "should have an handle" do
+    it "should be found via its course" do
       lambda { Track.find(2449134252, 2394598528) }.should_not raise_error
     end
     
+    it "should have a handle" do
+      Track.find(2449134252, 2394598528).handle.should_not == nil
+    end
   end
 end

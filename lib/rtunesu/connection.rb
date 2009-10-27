@@ -107,8 +107,9 @@ module RTunesU
     end
     
     # Sends a request to iTunes U for a valid upload location for a file.
-    def upload_url_for_location(location) #:nodoc:
-      url_string = "#{API_URL}/GetUploadURL/#{self.options[:site]}.#{location}?#{self.generate_authorization_token}&type=XMLControlFile"
+    def upload_url_for_location(location, is_xml = true) #:nodoc:
+      type_string = (is_xml ? "&type=XMLControlFile" : nil)
+      url_string = "#{API_URL}/GetUploadURL/#{self.options[:site]}.#{location}?#{self.generate_authorization_token}#{type_string}"
       url = URI.parse(url_string)
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
@@ -158,8 +159,8 @@ module RTunesU
       }
     end
     
-    def upload_file(file, handle)
-      upload_url = upload_url_for_location(handle)
+    def upload_file(file, handle, is_xml = true)
+      upload_url = upload_url_for_location(handle, is_xml)
       
       url = URI.parse(upload_url)
       http = Net::HTTP.new(url.host, url.port)

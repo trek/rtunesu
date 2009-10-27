@@ -32,12 +32,12 @@ module RTunesU
   end
   
   class HasNEntityCollectionProxy < SubentityAssociationProxy
-    delegate :[], :at, :first, :last, :size, :to => :target
+    delegate :[], :at, :first, :last, :size, :clear, :to => :target
     attr_reader :target, :edits
 
     def from_xml(name)
       if @source_xml
-       @target = @source_xml.collect {|el| Object.module_eval(el.name).new(:source_xml => el, :parent_handle => @owner.handle)}
+       @target = @source_xml.collect {|el| "RTunesU::#{name}".constantize.new(:source_xml => el, :parent_handle => @owner.handle)}
       else
        @target = []
       end

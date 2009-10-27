@@ -17,21 +17,43 @@ describe Section do
   it_should_have_many :courses
   
   describe "converted to XML" do
-    before(:each) do
-      @document = Hpricot.XML(@section.to_xml)
-    end
-    it "should have SectionPath element" do
-      @document.at('SectionPath').should_not == nil
+    describe "when new" do
+      before(:each) do
+        @document = Hpricot.XML(@section.to_xml)
+      end
+
+      it "should not have SectionPath element" do
+        @document.at('SectionPath').should == nil
+      end
+
+      it "should not have MergeByHandle element" do
+        @document.at('MergeByHandle').should == nil
+      end
+
+      it "should not have Destructive element" do
+        @document.at('Destructive').should == nil
+      end
     end
     
-    it "should have MergeByHandle element" do
-      @document.at('MergeByHandle').should_not == nil
-      @document.at('MergeByHandle').innerHTML.should == "false"
-    end
-       
-    it "should have Destructive element" do
-      @document.at('Destructive').should_not == nil
-      @document.at('Destructive').innerHTML.should == "false"
+    describe "when saved" do
+      before(:each) do
+        @section.instance_variable_set("@handle", '1')
+        @document = Hpricot.XML(@section.to_xml)
+      end
+
+      it "should have SectionPath element" do
+        @document.at('SectionPath').should_not == nil
+      end
+
+      it "should have MergeByHandle element" do
+        @document.at('MergeByHandle').should_not == nil
+        @document.at('MergeByHandle').innerHTML.should == "false"
+      end
+
+      it "should have Destructive element" do
+        @document.at('Destructive').should_not == nil
+        @document.at('Destructive').innerHTML.should == "false"
+      end
     end
   end
 end

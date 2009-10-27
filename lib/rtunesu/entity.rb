@@ -105,12 +105,13 @@ module RTunesU
     # will be written to a hash of edits that will be saved to iTunes U using method_missing
     def initialize(attrs = {})
       attrs.each {|attribute, value| self.send("#{attribute}=", value)}
-      self.source_xml = Hpricot.XML('')
+      self.source_xml ||= Hpricot.XML('')
     end
        
     def handle
       @handle ||= handle_from_source
     end
+    alias :id :handle
     
     def handle_from_source
       return nil unless self.source_xml
@@ -153,6 +154,7 @@ module RTunesU
     # Clear the edits and restores the loaded object to its original form
     def reload
       self.edits.clear
+      self
     end
     
     # Returns the parent of the entity

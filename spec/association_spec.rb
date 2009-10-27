@@ -1,11 +1,7 @@
 require File.dirname(__FILE__) + '/spec_helper.rb'
 include RTunesU
 
-describe "has-a assoctions" do
-  
-end
-
-describe "has-n assoctions" do
+describe "associations" do
   before(:each) do
     mock_connect!
     id = 2628591672
@@ -19,24 +15,36 @@ describe "has-n assoctions" do
   after(:each) do
     FakeWeb.clean_registry
   end
-  
-  it "should access the subentity" do
-    @group.tracks.should_not be_nil
+
+  describe "has-a" do
+    it "should access the subentity" do
+      @group.external_feed.class.should == ExternalFeed
+    end
+    
+    it "should allow access to the subentity's attributes" do
+      @group.external_feed.polling_interval.should == 'Never'
+    end
   end
+
+  describe "has-n" do  
+    it "should access the subentity" do
+      @group.tracks.should_not be_nil
+    end
   
-  it "should report the collections size" do
-    @group.tracks.size.should == 2
-  end
+    it "should report the collections size" do
+      @group.tracks.size.should == 2
+    end
   
-  it "should allow clearing the collections" do
-    @group.tracks.clear.should == []
-  end
+    it "should allow clearing the collections" do
+      @group.tracks.clear.should == []
+    end
   
-  it "should allow subselections of the collections" do
-    @group.tracks[1].should be_kind_of(Track)
-  end
+    it "should allow subselections of the collections" do
+      @group.tracks[1].should be_kind_of(Track)
+    end
   
-  it "should allow access to the subentity's attributes" do
-    @group.tracks[0].name.should_not == nil
+    it "should allow access to the subentity's attributes" do
+      @group.tracks[0].handle.should_not == nil
+    end
   end
 end

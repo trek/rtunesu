@@ -71,7 +71,7 @@ module RTunesU
         
         if value.respond_to?(:read)
           mime_type = MIME::Types.type_for(value.path)[0] || MIME::Types["application/octet-stream"][0]
-          body << "Content-Disposition: form-data; name=\"#{esc_key}\"; filename=\"#{File.basename(value.path)}\"#{crlf}"
+          body << "Content-Disposition: form-data; name=\"#{esc_key}\"; filename=\"#{::File.basename(value.path)}\"#{crlf}"
           body << "Content-Type: #{mime_type.simplified}#{crlf*2}"
           body << value.read
           value.rewind

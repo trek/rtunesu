@@ -78,7 +78,7 @@
           </Track>
           <Track>
             <Name>vidtest2</Name>
-            <Handle>2681543745</Handle>
+            <Handle>2681543746</Handle>
             <Kind>feature-movie</Kind>
             <TrackNumber>1</TrackNumber>
             <DiscNumber>1</DiscNumber>
@@ -97,7 +97,7 @@
             </File>
             <Comment></Comment>
             <CoverImage>
-              <Handle>2681543745</Handle>
+              <Handle>2681543746</Handle>
               <Shared>false</Shared>
             </CoverImage>
             <Explicit></Explicit>

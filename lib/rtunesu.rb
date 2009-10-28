@@ -12,6 +12,7 @@ require 'rtunesu/entity'
 require 'rtunesu/entities/course'
 require 'rtunesu/entities/division'
 require 'rtunesu/entities/external_feed'
+require 'rtunesu/entities/file'
 require 'rtunesu/entities/group'
 require 'rtunesu/entities/permission'
 require 'rtunesu/entities/section'
@@ -26,5 +27,5 @@ module  RTunesU
   API_VERSION = '1.1.3'.freeze
   BROWSE_URL = 'https://deimos.apple.com/WebObjects/Core.woa/Browse'.freeze
   SHOW_TREE_URL = 'https://deimos.apple.com/WebObjects/Core.woa/API/ShowTree'.freeze
-  SHOW_TREE_FILE = File.new(File.join(File.dirname(__FILE__), 'show_tree.xml'))
+  SHOW_TREE_FILE = ::File.new(::File.join(::File.dirname(__FILE__), 'show_tree.xml'))
 end

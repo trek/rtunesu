@@ -7,29 +7,30 @@ FakeWeb.allow_net_connect = false
 $:.unshift(File.dirname(__FILE__) + '/../lib')
 require 'rtunesu'
 
+def fixture_file(name)
+  File.new(File.dirname(__FILE__) + "/fixtures/#{name}")
+end
+
 def response_for(klass, action, success)
   success_string = success ? "success" : "failure"
   File.read(File.dirname(__FILE__) + "/fixtures/responses/#{success_string}/#{action}_#{klass.name.demodulize.downcase}.xml")
 end
 
 def it_should_be_composed_of(*elems)
+  options = elems.extract_options!
   elems.each do |attr|
-    it "should have attribute #{attr.to_s}" do
+    it "should read attribute #{attr.to_s}" do
       @entity.should respond_to(attr)
-      @entity.should respond_to("#{attr}=")
     end
     
-    it "should access #{attr.to_s} from XML" do
-      
-    end
-  end
-end
-
-def it_should_be_composed_of_readonly(*elems)
-  elems.each do |attr|
-    it "should have readonly attribute #{attr.to_s}" do
-      @entity.should respond_to(attr)
-      @entity.should_not respond_to("#{attr}=")
+    if options[:readonly]
+      it "should not write attrbiute #{attr.to_s}" do
+        @entity.should_not respond_to("#{attr}=")
+      end
+    else
+      it "should write attrbiute #{attr.to_s}" do
+        @entity.should respond_to("#{attr}=")
+      end
     end
   end
 end
@@ -45,7 +46,7 @@ end
 
 def it_should_have_a(*associations)
   associations.each do |association|
-    it "should have many #{association}" do
+    it "should have a #{association}" do
       @entity.should respond_to(association)
       @entity.send(association).should be_kind_of(HasAEntityCollectionProxy)
     end

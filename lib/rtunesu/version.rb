@@ -1,9 +1,5 @@
 module RTunesU
   module VERSION #:nodoc:
-    MAJOR = 0
-    MINOR = 3
-    TINY  = 5
-
-    STRING = [MAJOR, MINOR, TINY].join('.')
+    STRING = File.read(File.join(File.dirname(__FILE__), '../../VERSION')).strip!.freeze
   end
 end

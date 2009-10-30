@@ -16,4 +16,17 @@ describe Group do
   it_should_be_composed_of :aggregate_file_size, :readonly => true
   it_should_have_many :permissions, :tracks, :shared_objects
   it_should_have_a    :external_feed
+  
+  describe "access rights" do
+    it "should have the correct access rights as constant" do
+      Group::ACCESS.should ==  {
+          :no_access => "No Access",
+          :steaming  => "Streaming",
+          :download  => "Download",
+          :drop_box  => "Drop Box",
+          :shared    => "Shared",
+          :edit      => "Edit"
+        }
+    end
+  end
 end

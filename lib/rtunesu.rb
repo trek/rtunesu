@@ -18,6 +18,7 @@ require 'rtunesu/entities/section'
 require 'rtunesu/entities/site'
 require 'rtunesu/entities/track'
 require 'rtunesu/entities/theme'
+require 'rtunesu/persistence'
 require 'rtunesu/log'
 require 'rtunesu/associations'
 

@@ -8,4 +8,8 @@ module RTunesU
   def delete(connection)
     raise "You cannot delete your entire site"
   end
+  
+  def create(connection)
+    raise "only apple can create a Site for you."
+  end
 end

@@ -64,7 +64,7 @@ module RTunesU
       boundary = "x" + Time.now.to_i.to_s(16)
       
       headers["Content-Type"] = "multipart/form-data; boundary=#{boundary}"
-      headers["User-Agent"] = "RTunesU/#{RTunesU::VERSION::STRING}"
+      headers["User-Agent"] = "RTunesU/#{RTunesU::VERSION}"
       params.each do |key,value|
         esc_key = key.to_s
         body << "--#{boundary}#{crlf}"

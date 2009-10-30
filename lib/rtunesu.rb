@@ -4,7 +4,6 @@ $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname
 require 'hpricot'
 require 'activesupport'
 
-require 'rtunesu/version'
 require 'rtunesu/connection'
 require 'rtunesu/user'
 require 'rtunesu/document'
@@ -28,4 +27,6 @@ module  RTunesU
   BROWSE_URL = 'https://deimos.apple.com/WebObjects/Core.woa/Browse'.freeze
   SHOW_TREE_URL = 'https://deimos.apple.com/WebObjects/Core.woa/API/ShowTree'.freeze
   SHOW_TREE_FILE = ::File.new(::File.join(::File.dirname(__FILE__), 'show_tree.xml'))
+  
+  VERSION = ::File.read(::File.join(::File.dirname(__FILE__), '../VERSION')).strip!.freeze
 end

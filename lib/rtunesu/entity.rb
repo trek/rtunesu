@@ -52,7 +52,7 @@ module RTunesU
     end
     
     def self.composed_of(*names)
-      options = names.last.is_a?(Hash) ? names.pop : {}
+      options = names.extract_options!
       self.attributes.merge(names)
       names.each do |name|
         storage_name = options[:as] || name.to_s.camelize
@@ -70,7 +70,7 @@ module RTunesU
     end
     
     def self.has_a(*names)
-      options = names.last.is_a?(Hash) ? names.pop : {}
+      options = names.extract_options!
       self.attributes.merge(names)
       names.each do |name|
         define_method(name) do
@@ -87,7 +87,7 @@ module RTunesU
     end
     
     def self.has_n(*names)
-      options = names.last.is_a?(Hash) ? names.pop : {}
+      options = names.extract_options!
       self.attributes.merge(names)
       names.each do |name|
         define_method(name) do

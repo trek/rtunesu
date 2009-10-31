@@ -13,6 +13,6 @@ describe RTunesU::File do
   
   it_should_behave_like "an Entity with attribute assignment"
   
-  it_should_be_composed_of :name, :path, :size, :shared
+  it_should_be_composed_of :name, :path, :shared
   it_should_be_composed_of :size, :readonly => true
 end

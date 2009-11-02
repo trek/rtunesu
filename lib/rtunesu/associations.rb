@@ -13,7 +13,13 @@ module RTunesU
   
   class HasAEntityCollectionProxy < SubentityAssociationProxy
     delegate :class, :to => :target
-    attr_reader :target 
+    attr_reader :target
+    
+    def self.new_or_nil(source_xml, owner, name)
+      return nil if source_xml.empty?
+      self.new(source_xml, owner, name)
+    end
+    
     def from_xml(name)
       if @source_xml
        @target = "RTunesU::#{name}".constantize.new(:source_xml => @source_xml.first, :parent_handle => @owner.handle)

@@ -75,7 +75,7 @@ module RTunesU
       names.each do |name|
         define_method(name) do
           entity_name = options[:as] || name.to_s.camelize
-          instance_variable_get("@#{name}") || instance_variable_set("@#{name}", RTunesU::HasAEntityCollectionProxy.new_or_nil(self.source_xml./(entity_name), self, entity_name))
+          edits[entity_name] || RTunesU::HasAEntityCollectionProxy.new_or_nil(self.source_xml./(entity_name), self, entity_name)
         end
         
         unless options[:readonly]

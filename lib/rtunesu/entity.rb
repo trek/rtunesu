@@ -180,11 +180,25 @@ module RTunesU
     # Converts the entities changed attributes and subentities to XML.  Called by Document when building
     # documents to transfer to iTunes U.
     def to_xml(xml_builder = Builder::XmlMarkup.new)
-      xml_builder.tag!(self.class_name) {
-        self.edits.each do |attribute,edit|
-          edit.is_a?(SubentityAssociationProxy) ? edit.to_xml(xml_builder) : xml_builder.tag!(attribute, edit)
-        end
-      }
+      xml_builder.tag!(self.class_name) do
+        self.before_edits_to_xml(xml_builder)
+        self.edits_to_xml(xml_builder)
+        self.after_edits_to_xml(xml_builder)
+      end
+    end
+    
+    def edits_to_xml(xml_builder)
+      self.edits.each do |attribute,edit|
+        edit.is_a?(SubentityAssociationProxy) ? edit.to_xml(xml_builder) : xml_builder.tag!(attribute, edit)
+      end
+    end
+    
+    def before_edits_to_xml(xml_builder)
+      true
+    end
+    
+    def after_edits_to_xml(xml_builder)
+      true
     end
     
     def inspect

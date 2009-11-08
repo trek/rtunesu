@@ -6,7 +6,6 @@ module RTunesU
       @owner = owner
       @owner.edits[name] = self
       @edits = []
-      self.from_xml(name)
     end
     
   end
@@ -17,7 +16,15 @@ module RTunesU
     
     def self.new_or_nil(source_xml, owner, name)
       return nil if source_xml.empty?
-      self.new(source_xml, owner, name)
+      proxy = self.new(source_xml, owner, name)
+      proxy.from_xml(name)
+      return proxy
+    end
+    
+    def self.new_from_target(target, owner, name)
+      proxy = self.new(nil, owner, name)
+      proxy.instance_variable_set("@target", target)
+      return proxy
     end
     
     def from_xml(name)
@@ -28,8 +35,8 @@ module RTunesU
       end
     end
     
-    def to_xml(builder)
-      @target.to_xml(builder) if @target.edits.any?
+    def to_xml(xml_builder = Builder::XmlMarkup.new)
+      @target.to_xml(xml_builder) if @target.edits.any?
     end
     
     def method_missing(method_name, *args)
@@ -40,6 +47,11 @@ module RTunesU
   class HasNEntityCollectionProxy < SubentityAssociationProxy
     delegate :[], :at, :first, :last, :size, :clear, :to => :target
     attr_reader :target, :edits
+    
+    def initialize(source_xml, owner, name)
+      super
+      self.from_xml(name)
+    end
 
     def from_xml(name)
       if @source_xml

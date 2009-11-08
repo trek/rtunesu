@@ -80,7 +80,9 @@ module RTunesU
         
         unless options[:readonly]
           define_method(:"#{name}=") do |arg|
-            edits[options[:as] || name.to_s.camelize] = arg
+            entity_name = options[:as] || name.to_s.camelize
+            RTunesU::HasAEntityCollectionProxy.new_from_target(arg, self, entity_name)
+            #edits[options[:as] || name.to_s.camelize] = arg
           end
         end
       end
@@ -181,24 +183,10 @@ module RTunesU
     # documents to transfer to iTunes U.
     def to_xml(xml_builder = Builder::XmlMarkup.new)
       xml_builder.tag!(self.class_name) do
-        self.before_edits_to_xml(xml_builder)
-        self.edits_to_xml(xml_builder)
-        self.after_edits_to_xml(xml_builder)
+        self.edits.each do |attribute,edit|
+          edit.is_a?(SubentityAssociationProxy) ? edit.to_xml(xml_builder) : xml_builder.tag!(attribute, edit)
+        end
       end
-    end
-    
-    def edits_to_xml(xml_builder)
-      self.edits.each do |attribute,edit|
-        edit.is_a?(SubentityAssociationProxy) ? edit.to_xml(xml_builder) : xml_builder.tag!(attribute, edit)
-      end
-    end
-    
-    def before_edits_to_xml(xml_builder)
-      true
-    end
-    
-    def after_edits_to_xml(xml_builder)
-      true
     end
     
     def inspect
